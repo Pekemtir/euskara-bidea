@@ -11,6 +11,15 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v15 · 2026-11-06 · A2 completo según planes oficiales
+- **Auditoría del A2** contra UNED A2, Gobierno Vasco (programación A2) y HEOC/HABE. Tras pasar lo básico a A1, el A2 quedaba corto (9 lecciones); ahora tiene **21**.
+- 12 lecciones nuevas: pasado «a quién» (zidan, zizun, zion…), planes y futuro (-tzeko asmoa), hasi/jarraitu/utzi y dagoeneko/oraindik, opiniones (uste dut, nahiago dut), sufijos (-egi, -tsu, -dun, -txo), estados (irekita dago), describir personas, teléfono y mensajes, pasado con duela/joan den/inoiz, restaurante y alojamiento, plural de los casos (-ek, -ei, -en), ekarri/eraman.
+- Verbos nuevos en la pestaña Aditzak (A2): eman (hark… niri, zuri…), ekarri, eraman.
+- Vocabulario A2 nuevo: aspecto y carácter, restaurante y alojamiento, tiempo pasado/futuro, opiniones.
+- Más frases en Esaldiak.
+
+---
+
 ## v14 · 2026-11-06 · A1 completo según planes oficiales + Hiztegia
 - **Auditoría del temario A1** contra UNED (guía A1), HEOC/HABE y EHU. Se movieron de A2 a A1 los contenidos que oficialmente son A1: posiciones, imperativos, tiempo atmosférico, hora, comparativos, ahal/ezin, -rekin/-z/-raino, ba-/-nean, preguntas con -al, dativo (eman), compras, salud, etc.
 - **A1 pasa a 28 lecciones** (nuevas: números 100–1000 y ordinales, zerbait/ezer/inor, preguntar direcciones, -tzea/-tzeko/-tzera) y **A2 a 9** (relativos, conectores y narración…). Candado A2 más exigente: hay que completar las 28.
