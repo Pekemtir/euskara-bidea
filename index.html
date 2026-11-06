@@ -63,7 +63,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:3px solid var(--urdin);outline-offset:2px}
 .app{max-width:680px;margin:0 auto;padding-bottom:110px}
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px}
-.brand{font:700 22px/1 var(--f-display);letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.brand{background:none;border:0;padding:6px 0;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;font:700 22px/1 var(--f-display);letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
 .brand i{width:14px;height:14px;border-radius:50%;background:var(--gorri);box-shadow:9px 0 0 -2px var(--berde)}
 .chips{display:flex;gap:8px}
 .chip{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font:700 14px/1.2 var(--f-body);font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -252,7 +252,7 @@ ul.goals.small{font-size:14px;color:var(--muted);margin:10px 0 12px}
 <body>
 <div class="app">
   <header class="top">
-    <div class="brand"><i></i>Euskara Bidea</div>
+    <button class="brand" id="logo" type="button" aria-label="Ir a la pantalla principal"><i></i>Euskara Bidea</button>
     <button class="backbtn" id="back" type="button" aria-label="Volver">← Atzera</button>
     <div class="chips"><span class="chip" id="chStreak"></span><span class="chip" id="chXp"></span></div>
   </header>
@@ -1123,6 +1123,7 @@ function ikasgelaView(){
   <p class="note">Temario adaptado del orden de contenidos de la <a href="https://contenido.uned.es/cuid/oferta_idiomas/guias_2018/euskera_elemental_a1_online_2018.pdf" target="_blank" rel="noopener">guía de euskera A1 de la UNED</a>, el <a href="https://www.ehu.eus/documents/d/nazioarteko-harremanak/ehu-programa-euskera-2c-es" target="_blank" rel="noopener">programa de nivel inicial de la EHU</a> y el <a href="https://www.euskadi.eus/curriculo-basico-de-ensenanza-de-euskera-a-personas-adultas-heoc/web01-ejeduki/es/" target="_blank" rel="noopener">currículo HEOC</a>. Los textos y ejemplos son propios: contrástalos con tu profesor.</p>`;
 }
 $('#back').addEventListener('click',askExit);
+$('#logo').addEventListener('click',()=>{if(!SES&&!LES)goTo('home')});
 window.addEventListener('popstate',()=>{
   if(!PUSHED)return;
   PUSHED=false;
