@@ -11,6 +11,15 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v18 · 2026-11-06 · Niri buruz (preguntas personalizadas)
+- Primer cuestionario en el inicio: nombre, dónde vives, de dónde eres y fecha de nacimiento (todo opcional, se puede saltar y editar luego en Ezarpenak). Los datos se guardan solo en el navegador de cada persona.
+- Saludo con tu nombre («Kaixo, David!») y felicitación el día de tu cumpleaños.
+- Nueva baldosa «Niri buruz»: sesión de unas 9 preguntas con tus datos (Ni David naiz · Elizondon bizi naiz · Bilbokoa naiz · martxoaren 12an jaio nintzen · berrogeita bat urte ditut, más las preguntas Zer da zure izena?, Non bizi zara?, Nongoa zara?…).
+- Los sufijos de lugar (-n/-en, -koa/-ekoa), el día del mes y la edad en euskera se calculan solos. Con nombres de lugar poco habituales puede fallar alguna terminación.
+- Arreglo menor: separación entre los temas del diccionario.
+
+---
+
 ## v17 · 2026-11-06 · Nuevo diseño «Pizarra»
 - Diseño nuevo elegido entre 3 propuestas: pizarra verde oscuro, tiza blanca con colores pastel, bordes a trazo de tiza y letra manuscrita (Patrick Hand) en títulos; texto en Nunito.
 - Solo cambia el aspecto (CSS y fuentes); el contenido y el funcionamiento son los mismos. Ahora es siempre oscuro.
