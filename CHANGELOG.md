@@ -11,6 +11,12 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v10 · 2026-11-06 · Repaso, buscador, palabra del día y copia de seguridad
+- **Errepasoa**: sesión de 10 preguntas con tus palabras más flojas (según tu dominio de cada una).
+- **Gaurko hitza**: palabra del día en inicio, con botón 🔊 de pronunciación.
+- **Buscador** en Hitzak: busca en euskera o en español (sin distinguir tildes) y escucha cada palabra.
+- **Ezarpenak** (abajo del inicio): meta diaria 30/50/100/150 XP; **copia de seguridad** (generar código / importar) para pasar el progreso a otro móvil o navegador; borrar progreso con doble pulsación.
+
 ## v9 · 2026-11-06 · Logo = inicio
 - Pulsar el logo «Euskara Bidea» de la cabecera te lleva siempre a la pantalla principal (desde cualquier pestaña). Dentro de lecciones y sesiones el logo se sustituye por ← Atzera.
 

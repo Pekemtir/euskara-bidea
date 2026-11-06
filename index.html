@@ -190,6 +190,13 @@ body.in-session .app{padding-bottom:40px}
 
 /* conjugación */
 .sel{display:flex;flex-wrap:wrap;gap:8px}
+.fld{width:100%;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;padding:12px 14px;font:500 16px var(--f-body)}
+textarea.fld{font:500 13px var(--f-mono,monospace);min-height:84px;resize:vertical;word-break:break-all}
+.hit{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.hit:last-child{border-bottom:0}.hit b{font:700 17px var(--f-display)}.hit .es{margin-left:auto;text-align:right}
+.spk{border:1px solid var(--line);background:var(--surface);border-radius:999px;width:38px;height:38px;font-size:17px;flex:none}
+.wotd{display:flex;align-items:center;gap:12px}.wotd .big2{font:700 26px var(--f-display)}
+.okmsg{color:var(--berde-deep,var(--berde));font-weight:700;margin-top:8px}.errmsg{color:var(--gorri);font-weight:700;margin-top:8px}
 .pill{border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font:700 15px var(--f-body)}
 .pill.on{border-color:var(--ink);background:var(--ink);color:var(--bg)}
 .tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
@@ -1144,6 +1151,35 @@ function goTo(name){
   render();window.scrollTo(0,0);
 }
 
+function wotdCard(){
+  const a=allWords(),w=a[Math.floor(Date.now()/864e5)%a.length];
+  return `<div class="card wotd"><div class="grow"><span class="qkind">Gaurko hitza · palabra del día</span><div class="big2">${esc(w.em?w.em+' ':'')}${esc(w.eu)}</div><span class="es">${esc(w.es)}</span></div><button class="spk" data-act="say" data-t="${esc(w.eu)}" aria-label="Escuchar">🔊</button></div>`;
+}
+function settingsCard(){
+  return `<h2 class="sec">Ezarpenak <span class="es" style="font:500 14px var(--f-body)">· ajustes y copia de seguridad</span></h2>
+  <div class="card"><b>Eguneko helburua · meta diaria</b><div class="sel" style="margin-top:8px">${[30,50,100,150].map(g=>`<button class="pill${S.goal===g?' on':''}" data-act="goal" data-g="${g}">${g} XP</button>`).join('')}</div></div>
+  <div class="card" style="margin-top:12px"><b>Babeskopia · copia de seguridad</b>
+  <p class="es" style="margin:6px 0 10px">Tu progreso vive en este navegador. Copia el código para llevarlo a otro móvil u otro navegador (o para no perderlo si borras los datos).</p>
+  <div class="row"><button class="btn sec small" data-act="exp">Código sortu · generar</button><button class="btn sec small" data-act="imp">Inportatu · importar</button></div>
+  <textarea class="fld" id="bk" hidden spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="Pega aquí tu código y pulsa Importar de nuevo"></textarea>
+  <div id="bkm"></div>
+  <button class="btn sec small" style="margin-top:14px" data-act="reset">Progresua ezabatu · borrar progreso</button></div>`;
+}
+function wordsFind(q){
+  q=norm(q);if(q.length<2)return [];
+  return allWords().filter(w=>norm(w.eu).includes(q)||norm(w.es).includes(q)).slice(0,25);
+}
+function weakQs(){
+  const a=allWords().map(w=>({w,k:mast(w.id)+Math.random()*1.5})).sort((x,y)=>x.k-y.k).slice(0,12).map(x=>x.w);
+  return vocabQs(a,10);
+}
+function exportCode(){return btoa(unescape(encodeURIComponent(JSON.stringify(S))))}
+function importCode(c){
+  const o=JSON.parse(decodeURIComponent(escape(atob(c.replace(/\s+/g,'')))));
+  if(!o||typeof o!=='object'||typeof o.xp!=='number'||typeof o.m!=='object')throw new Error('bad');
+  return o;
+}
+function bkMsg(t,ok){const m=$('#bkm');if(m)m.innerHTML=`<p class="${ok?'okmsg':'errmsg'}">${esc(t)}</p>`}
 function homeView(){
   const g=Math.min(1,S.today/S.goal),circ=2*Math.PI*30;
   const avg=Math.round(allWords().reduce((a,w)=>a+mast(w.id),0)/(allWords().length*4)*100);
@@ -1165,16 +1201,19 @@ function homeView(){
   <div class="card"><div class="row" style="justify-content:space-between"><b style="font:700 18px var(--f-display)">${LV[lvl()][0]}</b><span class="es">${LV[lvl()][1]} · nivel ${lvl()+1}/${LV.length}</span></div><div class="lvl"><i style="width:${lvlPct()}%"></i></div></div>
   ${nextLesson()?`<button class="btn block" data-act="lesson" data-id="${nextLesson().id}">🎓 Hurrengo ikasgaia · ${nextLesson().n}. ${esc(nextLesson().eu)}</button>`:''}
   <button class="btn sec block" data-act="quick">Saio azkarra · 10 galdera</button>
+  <button class="btn sec block" data-act="weak">🎯 Errepasoa · tus 10 palabras más flojas</button>
+  ${wotdCard()}
   </div>
   <h2 class="sec">Aukeratu bidea <span class="es" style="font:500 14px var(--f-body)">· elige tu camino</span></h2>
   <div class="tiles">${tiles.map(t=>`<button class="tile" data-act="${t[0]}"${t[1]?` data-to="${t[1]}"`:''}><span class="ic">${t[2]}</span><span class="t">${t[3]}</span><span class="s">${t[4]}</span>${t[5]!=null?`<div class="bar"><i style="width:${t[5]}%"></i></div>`:''}</button>`).join('')}</div>
+  ${settingsCard()}
   <h2 class="sec">Lorpenak <span class="es" style="font:500 14px var(--f-body)">· logros</span></h2>
   <div class="badges">${BADGES.map(b=>`<div class="badge${S.badges.includes(b[0])?'':' off'}" title="${esc(b[3])}"><span>${b[1]}</span><div><b>${b[2]}</b><br><small>${b[3]}</small></div></div>`).join('')}</div>`;
 }
 
 function hitzakView(){
   return `<h1 class="big">Hitzak</h1><p class="sub">Vocabulario por temas. Cuanto menos domines una palabra, más veces aparece.</p>
-  <div class="stack"><button class="btn block" data-act="mixv">Dena nahastu · 10 galdera</button>
+  <div class="stack"><input class="fld" id="srch" type="search" placeholder="🔍 Bilatu · busca en euskera o español" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="card" id="srr" hidden></div><button class="btn block" data-act="mixv">Dena nahastu · 10 galdera</button>
   ${VOCAB.map(s=>`<div class="card"><div class="setrow"><span class="ic">${s.ic}</span><div class="grow"><b>${s.eu}</b><div class="es">${s.es} · ${s.w.length} hitz</div></div><span class="chip">${setPct(s)}%</span></div>
   <div class="bar"><i style="width:${setPct(s)}%"></i></div>
   <div class="words">${s.w.slice(0,6).map(w=>`<span class="w">${esc(w[0])}</span>`).join('')}${s.w.length>6?'<span class="w">…</span>':''}</div>
@@ -1312,6 +1351,25 @@ $('#view').addEventListener('click',e=>{
   if(a==='go'){goTo(d.to)}
   else if(a==='lesson'){openLesson(d.id)}
   else if(a==='quick')runSession({tag:'mix',make:()=>shuffle(vocabQs(all,4).concat(conjQs(['izan','egon','ukan'],3),buildQs(3)))});
+  else if(a==='weak')runSession({tag:'vocab',make:weakQs});
+  else if(a==='say')say(d.t);
+  else if(a==='goal'){S.goal=+d.g;save();render()}
+  else if(a==='exp'){
+    const t=$('#bk');t.hidden=false;t.value=exportCode();t.dataset.mode='exp';t.select();
+    let ok=false;try{ok=document.execCommand&&document.execCommand('copy')}catch(e){}
+    try{if(navigator.clipboard)navigator.clipboard.writeText(t.value).catch(()=>{})}catch(e){}
+    bkMsg(ok?'Código copiado. Guárdalo en tus notas o envíatelo.':'Código generado: cópialo del recuadro y guárdalo.',true);
+  }
+  else if(a==='imp'){
+    const t=$('#bk');
+    if(t.hidden||t.dataset.mode==='exp'){t.hidden=false;t.value='';t.dataset.mode='imp';t.focus();bkMsg('Pega tu código y pulsa «Inportatu» otra vez.',true);return}
+    try{const o=importCode(t.value);S=Object.assign({lessons:{},xp:0,today:0,day:'',streak:0,last:'',m:{},badges:[],typeMode:false,sess:0,conj:0,built:0,bestCombo:0,goal:50},o);save();render();bkMsg('¡Progreso importado!',true)}
+    catch(e){bkMsg('Código no válido. Cópialo entero, sin cortar.',false)}
+  }
+  else if(a==='reset'){
+    if(b.dataset.arm!=='1'){b.dataset.arm='1';b.textContent='¿Seguro? Pulsa otra vez para borrar todo';return}
+    S={lessons:{},xp:0,today:0,day:S.day,streak:0,last:'',m:{},badges:[],typeMode:false,sess:0,conj:0,built:0,bestCombo:0,goal:S.goal};save();render();window.scrollTo(0,0);
+  }
   else if(a==='mixv')runSession({tag:'vocab',make:()=>vocabQs(all,10)});
   else if(a==='quiz'){const p=setPool();runSession({tag:'vocab',make:()=>vocabQs(p,Math.min(8,p.length))})}
   else if(a==='flash'){const p=setPool();runSession({tag:'flash',make:()=>flashQs(p,Math.min(10,p.length))})}
@@ -1324,6 +1382,13 @@ $('#view').addEventListener('click',e=>{
   else if(a==='labv'){UI.lab.v=+d.i;render()}
   else if(a==='labt'){UI.lab.tk=d.t;render()}
   else if(a==='labp'){UI.lab.i=+d.i;render()}
+});
+$('#view').addEventListener('input',e=>{
+  if(e.target.id!=='srch')return;
+  const r=wordsFind(e.target.value),box=$('#srr');
+  if(e.target.value.trim().length<2){box.hidden=true;return}
+  box.hidden=false;
+  box.innerHTML=r.length?r.map(w=>`<div class="hit"><button class="spk" data-act="say" data-t="${esc(w.eu)}" aria-label="Escuchar">🔊</button><b>${esc(w.em?w.em+' ':'')}${esc(w.eu)}</b><span class="es">${esc(w.es)}</span></div>`).join(''):'<p class="es">Sin resultados.</p>';
 });
 refreshHeader();
 render();
