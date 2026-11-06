@@ -11,6 +11,16 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v14 · 2026-11-06 · A1 completo según planes oficiales + Hiztegia
+- **Auditoría del temario A1** contra UNED (guía A1), HEOC/HABE y EHU. Se movieron de A2 a A1 los contenidos que oficialmente son A1: posiciones, imperativos, tiempo atmosférico, hora, comparativos, ahal/ezin, -rekin/-z/-raino, ba-/-nean, preguntas con -al, dativo (eman), compras, salud, etc.
+- **A1 pasa a 28 lecciones** (nuevas: números 100–1000 y ordinales, zerbait/ezer/inor, preguntar direcciones, -tzea/-tzeko/-tzera) y **A2 a 9** (relativos, conectores y narración…). Candado A2 más exigente: hay que completar las 28.
+- Vocabulario A1 nuevo: direcciones, clase y asignaturas, profesiones, datos personales, partes de la casa, animales, fiestas, informática; más familia, comida, saludos y números. Verbos: jakin, ibili, eman en A1.
+- Diptongos añadidos a la lección 1.
+- **Hiztegia** (Hitzak → 📖): diccionario de consulta con ~1700 palabras en 28 temas (animales, casa, aparatos, calle, trabajo, verbos, etc.), buscador y 🔊. No entra en las lecciones.
+- Nota: el PDF oficial A1 del Gobierno Vasco no se pudo abrir; contrasta el temario con tu profesor.
+
+---
+
 ## v13 · 2026-11-06 · A2 ampliado según planes oficiales + código de acceso
 - **Código de acceso** (Inicio → Ezarpenak → «Sarbide-kodea»): desbloquea el A2 sin completar el A1, para profesores o para enseñar la app. Código actual: `irakasle2026`. No es seguridad real: está en el código de la página. Se puede desactivar desde el mismo sitio y no se transfiere con la copia de seguridad.
 - **A2 adaptado al temario oficial** (HEOC/HABE A2, programación A2 de euskera del Gobierno Vasco y guía UNED Euskara Básico A2): de 8 a **19 lecciones**. Nuevas: Iragana (joan/etorri/egon/ibili), Ohiko iragana y «ari nintzen», Maite zaitut (nau/zaitut/gaitu), Aginduak, Dezaket/naiteke, Norekin?/Zertaz? (-rekin, -z, -raino), Esan du… (-ela, preguntas indirectas), Baldin eta… (ba-, -nean), Eguraldia, Erosketak y Osasuna.
