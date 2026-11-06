@@ -300,13 +300,19 @@ table.conj td{color:var(--ink)}table.conj thead th{background:var(--surface2)}
 
 #dbody{display:flex;flex-direction:column;gap:10px}#dbody>.card{color:inherit;width:100%}
 select.fld{appearance:auto}
+.top{gap:10px}.chips{align-items:center}.gear{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;padding:0;background:transparent;border:2px dashed var(--line);color:var(--ink);transition:transform .25s,background .15s,color .15s}
+.gear:active{transform:rotate(60deg)}.gear.on{background:var(--ink);color:var(--bg);border-style:solid}
+body.in-session .gear{display:none}
+.top{gap:8px}.brand{white-space:nowrap;font-size:24px;gap:6px}.brand i{width:14px;height:14px}.chips{gap:6px}.chip{padding:4px 8px;font-size:13px}.gear{width:36px;height:36px}
+@media (max-width:370px){.brand{font-size:21px}.chip{padding:3px 6px;font-size:12px}.gear{width:32px;height:32px}.gear svg{width:19px;height:19px}}
+@media (max-width:340px){.brand i{display:none}.brand{font-size:19px}.chip{padding:3px 5px;font-size:11.5px}.chips{gap:4px}}
 </style>
 
 <div class="app">
   <header class="top">
     <button class="brand" id="logo" type="button" aria-label="Ir a la pantalla principal"><i></i>Euskara Bidea</button>
     <button class="backbtn" id="back" type="button" aria-label="Volver">← Atzera</button>
-    <div class="chips"><span class="chip" id="chStreak"></span><span class="chip" id="chXp"></span></div>
+    <div class="chips"><span class="chip" id="chStreak"></span><span class="chip" id="chXp"></span><button class="gear" id="gear" type="button" aria-label="Ezarpenak · ajustes"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.65 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9a1.7 1.7 0 0 0 1.03-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9a1.7 1.7 0 0 0 1.56 1.03H21a2 2 0 1 1 0 4h-.09A1.7 1.7 0 0 0 19.4 15z"/></svg></button></div>
   </header>
   <main id="view"></main>
 </div>
@@ -2271,7 +2277,7 @@ window.addEventListener('popstate',()=>{
 const TABS=[['home','🏠','Hasiera'],['ikasgela','🎓','Ikasgela'],['hitzak','📚','Hitzak'],['aditzak','🧩','Aditzak'],['esaldiak','🧱','Esaldiak']];
 const verbKeys=()=>Object.keys(CONJ).filter(k=>lvOf(CONJ[k])===S.level);
 const UI={verb:'izan',lab:{v:0,tk:'oraina',i:0}};
-const validRoute=h=>TABS.some(t=>t[0]===h)||h==='gida';
+const validRoute=h=>TABS.some(t=>t[0]===h)||h==='gida'||h==='ezarpenak';
 let CUR=(function(){let h='';try{h=location.hash.slice(1)}catch(e){}return validRoute(h)?h:'home'})();
 const route=()=>CUR;
 function goTo(name){
@@ -2282,15 +2288,14 @@ function goTo(name){
 
 function levelBar(){
   const open=a2Open();
-  return `<div class="lvbar"><span class="qkind" style="margin:0">Maila · nivel</span><div class="sel"><button class="pill${S.level==='a1'?' on':''}" data-act="lvl" data-l="a1">A1</button><button class="pill${S.level==='a2'?' on':''}" data-act="lvl" data-l="a2">A2${open?'':' 🔒'}</button></div></div>${open?'':`<p class="note" style="margin:0 0 12px">El A2 se abre al completar las ${a1Total()} lecciones del A1 (llevas ${a1Done()}/${a1Total()}). ¿Profesor o demo? Introduce el código en Ezarpenak (Inicio).</p>`}`;
+  return `<div class="lvbar"><span class="qkind" style="margin:0">Maila · nivel</span><div class="sel"><button class="pill${S.level==='a1'?' on':''}" data-act="lvl" data-l="a1">A1</button><button class="pill${S.level==='a2'?' on':''}" data-act="lvl" data-l="a2">A2${open?'':' 🔒'}</button></div></div>${open?'':`<p class="note" style="margin:0 0 12px">El A2 se abre al completar las ${a1Total()} lecciones del A1 (llevas ${a1Done()}/${a1Total()}). ¿Profesor o demo? Introduce el código en Ezarpenak (⚙️).</p>`}`;
 }
 function wotdCard(){
   const a=allWords(),w=a[Math.floor(Date.now()/864e5)%a.length];
   return `<div class="card wotd"><div class="grow"><span class="qkind">Gaurko hitza · palabra del día</span><div class="big2">${esc(w.em?w.em+' ':'')}${esc(w.eu)}</div><span class="es">${esc(w.es)}</span></div><button class="spk" data-act="say" data-t="${esc(w.eu)}" aria-label="Escuchar">🔊</button></div>`;
 }
 function settingsCard(){
-  return `<h2 class="sec">Ezarpenak <span class="es" style="font:500 14px var(--f-body)">· ajustes y copia de seguridad</span></h2>
-  <div class="card"><b>Eguneko helburua · meta diaria</b><div class="sel" style="margin-top:8px">${[30,50,100,150].map(g=>`<button class="pill${S.goal===g?' on':''}" data-act="goal" data-g="${g}">${g} XP</button>`).join('')}</div></div>
+  return `  <div class="card"><b>Eguneko helburua · meta diaria</b><div class="sel" style="margin-top:8px">${[30,50,100,150].map(g=>`<button class="pill${S.goal===g?' on':''}" data-act="goal" data-g="${g}">${g} XP</button>`).join('')}</div></div>
   <div class="card" style="margin-top:12px"><b>Nire datuak · mis datos</b><p class="es" style="margin:6px 0 10px">Nombre, pueblo y cumpleaños para las preguntas personales.</p><button class="btn sec small" data-act="medit">Editatu · editar</button></div>
   <div class="card" style="margin-top:12px"><b>Sarbide-kodea · código de acceso</b>
   <p class="es" style="margin:6px 0 10px">Para profesores o para probar la app: desbloquea el A2 sin completar el A1.</p>
@@ -2346,7 +2351,6 @@ function homeView(){
   </div>
   <h2 class="sec">Aukeratu bidea <span class="es" style="font:500 14px var(--f-body)">· elige tu camino</span></h2>
   <div class="tiles">${tiles.map(t=>`<button class="tile" data-act="${t[0]}"${t[1]?` data-to="${t[1]}"`:''}><span class="ic">${t[2]}</span><span class="t">${t[3]}</span><span class="s">${t[4]}</span>${t[5]!=null?`<div class="bar"><i style="width:${t[5]}%"></i></div>`:''}</button>`).join('')}</div>
-  ${settingsCard()}
   <h2 class="sec">Lorpenak <span class="es" style="font:500 14px var(--f-body)">· logros</span></h2>
   <div class="badges">${BADGES.map(b=>`<div class="badge${S.badges.includes(b[0])?'':' off'}" title="${esc(b[3])}"><span>${b[1]}</span><div><b>${b[2]}</b><br><small>${b[3]}</small></div></div>`).join('')}</div>`;
 }
@@ -2440,6 +2444,9 @@ function esaldiakView(){
   </div>`;
 }
 
+function ezarpenakView(){
+  return `<h1 class="big">Ezarpenak</h1><p class="sub">Ajustes, tus datos, código de acceso y copia de seguridad.</p><div class="stack">${UI.meEdit?meForm():''}${settingsCard()}</div>`;
+}
 function gidaView(){
   const ex=(eu,es)=>`<div class="ex">${eu}<small>${es}</small></div>`;
   const t6=[['Oraina (hábito)','habitual + auxiliar','jaten dut','joaten naiz'],['Ari izan (ahora)','habitual + ari + izan','jaten ari naiz','joaten ari naiz'],['Iragana','participio + aux. pasado','jan nuen','joan nintzen'],['Perfektua','participio + aux. presente','jan dut','joan naiz'],['Geroa','participio + ko / go + aux.','jango dut','joango naiz']];
@@ -2488,8 +2495,9 @@ function render(){
   if(SES)return;
   if(LES){lessonRender();return}
   const r=route();
-  $('#view').innerHTML=({home:homeView,ikasgela:ikasgelaView,hitzak:hitzakView,aditzak:aditzakView,esaldiak:esaldiakView,gida:gidaView})[r]();
+  $('#view').innerHTML=({home:homeView,ikasgela:ikasgelaView,hitzak:hitzakView,aditzak:aditzakView,esaldiak:esaldiakView,gida:gidaView,ezarpenak:ezarpenakView})[r]();
   $('#tabs').innerHTML=TABS.map(t=>`<button class="tab${t[0]===r?' on':''}" data-go="${t[0]}"><span>${t[1]}</span>${t[2]}</button>`).join('');
+  const gr=$('#gear');if(gr)gr.classList.toggle('on',r==='ezarpenak');
   refreshHeader();
 }
 $('#tabs').addEventListener('click',e=>{
@@ -2562,6 +2570,7 @@ $('#view').addEventListener('input',e=>{
   box.hidden=false;
   box.innerHTML=r.length?r.map(w=>`<div class="hit"><button class="spk" data-act="say" data-t="${esc(w.eu)}" aria-label="Escuchar">🔊</button><b>${esc(w.em?w.em+' ':'')}${esc(w.eu)}</b><span class="es">${esc(w.es)}</span></div>`).join(''):'<p class="es">Sin resultados.</p>';
 });
+$('#gear').addEventListener('click',()=>{goTo(route()==='ezarpenak'?'home':'ezarpenak')});
 if(S.level==='a2'&&!a2Open())S.level='a1';
 refreshHeader();
 render();

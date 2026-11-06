@@ -11,6 +11,13 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v19 · 2026-11-06 · Engranaje de ajustes
+- Engranaje ⚙️ arriba a la derecha: abre la pantalla Ezarpenak (meta diaria, mis datos, código de acceso, copia de seguridad, borrar progreso). Pulsarlo otra vez vuelve al inicio.
+- Los ajustes ya no están en la pantalla principal. El engranaje se oculta dentro de lecciones y sesiones.
+- Cabecera reajustada para que quepa en móviles estrechos (320–430 px).
+
+---
+
 ## v18 · 2026-11-06 · Niri buruz (preguntas personalizadas)
 - Primer cuestionario en el inicio: nombre, dónde vives, de dónde eres y fecha de nacimiento (todo opcional, se puede saltar y editar luego en Ezarpenak). Los datos se guardan solo en el navegador de cada persona.
 - Saludo con tu nombre («Kaixo, David!») y felicitación el día de tu cumpleaños.
