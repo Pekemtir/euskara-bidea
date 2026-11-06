@@ -11,6 +11,13 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v13 · 2026-11-06 · A2 ampliado según planes oficiales + código de acceso
+- **Código de acceso** (Inicio → Ezarpenak → «Sarbide-kodea»): desbloquea el A2 sin completar el A1, para profesores o para enseñar la app. Código actual: `irakasle2026`. No es seguridad real: está en el código de la página. Se puede desactivar desde el mismo sitio y no se transfiere con la copia de seguridad.
+- **A2 adaptado al temario oficial** (HEOC/HABE A2, programación A2 de euskera del Gobierno Vasco y guía UNED Euskara Básico A2): de 8 a **19 lecciones**. Nuevas: Iragana (joan/etorri/egon/ibili), Ohiko iragana y «ari nintzen», Maite zaitut (nau/zaitut/gaitu), Aginduak, Dezaket/naiteke, Norekin?/Zertaz? (-rekin, -z, -raino), Esan du… (-ela, preguntas indirectas), Baldin eta… (ba-, -nean), Eguraldia, Erosketak y Osasuna.
+- **Verbos nuevos en Aditzak (A2):** joan (iragana), etorri (iragana), ibili, ahal (dezaket) y ahal (naiteke); se suman a gustatu y eman.
+- **Vocabulario A2:** +53 palabras en 6 temas nuevos (Eguraldia, Osasuna, Erosketak, Lana eta ikasketak, Aisialdia, Otorduak): 129 palabras A2 en 14 temas. 29 frases A2 para construir.
+- Contenido escrito por Claude a partir del temario: contrástalo con el profesor.
+
 ## v12 · 2026-11-06 · Nivel A2 (bloqueado hasta completar el A1) y arreglo del botón de siguiente lección
 - **Arreglo:** al terminar una lección la pantalla de resultado solo ofrecía repetirla. Ahora el botón principal es «Hurrengo ikasgaia» (siguiente lección); «Berriro praktikatu» y «releer» siguen disponibles. También se corrige un posible cierre inmediato al saltar de la práctica a releer una lección.
 - **Selector de nivel A1 / A2** en Inicio, Ikasgela, Hitzak y Aditzak. El A2 está **bloqueado (🔒)** hasta completar las 12 lecciones del A1 (≥ 60 % en cada una); un progreso importado o guardado en A2 sin cumplirlo vuelve a A1. Nueva insignia «Bigarren maila» al desbloquearlo.
