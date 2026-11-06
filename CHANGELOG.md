@@ -11,6 +11,13 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v17 · 2026-11-06 · Nuevo diseño «Pizarra»
+- Diseño nuevo elegido entre 3 propuestas: pizarra verde oscuro, tiza blanca con colores pastel, bordes a trazo de tiza y letra manuscrita (Patrick Hand) en títulos; texto en Nunito.
+- Solo cambia el aspecto (CSS y fuentes); el contenido y el funcionamiento son los mismos. Ahora es siempre oscuro.
+- Las otras dos propuestas (A Aldizkaria, B Bauhaus) quedan en la carpeta `disenos`.
+
+---
+
 ## v16 · 2026-11-06 · Animales
 - Set «Animaliak» ampliado de 8 a 34 palabras (caballo, perro, gato, vaca, oveja, cabra, cerdo, burro, águila, ciervo, león, rana, serpiente, etc.). Los animales sueltos que estaban en «Baztan eta natura» se movieron ahí.
 

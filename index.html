@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400..800&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
 /* Concepto: app de bolsillo en una columna. Inicio con meta diaria y baldosas de actividad, sesiones cortas con feedback inmediato, morfemas de los verbos pintados por función. */
 :root{
@@ -236,6 +236,68 @@ ul.goals.small{font-size:14px;color:var(--muted);margin:10px 0 12px}
 #fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
 .note{font-size:13px;color:var(--muted);margin-top:14px}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+/* ===== TEMA PIZARRA (v17) (clase de euskaltegi, tiza sobre pizarra verde) ===== */
+body{--f-display:'Patrick Hand','Comic Sans MS',cursive;--f-body:'Nunito',system-ui,sans-serif;
+ --bg:#1E2B27;--surface:#273833;--surface2:#2F423C;--ink:#F3F0E4;--muted:#B5C0B7;--line:rgba(243,240,228,.32);
+ --gorri:#FF8F85;--on-gorri:#2A1210;--gorri-soft:#4A2B2A;--gorri-deep:#FF8F85;
+ --berde:#9DE3AE;--berde-soft:#2A4B3A;--berde-deep:#9DE3AE;--urdin:#9CCBFF;--urdin-soft:#25384F;--urre:#FFD879;--urre-soft:#4A4022;--r:14px;color-scheme:dark}
+body{background:radial-gradient(1200px 600px at 20% -10%,rgba(255,255,255,.07),transparent 60%),radial-gradient(900px 500px at 90% 110%,rgba(255,255,255,.05),transparent 60%),var(--bg)}
+body::before{background:var(--bg)}
+.app{position:relative}
+.top{background:var(--bg);border-bottom:2px dashed var(--line)}
+.brand{font:400 28px/1 var(--f-display);letter-spacing:.01em}
+.brand i{width:16px;height:16px;background:none;border:2.5px solid var(--gorri);border-radius:50% 45% 55% 50%;box-shadow:11px 0 0 -2px var(--berde)}
+.chip{background:transparent;border:2px dashed var(--line);font:700 14px var(--f-body);border-radius:255px 15px 225px 15px/15px 225px 15px 255px}
+h1.big{font:400 clamp(40px,11vw,60px)/1 var(--f-display);letter-spacing:0;transform:rotate(-1deg);display:inline-block;border-bottom:4px solid var(--urre);padding-bottom:2px}
+h2.sec{font:400 28px var(--f-display);letter-spacing:0;color:var(--urre)}
+.sub{font-size:17px}
+.card,details.g,.tscroll,.stats3 div,.flash,.tile{border:2px dashed var(--line);border-radius:255px 15px 225px 15px/15px 225px 15px 255px;background:var(--surface);box-shadow:none}
+.card,.tile{border-radius:22px 12px 20px 14px/14px 20px 12px 22px}
+.card,.tile,.flash,.stats3 div{border-style:solid;border-width:2px;border-color:rgba(243,240,228,.45)}
+details.g{border-radius:16px 10px 18px 12px/12px 18px 10px 16px;padding:0 16px}
+.tiles{gap:14px}
+.tile{box-shadow:3px 4px 0 rgba(0,0,0,.35);padding:14px}
+.tile:nth-child(odd){transform:rotate(-.6deg)}.tile:nth-child(even){transform:rotate(.5deg)}
+.tile:active{transform:translate(2px,3px);box-shadow:1px 1px 0 rgba(0,0,0,.35)}
+.tile .t{font:400 26px/1.05 var(--f-display);letter-spacing:0}
+.tile .s{color:var(--muted)}
+.btn{border-radius:18px 12px 20px 10px/10px 20px 12px 18px;background:var(--ink);color:#1E2B27;box-shadow:3px 4px 0 rgba(0,0,0,.45);font:700 17px var(--f-body)}
+.btn:active{transform:translate(2px,3px);box-shadow:1px 1px 0 rgba(0,0,0,.45)}
+.btn.sec{background:transparent;color:var(--ink);border:2px dashed var(--line);box-shadow:none}
+.btn.sec:active{box-shadow:none}
+.btn.ok{background:var(--berde);color:#10261A;box-shadow:3px 4px 0 rgba(0,0,0,.45)}
+.btn.small,.btn.sec.small{box-shadow:none;font-size:15px}.btn.small{box-shadow:2px 3px 0 rgba(0,0,0,.45)}
+.ring .bg{stroke:rgba(243,240,228,.18)}.ring .fg{stroke:var(--urre);stroke-dasharray:none}.ring text{font:400 22px var(--f-display);fill:var(--ink)}
+.goal b,.wotd .big2,.setrow .grow b,.piece .f,.result .num,.sheet h3{font-family:var(--f-display);font-weight:400;letter-spacing:0}
+.goal b{font-size:22px}.setrow .grow b{font-size:24px}
+.lvl,.bar,.prog{background:rgba(243,240,228,.15);border-radius:99px}
+.lvl i{background:var(--urre)}.bar i,.prog i{background:var(--berde)}
+.badge{border-radius:12px 8px 12px 8px;border:2px dashed var(--line);background:transparent}
+.tabs{background:#16201D;border-top:2px dashed var(--line)}
+.tab{font:700 12px var(--f-body);border-radius:14px}
+.tab.on{background:rgba(255,216,121,.15);color:var(--urre)}
+.opt,.wt{background:var(--surface);border:2px solid rgba(243,240,228,.45);border-radius:14px 10px 16px 10px/10px 16px 10px 14px;box-shadow:2px 3px 0 rgba(0,0,0,.35);font:700 18px var(--f-body)}
+.opt:active,.wt:active{transform:translate(2px,2px);box-shadow:0 0 0 rgba(0,0,0,.35)}
+.opt.good{border-color:var(--berde);background:var(--berde-soft)}.opt.bad{border-color:var(--gorri);background:var(--gorri-soft)}
+.typebox,.fld{background:var(--surface);border:2px dashed var(--line);border-radius:12px;color:var(--ink)}
+.prompt{font:400 clamp(34px,9vw,46px)/1.05 var(--f-display);letter-spacing:0}
+.big-emoji{filter:drop-shadow(0 0 0 transparent)}
+.qkind{color:var(--urre);letter-spacing:.14em}
+.line{border-bottom:2px dashed var(--line)}
+.x,.speak,.spk,.backbtn,.pill{background:transparent;border:2px dashed var(--line);color:var(--ink);box-shadow:none}
+.pill.on{background:var(--ink);color:#1E2B27;border-style:solid}
+.sheet{border-top:2px dashed}.sheet .why{background:var(--surface2);border-radius:12px}
+.sheet.good h3{color:var(--berde)}.sheet.bad h3{color:var(--gorri)}
+.flash{min-height:240px}.flash .eu{font:400 clamp(44px,12vw,62px)/1 var(--f-display);letter-spacing:0}.flash .back{font-family:var(--f-display);font-weight:400;font-size:32px}
+.ex{background:var(--surface2);border-left:4px solid var(--urre);border-radius:6px}
+.explain{background:var(--surface2)}
+.w{background:var(--surface2);border-radius:99px;padding:2px 10px}
+table.conj td{color:var(--ink)}table.conj thead th{background:var(--surface2)}
+.m-root{color:var(--urdin)}.m-person{color:var(--gorri)}.m-obj{color:var(--berde)}.m-tense{color:var(--urre)}
+.result .num{font-size:84px;color:var(--urre)}
+.toast{background:var(--ink);color:#1E2B27}
+.note a{color:var(--urdin)}
+
 </style>
 
 <div class="app">
