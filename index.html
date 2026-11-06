@@ -705,8 +705,10 @@ function flashQs(pool,n){
 
 /* ===== CONJUGACIÓN ===== */
 const segHTML=a=>a.map(([s,r])=>`<span class="m-${r}">${esc(s)}</span>`).join('');
+const pastOk=()=>!!(window.FORCEPAST||S.level==='a2'||S.a1test===1||S.a2key===1||(S.lessons&&S.lessons.l10!=null)||(typeof SES!=='undefined'&&SES&&SES.cfg&&SES.cfg.test));
 function genConj(vk){
-  const c=CONJ[vk],tks=Object.keys(c.T),tk=tks[rnd(tks.length)],i=rnd(6),t=c.T[tk],ans=t.f[i];
+  const c=CONJ[vk];let tks=Object.keys(c.T);if(!pastOk()&&!c.lv){const pr=tks.filter(k=>!/^iragana/.test(k));if(pr.length)tks=pr}
+  const tk=tks[rnd(tks.length)],i=rnd(6),t=c.T[tk],ans=t.f[i];
   const pr=pronOf(c)[i];
   const forms=Object.values(c.T).flatMap(x=>x.f);
   const same=t.f.filter(f=>f!==ans);
@@ -1251,27 +1253,6 @@ LESSONS.push(
   mc('Gustatu','«A ti te gusta la sidra»','¿Cuál es?','Zuri sagardoa gustatzen zaizu',['Zuri sagardoa gustatzen zait','Zuk sagardoa gustatzen duzu','Zuri sagardoa gustatzen du'],'Para «a ti»: <b>zuri</b> + <b>zaizu</b>.')
  ])},
 
-{id:'l10',n:10,eu:'Iragana eta geroa',es:'Pasado, perfecto y futuro',ic:'⏳',min:10,
- goals:['Formar el pasado con nintzen y nuen','Distinguir el pasado del «he hecho»','Formar el futuro con -ko / -go'],
- steps:[
- {t:'La línea del tiempo',h:'<p>Tres tiempos con el mismo molde: <b>participio + auxiliar</b>. Lo único que cambia es el auxiliar o el final del verbo.</p>',
-  tb:'<table class="mini"><tr><th>Tiempo</th><th>jan (con objeto)</th><th>joan (sin objeto)</th></tr><tr><td>Pasado <small>(atzo)</small></td><td>jan <b>nuen</b></td><td>joan <b>nintzen</b></td></tr><tr><td>Perfecto <small>(gaur)</small></td><td>jan <b>dut</b></td><td>joan <b>naiz</b></td></tr><tr><td>Presente <small>(orain)</small></td><td>jaten dut</td><td>joaten naiz</td></tr><tr><td>Futuro <small>(bihar)</small></td><td>jan<b>go</b> dut</td><td>joan<b>go</b> naiz</td></tr></table>'},
- {t:'El pasado',h:'<p>El participio <b>no cambia</b>. Cambia el auxiliar a su forma de pasado.</p>',
-  tb:'<table class="mini"><tr><th></th><th>izan</th><th>ukan</th></tr><tr><td>ni / nik</td><td>nintzen</td><td>nuen</td></tr><tr><td>zu / zuk</td><td>zinen</td><td>zenuen</td></tr><tr><td>hura / hark</td><td>zen</td><td>zuen</td></tr><tr><td>gu / guk</td><td>ginen</td><td>genuen</td></tr><tr><td>zuek</td><td>zineten</td><td>zenuten</td></tr><tr><td>haiek</td><td>ziren</td><td>zuten</td></tr></table>',
-  ex:[['Atzo nik ogia jan nuen.','Ayer comí pan.'],['Atzo ni Iruñera joan nintzen.','Ayer fui a Pamplona.']]},
- {t:'Pasado o «he hecho»',h:'<p>Usa el <b>pasado</b> para acciones terminadas en un tiempo ya cerrado (ayer, el mes pasado). Usa el <b>perfecto</b> (auxiliar en presente) para algo que aún conecta con hoy.</p>',
-  ex:[['Atzo ogia jan nuen.','Ayer comí pan. (pasado)'],['Gaur ogia jan dut.','Hoy he comido pan. (perfecto)']]},
- {t:'El futuro: -ko / -go',h:'<p>Al participio se le añade <b>-ko</b>, o <b>-go</b> si acaba en <b>-n</b>. Después, el auxiliar en presente.</p>',
-  tb:'<table class="mini"><tr><th>Participio</th><th>Futuro</th></tr><tr><td>jan</td><td><b>jango</b></td></tr><tr><td>edan</td><td><b>edango</b></td></tr><tr><td>joan</td><td><b>joango</b></td></tr><tr><td>egin</td><td><b>egingo</b></td></tr><tr><td>ikusi</td><td>ikusi<b>ko</b></td></tr><tr><td>etorri</td><td>etorri<b>ko</b></td></tr></table>',
-  pc:[['Bihar','p-part','mañana'],['ni','p-sub','quién'],['Iruñera','p-obj','adónde'],['joango','p-part','joan + go'],['naiz','p-aux','auxiliar']],
-  ex:[['Bihar Iruñera joango naiz.','Mañana iré a Pamplona.'],['Bihar nik euskara ikasiko dut.','Mañana estudiaré euskera.']]}
- ],
- make:()=>[].concat(gb(['iragana','perfektua','geroa'],5),conjQs(['izan','ukan'],4),[
-  mc('Iragana','«Ayer fui a casa»','¿Cómo se dice?','Atzo etxera joan nintzen',['Atzo etxera joango naiz','Atzo etxera joan naiz','Atzo etxera joaten nintzen'],'Pasado de izan con <b>nintzen</b>.'),
-  mc('Geroa','jan → futuro','¿Cuál es?','jango',['janko','jaten','janen du'],'Acaba en -n → <b>-go</b>: jan + go.'),
-  mc('Geroa','ikusi → futuro','¿Cuál es?','ikusiko',['ikusigo','ikusten','ikusi du'],'No acaba en -n → <b>-ko</b>: ikusi + ko.')
- ])},
-
 {id:'l11',n:11,eu:'Egoera errealak',es:'Situaciones reales',ic:'💬',min:8,
  goals:['Pedir en un bar y preguntar el precio','Presentarte y hablar de ti en 5 frases','Ver cómo se combinan las 10 lecciones en conversación'],
  steps:[
@@ -1635,7 +1616,7 @@ LESSONS.push(
   tb:'<table class="mini"><tr><th>Pronombre</th><th>Con…</th></tr><tr><td>ni</td><td><b>nirekin</b></td></tr><tr><td>zu</td><td><b>zurekin</b></td></tr><tr><td>hura</td><td><b>harekin</b></td></tr><tr><td>gu</td><td><b>gurekin</b></td></tr><tr><td>zuek</td><td><b>zuekin</b></td></tr><tr><td>haiek</td><td><b>haiekin</b></td></tr></table>',
   ex:[['Amarekin mendira joaten naiz.','Voy al monte con mamá.'],['Norekin bizi zara?','¿Con quién vives?'],['Nirekin zatoz?','¿Vienes conmigo?']]},
  {t:'-z: el medio',h:'<p><b>-z</b> dice <b>cómo</b> o <b>en qué</b>: autobusez (en autobús), trenez, autoz, oinez (a pie), euskaraz (en euskera).</p>',
-  ex:[['Autobusez etorri naiz.','He venido en autobús.'],['Oinez joaten naiz lanera.','Voy al trabajo a pie.'],['Trenez joan nintzen.','Fui en tren.']]},
+  ex:[['Autobusez etorri naiz.','He venido en autobús.'],['Oinez joaten naiz lanera.','Voy al trabajo a pie.'],['Trenez joaten naiz.','Voy en tren.']]},
  {t:'-raino y -rantz',h:'<p><b>-raino</b> = hasta (el punto final): <b>Iruñeraino</b>. <b>-rantz</b> = en dirección a: <b>mendirantz</b>.</p>',
   ex:[['Iruñeraino autobusez noa.','Voy hasta Pamplona en autobús.'],['Etxerantz noa.','Voy hacia casa.']]}
  ],
@@ -2127,20 +2108,17 @@ function typeQsT(n,types){
   return shuffle(q1.concat(q2));
 }
 function lessonAfter(id,L){
-  const base=LESSONS.find(x=>x.id===id),lv=base.lv||'a1';
-  LESSONS.forEach(x=>{if((x.lv||'a1')===lv&&x.n>base.n)x.n++});
-  L.lv=lv;L.n=base.n+1;LESSONS.push(L);
+  const base=LESSONS.find(x=>x.id===id);
+  L.lv=base.lv||'a1';L.n=base.n+0.1;LESSONS.push(L);
 }
 lessonAfter('l9',{id:'r1',eu:'Errepasoa · NOR eta NORK',es:'Repaso: ¿izan o ukan?',ic:'🔁',min:8,
- goals:['Decidir entre izan (NOR) y ukan (NOR-NORK)','Repasar naiz/zara/da y dut/duzu/du','Aplicar la regla: ¿hay un «qué»?'],
+ goals:['Decidir entre izan (NOR) y ukan (NOR-NORK)','Repasar en presente naiz/zara/da y dut/duzu/du','Aplicar la regla: ¿hay un «qué»?'],
  steps:[
  {t:'La pregunta clave',h:'<p>Antes de elegir auxiliar, pregúntate: <b>¿hay un «qué» (objeto directo)?</b></p><p><b>No</b> → <b>NOR</b> (izan): <i>Ni etxean nago</i>, <i>Ni Iruñera joaten naiz</i>.<br><b>Sí</b> → <b>NOR-NORK</b> (ukan): <i>Nik kafea edaten dut</i>.</p>',
   tb:mt(['','NOR (izan)','NOR-NORK (ukan)'],[['yo','naiz','dut'],['tú','zara','duzu'],['él/ella','da','du'],['nosotros','gara','dugu'],['vosotros','zarete','duzue'],['ellos','dira','dute']]),
   tip:'Con NOR el sujeto no lleva -k (ni, zu, hura). Con NORK sí (nik, zuk, hark).'},
  {t:'Verbos típicos',h:'<p><b>NOR</b> (algo que «eres» o «haces» sin objeto): joan, etorri, bizi, egon, jaio, erori.<br><b>NORK</b> (haces algo a algo): jan, edan, ikusi, irakurri, idatzi, ikasi, nahi izan, behar izan.</p>',
-  ex:[['Ni Elizondon bizi naiz.','Vivo en Elizondo.'],['Nik euskara ikasten dut.','Aprendo euskera.'],['Etxean nago.','Estoy en casa.'],['Zuk ogia jaten duzu.','Comes pan.']]},
- {t:'Pasado',h:'<p>El mismo criterio en pasado: NOR → <b>nintzen, zinen, zen…</b>; NORK → <b>nuen, zenuen, zuen…</b>.</p>',
-  ex:[['Bilbon jaio nintzen.','Nací en Bilbao.'],['Nik liburu bat irakurri nuen.','Leí un libro.']]}
+  ex:[['Ni Elizondon bizi naiz.','Vivo en Elizondo.'],['Nik euskara ikasten dut.','Aprendo euskera.'],['Etxean nago.','Estoy en casa.'],['Zuk ogia jaten duzu.','Comes pan.']]}
  ],
  make:()=>[].concat(conjQs(['izan','ukan','egon','eduki'],4),typeQsT(5,[0,1]),SQ0(['nik','esnea','edaten','dut'],'Yo bebo leche.','esnea = «qué» → ukan: dut.'),SQ0(['ni','Iruñera','joaten','naiz'],'Voy a Pamplona.','Sin «qué» → izan: naiz.'))});
 lessonAfter('b2',{id:'r2',eu:'Errepasoa · NOR, NORK, NORI',es:'Repaso: los cuatro tipos de verbo',ic:'🧭',min:9,
@@ -2165,9 +2143,83 @@ lessonAfter('e1',{id:'r3',lv:'a2',eu:'Errepasoa · aditz motak',es:'Repaso A2: t
   ex:[['Amak liburu bat eman zidan.','Mamá me dio un libro.'],['Nik amari liburua eman nion.','Le di el libro a mamá.'],['Niri musika gustatzen zitzaidan.','Me gustaba la música.']]}
  ],
  make:()=>[].concat(typeQsT(6,[0,1,2,3]),conjQs(['izan','ukan','gustatu','eman','eman (hark… niri, zuri…)'],5),SQ0(['amak','niri','liburu','bat','eman','zidan'],'Mamá me dio un libro.','zidan = me lo dio.'))});
+
+const pastQs=(keys,n)=>{const o=[],seen=new Set();let t=0;window.FORCEPAST=true;try{while(o.length<n&&t++<200){const q=genConj(keys[rnd(keys.length)]);if(q.meta&&/^iragana/.test(q.meta.tk)&&!seen.has(q.key)){seen.add(q.key);o.push(q)}}}finally{window.FORCEPAST=false}return o};
+const withPast=f=>()=>{window.FORCEPAST=true;try{return f()}finally{window.FORCEPAST=false}};
+const PRO=[['ni','nintzen','nengoen','nuen'],['zu','zinen','zeunden','zenuen'],['hura','zen','zegoen','zuen'],['gu','ginen','geunden','genuen'],['zuek','zineten','zeundeten','zenuten'],['haiek','ziren','zeuden','zuten']];
+lessonAfter('b12',{id:'l10',eu:'Atzo · izan eta egon',es:'El pasado de «ser» y «estar»',ic:'⏪',min:8,
+ goals:['Formar el pasado de izan: nintzen, zinen, zen…','Formar el pasado de egon: nengoen, zeunden, zegoen…','Seguir distinguiendo ni / zu / hura / gu / zuek / haiek'],
+ steps:[
+ {t:'Hasta ahora, solo presente',h:'<p>Todo lo que has visto está en <b>presente</b>. El pasado usa <b>las mismas personas</b> (ni, zu, hura, gu, zuek, haiek); solo cambia la forma del auxiliar. Marcador típico: <b>atzo</b> (ayer).</p>',
+  tb:mt(['','Presente','Pasado'],[['ni','naiz','nintzen'],['zu','zara','zinen'],['hura','da','zen'],['gu','gara','ginen'],['zuek','zarete','zineten'],['haiek','dira','ziren']]),
+  tip:'Primero decide la persona (¿ni, zu, hura…?). Después elige la forma. Las personas no cambian.'},
+ {t:'Izan en pasado',h:'<p>Para ser/estar con identidad, origen, profesión… en un momento ya cerrado.</p>',
+  ex:[['Atzo ni etxean nintzen.','Ayer yo estaba (me quedé) en casa.'],['Zu atzo Iruñean zinen.','Ayer estuviste en Pamplona.'],['Hura atzo nekatuta zen.','Ayer estaba cansado.'],['Gu atzo mendian ginen.','Ayer estuvimos en el monte.']]},
+ {t:'Egon en pasado',h:'<p><b>egon</b> (estar en un lugar) también tiene su pasado, con forma propia.</p>',
+  tb:mt(['','Presente','Pasado'],[['ni','nago','nengoen'],['zu','zaude','zeunden'],['hura','dago','zegoen'],['gu','gaude','geunden'],['zuek','zaudete','zeundeten'],['haiek','daude','zeuden']]),
+  ex:[['Atzo etxean nengoen.','Ayer estaba en casa.'],['Non zeunden atzo?','¿Dónde estabas ayer?']]}
+ ],
+ make:withPast(()=>[].concat(pastQs(['izan','egon'],6),SQ0(['atzo','ni','etxean','nengoen'],'Ayer estaba en casa.','egon, persona «ni» → nengoen.'),SQ0(['atzo','gu','mendian','ginen'],'Ayer estuvimos en el monte.','izan, persona «gu» → ginen.'),[
+  mc('Iragana','«Ayer ella estaba cansada»','¿Cuál es?','Atzo nekatuta zen',['Atzo nekatuta da','Atzo nekatuta nintzen','Atzo nekatuta zinen'],'Persona «hura» en pasado de izan → <b>zen</b>.'),
+  mc('Iragana','«¿Dónde estabas ayer?»','¿Cuál es?','Non zeunden atzo?',['Non zaude atzo?','Non nengoen atzo?','Non zegoen atzo?'],'«zu» con egon en pasado → <b>zeunden</b>.')
+ ]))});
+lessonAfter('l10',{id:'t2',eu:'Atzo egin nuen',es:'El pasado con objeto (ukan) y «he hecho»',ic:'📖',min:9,
+ goals:['Formar nuen, zenuen, zuen, genuen, zenuten, zuten','Mantener el participio y cambiar solo el auxiliar','Distinguir pasado (atzo) de perfecto (gaur)'],
+ steps:[
+ {t:'Ukan en pasado',h:'<p>Con verbos que llevan «qué» (jan, edan, ikusi, irakurri…), el auxiliar pasa de <b>dut</b> a <b>nuen</b>. El participio <b>no cambia</b>.</p>',
+  tb:mt(['','Presente','Pasado'],[['nik','dut','nuen'],['zuk','duzu','zenuen'],['hark','du','zuen'],['guk','dugu','genuen'],['zuek','duzue','zenuten'],['haiek','dute','zuten']]),
+  ex:[['Atzo nik ogia jan nuen.','Ayer comí pan.'],['Atzo zuk liburu bat irakurri zenuen.','Ayer leíste un libro.'],['Amak atzo kafea edan zuen.','Mamá bebió café ayer.']],
+  tip:'El sujeto sigue llevando -k: nik, zuk, hark…'},
+ {t:'Pasado o «he hecho»',h:'<p>Usa el <b>pasado</b> para algo terminado en un tiempo cerrado (<b>atzo</b>, joan den astean). Usa el <b>perfecto</b> (auxiliar en presente) si conecta con hoy (<b>gaur</b>).</p>',
+  ex:[['Atzo ogia jan nuen.','Ayer comí pan. (pasado)'],['Gaur ogia jan dut.','Hoy he comido pan. (perfecto)'],['Atzo Iruñera joan nintzen.','Ayer fui a Pamplona.'],['Gaur Iruñera joan naiz.','Hoy he ido a Pamplona.']]},
+ {t:'Cómo se construye',h:'<p>Molde fijo: <b>tiempo + sujeto + participio + auxiliar</b>. Cambias el auxiliar según la persona y el tipo de verbo (izan o ukan).</p>',
+  pc:[['Atzo','p-part','cuándo'],['nik','p-sub','quién'],['ogia','p-obj','qué'],['jan','p-part','participio'],['nuen','p-aux','auxiliar']]}
+ ],
+ make:withPast(()=>[].concat(pastQs(['ukan'],5),SQ0(['atzo','nik','ogia','jan','nuen'],'Ayer comí pan.','participio sin cambios + nuen.'),SQ0(['gaur','nik','ogia','jan','dut'],'Hoy he comido pan.','Perfecto: auxiliar en presente.'),[
+  mc('Iragana','«Ayer leí un libro»','¿Cuál es?','Atzo liburu bat irakurri nuen',['Atzo liburu bat irakurri dut','Atzo liburu bat irakurri nintzen','Atzo liburu bat irakurtzen nuen'],'Con «qué» → ukan; ayer → <b>nuen</b>.'),
+  mc('Iragana','«Ayer fui a Pamplona»','¿Cuál es?','Atzo Iruñera joan nintzen',['Atzo Iruñera joan nuen','Atzo Iruñera joan naiz','Atzo Iruñera joango naiz'],'joan no lleva «qué» → izan: <b>nintzen</b>.'),
+  mc('Pasado/perfecto','«Hoy he bebido agua»','¿Cuál es?','Gaur ura edan dut',['Gaur ura edan nuen','Gaur ura edaten dut','Gaur ura edango dut'],'Hoy → perfecto, auxiliar en presente: <b>dut</b>.')
+ ]))});
+lessonAfter('t2',{id:'t3',eu:'Bihar egingo dut',es:'El futuro: -ko / -go',ic:'⏩',min:8,
+ goals:['Formar el futuro con -ko / -go','Mantener el auxiliar en presente','Usar bihar, etzi, datorren astean'],
+ steps:[
+ {t:'Futuro = participio + -ko / -go',h:'<p>Al participio se le añade <b>-ko</b>, o <b>-go</b> si acaba en <b>-n</b>. El auxiliar queda en <b>presente</b>: ya conoces nintzen/nuen, aquí vuelve naiz/dut.</p>',
+  tb:mt(['Participio','Futuro'],[['jan','<b>jango</b>'],['edan','<b>edango</b>'],['joan','<b>joango</b>'],['egin','<b>egingo</b>'],['ikusi','ikusi<b>ko</b>'],['etorri','etorri<b>ko</b>']])},
+ {t:'La línea del tiempo',h:'<p>Mismo verbo, tres momentos. Las personas siguen igual.</p>',
+  tb:mt(['Cuándo','con objeto (jan)','sin objeto (joan)'],[['atzo','jan nuen','joan nintzen'],['gaur (hecho)','jan dut','joan naiz'],['orain','jaten dut','joaten naiz'],['bihar','jan<b>go</b> dut','joan<b>go</b> naiz']]),
+  ex:[['Bihar Iruñera joango naiz.','Mañana iré a Pamplona.'],['Bihar nik euskara ikasiko dut.','Mañana estudiaré euskera.'],['Etzi guk mendira joango gara.','Pasado mañana iremos al monte.']]},
+ {t:'Marcadores de futuro',h:'<p><b>bihar</b> (mañana), <b>etzi</b> (pasado mañana), <b>datorren astean</b> (la semana que viene), <b>laster</b> (pronto).</p>',
+  ex:[['Datorren astean lanera joango naiz.','La semana que viene iré al trabajo.'],['Laster etorriko naiz.','Vendré pronto.']]}
+ ],
+ make:withPast(()=>[].concat(SQ0(['bihar','ni','Iruñera','joango','naiz'],'Mañana iré a Pamplona.','joan + go; naiz en presente.'),SQ0(['bihar','nik','euskara','ikasiko','dut'],'Mañana estudiaré euskera.','ikasi + ko; dut.'),SQ0(['etzi','gu','mendira','joango','gara'],'Pasado mañana iremos al monte.','joan + go; gara.'),[
+  mc('Geroa','jan → futuro','¿Cuál es?','jango',['janko','jaten','janen du'],'Acaba en -n → <b>-go</b>.'),
+  mc('Geroa','ikusi → futuro','¿Cuál es?','ikusiko',['ikusigo','ikusten','ikusi du'],'No acaba en -n → <b>-ko</b>.'),
+  mc('Geroa','«Mañana comeré pan»','¿Cuál es?','Bihar ogia jango dut',['Bihar ogia jan nuen','Bihar ogia jaten dut','Bihar ogia jango nuen'],'-go + auxiliar en presente.'),
+  mc('Geroa','«Mañana iré a casa»','¿Cuál es?','Bihar etxera joango naiz',['Bihar etxera joango dut','Bihar etxera joan nintzen','Bihar etxera joan naiz'],'joan = sin objeto → izan: <b>naiz</b>.')
+ ],pastQs(['izan','ukan'],2)))});
+/* A2: el futuro (e2) se adelanta junto al pasado, y se añade un repaso conjunto */
+LESSONS.find(x=>x.id==='e2').n=LESSONS.find(x=>x.id==='b10').n+0.1;
+lessonAfter('e9',{id:'r4',eu:'Errepasoa · atzo eta bihar',es:'Repaso: contar el pasado y el futuro',ic:'🗓️',min:10,
+ goals:['Contar qué hiciste el fin de semana pasado','Contar qué harás el próximo','Cambiar bien el auxiliar: nintzen / nuen / naiz / dut'],
+ steps:[
+ {t:'Un mismo molde, tres tiempos',h:'<p>Participio + auxiliar. Lo que cambia: pasado → <b>nintzen / nuen</b>; presente o «he hecho» → <b>naiz / dut</b>; futuro → <b>-ko/-go</b> + naiz / dut.</p>',
+  tb:mt(['','Pasado (joan den asteburuan)','Futuro (datorren asteburuan)'],[['izan','Mendira joan nintzen.','Mendira joango naiz.'],['ukan','Liburu bat irakurri nuen.','Liburu bat irakurriko dut.']])},
+ {t:'Un fin de semana',h:'<p>Practica contando dos fines de semana seguidos, con conectores: <b>lehenengo</b> (primero), <b>gero</b> (luego), <b>azkenik</b> (por fin).</p>',
+  ex:[['Joan den asteburuan lehenengo mendira joan nintzen, gero etxean jan nuen.','El fin de semana pasado primero fui al monte y luego comí en casa.'],['Datorren asteburuan lagunekin kafea edango dut.','El fin de semana que viene tomaré café con amigos.']]}
+ ],
+ make:withPast(()=>[].concat(pastQs(['izan','ukan','joan (iragana)','etorri (iragana)'],4),SQ0(['joan','den','asteburuan','mendira','joan','nintzen'],'El fin de semana pasado fui al monte.','joan nintzen = fui.'),SQ0(['datorren','asteburuan','liburu','bat','irakurriko','dut'],'El próximo fin de semana leeré un libro.','-ko + dut.'),typeQsT(3,[0,1]),[
+  mc('Tiempos','«Ayer comí pan»','¿Cuál es?','Atzo ogia jan nuen',['Bihar ogia jango dut','Gaur ogia jan dut','Atzo ogia jango nuen'],'Pasado: <b>nuen</b>.'),
+  mc('Tiempos','«El año que viene iré a Bilbao»','¿Cuál es?','Datorren urtean Bilbora joango naiz',['Datorren urtean Bilbora joan nintzen','Datorren urtean Bilbora joan naiz','Datorren urtean Bilbora joango nuen'],'Futuro de joan: joango + <b>naiz</b>.')
+ ]))});
+/* normalizar numeración 1..N por nivel (el progreso va por id) */
+['a1','a2'].forEach(lv=>LESSONS.filter(x=>(x.lv||'a1')===lv).sort((a,b)=>a.n-b.n).forEach((x,i)=>{x.n=i+1}));
 Object.assign(LSUM,{
-r1:{sum:['Pregunta clave: ¿hay «qué»? No → <b>izan</b> (naiz, zara, da…). Sí → <b>ukan</b> (dut, duzu, du…).','Pasado: nintzen / nuen.'],kw:[['naiz','soy/estoy (NOR)'],['dut','lo tengo/hago (NORK)'],['nintzen','era/fui'],['nuen','yo lo…']]},
+r1:{sum:['Pregunta clave: ¿hay «qué»? No → <b>izan</b> (naiz, zara, da…). Sí → <b>ukan</b> (dut, duzu, du…).','Con NOR el sujeto no lleva -k; con NORK sí.'],kw:[['naiz','soy/estoy (NOR)'],['zara','eres'],['dut','lo tengo/hago (NORK)'],['duzu','lo tienes/haces']]},
 r2:{sum:['Cuatro tipos: <b>NOR</b> naiz · <b>NOR-NORK</b> dut · <b>NOR-NORI</b> zait · <b>NOR-NORI-NORK</b> diot/dit.','-k = quien hace · -ri = a quién.'],kw:[['zait','me (gusta)'],['diot','se lo doy'],['dit','me lo da'],['zaizkit','me (gustan)']]},
+l10:{sum:['Pasado de <b>izan</b>: nintzen, zinen, zen, ginen, zineten, ziren.','Pasado de <b>egon</b>: nengoen, zeunden, zegoen, geunden, zeundeten, zeuden.','Marcador: <b>atzo</b>.'],kw:[['atzo','ayer'],['nintzen','yo era/fui'],['nengoen','yo estaba'],['zen','él era/fue'],['ginen','éramos/fuimos']]},
+t2:{sum:['Pasado de <b>ukan</b>: nuen, zenuen, zuen, genuen, zenuten, zuten.','Participio sin cambios; sujeto con -k.','Pasado (atzo) ≠ perfecto (gaur … dut).'],kw:[['nuen','yo lo … (pasado)'],['zenuen','tú lo…'],['zuen','él lo…'],['atzo','ayer'],['gaur','hoy']]},
+t3:{sum:['Futuro: participio + <b>-ko</b> (o <b>-go</b> tras -n) + auxiliar en presente.','bihar, etzi, datorren astean, laster.'],kw:[['bihar','mañana'],['etzi','pasado mañana'],['datorren astean','la semana que viene'],['laster','pronto'],['jango','comerá'],['joango','irá']]},
+r4:{sum:['Pasado: nintzen / nuen · presente/perfecto: naiz / dut · futuro: -ko/-go + naiz / dut.','Conectores: lehenengo, gero, azkenik.'],kw:[['lehenengo','primero'],['gero','luego'],['azkenik','por fin'],['joan den asteburuan','el fin de semana pasado'],['datorren asteburuan','el fin de semana que viene']]},
 r3:{sum:['Presente → pasado: naiz→nintzen · dut→nuen · zait→zitzaidan · diot→nion · dit→zidan.'],kw:[['zidan','me lo dio'],['nion','le di'],['zitzaidan','me (gustaba)']]}
 });
 </script>
@@ -2267,6 +2319,9 @@ function gramQs(lv,n){
   return out.slice(0,n);
 }
 function testSet(lv,sz){
+  window.FORCEPAST=true;try{return testSet0(lv,sz)}finally{window.FORCEPAST=false}
+}
+function testSet0(lv,sz){
   const a=[],tag=(arr,b)=>arr.forEach(q=>{q.blk=b;a.push(q)});
   tag(withLevel(lv,()=>vocabQs(allWords(),sz[0])),'vocab');
   tag(conjQs(lvVerbKeys(lv),sz[1]),'verbs');

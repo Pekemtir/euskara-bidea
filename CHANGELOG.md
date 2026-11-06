@@ -11,6 +11,14 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v23 · 2026-11-06
+- **Presente primero, pasado y futuro después**: los ejercicios de conjugación solo usan presente hasta que se completa la lección del pasado (en A2, en el test de nivel y en la autoevaluación sí entran todos los tiempos).
+- A1: la lección «Iragana eta geroa» (antes n10, todo junto) se parte en 3, colocadas tras haber asentado el presente y los 4 tipos de verbo (n26–28):
+  - **Atzo · izan eta egon** (nintzen, nengoen…) · **Atzo egin nuen** (nuen…, pasado vs «he hecho») · **Bihar egingo dut** (-ko/-go).
+- A2: «Geroa eta asmoak» se adelanta junto al pasado (n5) y nueva **Errepasoa · atzo eta bihar** (n20).
+- A1: 32 lecciones · A2: 23. El progreso se conserva (va por id).
+
+---
 ## v22 · 2026-11-06
 - 3 lecciones de repaso de los tipos de verbo, colocadas según lo aprendido:
   - A1 · **Errepasoa · NOR eta NORK** (n10, tras «Gustuak eta beharrak»).
