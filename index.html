@@ -282,7 +282,13 @@ const VOCAB=[
 {id:'koloreak',eu:'Koloreak',es:'Colores',ic:'🎨',w:[
 ['gorria','rojo','🔴'],['urdina','azul','🔵'],['berdea','verde','🟢'],['horia','amarillo','🟡'],['beltza','negro','⚫'],['zuria','blanco','⚪'],['marroia','marrón','🟤'],['laranja','naranja','🟠'],['grisa','gris',''],['arrosa','rosa','🌸']]},
 {id:'denbora',eu:'Egunak eta denbora',es:'Días y tiempo',ic:'📅',w:[
-['astelehena','lunes',''],['asteartea','martes',''],['asteazkena','miércoles',''],['osteguna','jueves',''],['ostirala','viernes',''],['larunbata','sábado',''],['igandea','domingo',''],['gaur','hoy','📆'],['bihar','mañana','➡️'],['atzo','ayer','⬅️'],['orain','ahora','⏱️'],['beti','siempre','♾️'],['egunero','cada día','🔁']]},
+['astelehena','lunes',''],['asteartea','martes',''],['asteazkena','miércoles',''],['osteguna','jueves',''],['ostirala','viernes',''],['larunbata','sábado',''],['igandea','domingo',''],['gaur','hoy','📆'],['bihar','mañana','➡️'],['atzo','ayer','⬅️'],['orain','ahora','⏱️'],['beti','siempre','♾️'],['egunero','cada día','🔁'],['goiza','la mañana','🌅'],['arratsaldea','la tarde','🌇'],['gaua','la noche','🌙'],['data','la fecha','🗓️']]},
+{id:'hilabeteak',eu:'Hilabeteak',es:'Los meses',ic:'🗓️',w:[
+['urtarrila','enero',''],['otsaila','febrero',''],['martxoa','marzo',''],['apirila','abril',''],['maiatza','mayo',''],['ekaina','junio',''],['uztaila','julio',''],['abuztua','agosto',''],['iraila','septiembre',''],['urria','octubre',''],['azaroa','noviembre',''],['abendua','diciembre','']]},
+{id:'urtaroak',eu:'Urtaroak',es:'Estaciones y calendario',ic:'🍂',w:[
+['udaberria','la primavera','🌸'],['uda','el verano','☀️'],['udazkena','el otoño','🍂'],['negua','el invierno','❄️'],['urtea','el año','🎆'],['hilabetea','el mes','🗓️'],['astea','la semana',''],['eguna','el día','📆'],['urtebetetzea','el cumpleaños','🎂']]},
+{id:'adjetiboak',eu:'Adjektiboak',es:'Adjetivos',ic:'🔎',w:[
+['handia','grande','🐘'],['txikia','pequeño/a','🐜'],['zaharra','viejo/a',''],['berria','nuevo/a','🆕'],['gaztea','joven',''],['polita','bonito/a','✨'],['ona','bueno/a','👍'],['txarra','malo/a','👎'],['luzea','largo/a',''],['laburra','corto/a',''],['garestia','caro/a','💶'],['merkea','barato/a','🏷️'],['beroa','caliente','🔥'],['hotza','frío/a','🧊'],['azkarra','rápido/a','⚡'],['motela','lento/a','🐢']]},
 {id:'etxea',eu:'Etxea eta gauzak',es:'Casa y objetos',ic:'🏠',w:[
 ['etxea','la casa','🏠'],['gela','la habitación','🛏️'],['sukaldea','la cocina','🍳'],['mahaia','la mesa',''],['aulkia','la silla','🪑'],['atea','la puerta','🚪'],['leihoa','la ventana','🪟'],['liburua','el libro','📖'],['telefonoa','el teléfono','📱'],['kalea','la calle','🛣️']]},
 {id:'baztan',eu:'Baztan eta natura',es:'Naturaleza y valle',ic:'⛰️',w:[
@@ -1040,7 +1046,42 @@ LESSONS.push(
   mc('Prezioa','Preguntas el precio','¿Cuál es?','Zenbat da?',['Non dago?','Nor da?','Zer da?'],'<b>Zenbat da?</b> = ¿cuánto es?','Es una pregunta por la cantidad, con el verbo «ser» en singular.'),
   mc('Bidea','«¿Dónde está el baño?»','¿Cuál es?','Non dago komuna?',['Nora doa komuna?','Non da komuna?','Nor dago komuna?'],'<b>Non dago…?</b> con <b>egon</b>.'),
   mc('Gustatu','«Me gusta el monte»','¿Cuál es?','Niri mendia gustatzen zait',['Nik mendia gustatzen dut','Ni mendia naiz','Niri mendiak gustatzen zait'],'<b>niri</b> + <b>zait</b>.')
- ])}
+ ])},
+
+{id:'l12',n:12,eu:'Data eta denbora',es:'Días, meses, estaciones, fecha y adjetivos',ic:'🗓️',min:9,
+ goals:['Decir los días, los meses y las estaciones','Preguntar y decir la fecha (Zein egun da gaur?)','Usar adjetivos: etxe handia, etxea handia da'],
+ steps:[
+ {t:'Egunak eta hilabeteak',h:'<p>Los días de la semana y los meses se escriben <b>con minúscula</b>. Todos los meses acaban en <b>-a</b>.</p>',
+  tb:'<table class="mini"><tr><th>Egunak</th><th></th><th>Hilabeteak</th><th></th></tr><tr><td><b>astelehena</b></td><td>lunes</td><td><b>urtarrila</b></td><td>enero</td></tr><tr><td><b>asteartea</b></td><td>martes</td><td><b>otsaila</b></td><td>febrero</td></tr><tr><td><b>asteazkena</b></td><td>miércoles</td><td><b>martxoa</b></td><td>marzo</td></tr><tr><td><b>osteguna</b></td><td>jueves</td><td><b>apirila</b></td><td>abril</td></tr><tr><td><b>ostirala</b></td><td>viernes</td><td><b>maiatza</b></td><td>mayo</td></tr><tr><td><b>larunbata</b></td><td>sábado</td><td><b>ekaina</b></td><td>junio</td></tr><tr><td><b>igandea</b></td><td>domingo</td><td><b>uztaila</b></td><td>julio</td></tr><tr><td></td><td></td><td><b>abuztua</b></td><td>agosto</td></tr><tr><td></td><td></td><td><b>iraila</b></td><td>septiembre</td></tr><tr><td></td><td></td><td><b>urria</b></td><td>octubre</td></tr><tr><td></td><td></td><td><b>azaroa</b></td><td>noviembre</td></tr><tr><td></td><td></td><td><b>abendua</b></td><td>diciembre</td></tr></table>',
+  tip:'<b>astea</b> = semana y <b>eguna</b> = día. Los nombres ya llevan el artículo: asteartea = «el martes».'},
+ {t:'Urtaroak',h:'<p>Las cuatro estaciones. Con <b>-n</b> dices «en» (como en los lugares: etxean).</p>',
+  tb:'<table class="mini"><tr><th>Urtaroa</th><th></th><th>En…</th></tr><tr><td><b>udaberria</b></td><td>primavera</td><td>udaberrian</td></tr><tr><td><b>uda</b></td><td>verano</td><td>udan</td></tr><tr><td><b>udazkena</b></td><td>otoño</td><td>udazkenean</td></tr><tr><td><b>negua</b></td><td>invierno</td><td>neguan</td></tr></table>',
+  ex:[['Udan Baztanera joaten naiz.','En verano voy a Baztan.'],['Neguan elurra egiten du.','En invierno nieva.'],['Zein urtaro da?','¿Qué estación es?']],
+  tip:'Fíjate: <b>uda → udan</b>, <b>negua → neguan</b>, <b>udazkena → udazkenean</b>. Es el mismo «en» de <b>etxean</b> (en la casa).'},
+ {t:'La fecha',h:'<p>Para preguntar el día: <b>Zein egun da gaur?</b> Para la fecha: <b>Zein da gaurko data?</b></p><p>La fecha se forma así: <b>mes + -(r)en + número + a</b>. Si añades el año, va primero con <b>-ko</b>.</p>',
+  pc:[['azaroa','p-obj','mes'],['+ren','p-aux','de'],['6a','p-sub','día']],
+  ex:[['Zein egun da gaur?','¿Qué día es hoy?'],['Gaur ostirala da.','Hoy es viernes.'],['Zein da gaurko data?','¿Cuál es la fecha de hoy?'],['Gaurko data azaroaren 6a da.','La fecha de hoy es el 6 de noviembre.'],['2026ko azaroaren 6a','6 de noviembre de 2026'],['Noiz da zure urtebetetzea?','¿Cuándo es tu cumpleaños?'],['Nire urtebetetzea maiatzaren 3a da.','Mi cumpleaños es el 3 de mayo.']],
+  tip:'<b>noiz</b> = cuándo. Los números se escriben con cifras y se leen con el artículo: 6a = seia.'},
+ {t:'Adjektiboak',h:'<p>El adjetivo va <b>detrás del nombre</b> y lleva el artículo: <b>etxe handia</b> (la casa grande). Si lo usas con el verbo <b>izan</b>: <b>Etxea handia da</b>. Con <b>bat</b> pierde el artículo: <b>etxe handi bat</b>.</p>',
+  tb:'<table class="mini"><tr><th></th><th></th><th></th><th></th></tr><tr><td><b>handia</b></td><td>grande</td><td><b>txikia</b></td><td>pequeño</td></tr><tr><td><b>zaharra</b></td><td>viejo</td><td><b>berria</b></td><td>nuevo</td></tr><tr><td><b>ona</b></td><td>bueno</td><td><b>txarra</b></td><td>malo</td></tr><tr><td><b>luzea</b></td><td>largo</td><td><b>laburra</b></td><td>corto</td></tr><tr><td><b>garestia</b></td><td>caro</td><td><b>merkea</b></td><td>barato</td></tr><tr><td><b>beroa</b></td><td>caliente</td><td><b>hotza</b></td><td>frío</td></tr><tr><td><b>azkarra</b></td><td>rápido</td><td><b>motela</b></td><td>lento</td></tr><tr><td><b>gaztea</b></td><td>joven</td><td><b>polita</b></td><td>bonito</td></tr></table>',
+  ex:[['Etxe handia','La casa grande'],['Etxea handia da.','La casa es grande.'],['Liburu berri bat daukat.','Tengo un libro nuevo.']],
+  tip:'Plural: <b>etxe handiak</b> (las casas grandes). Cuanto más lo uses con colores y objetos que ya conoces (etxe zuria, liburu berdea), antes lo automatizas.'}
+ ],
+ make:()=>(Object.assign(LS,{
+   dat1:{t:['gaur','ostirala','da'],es:'Hoy es viernes.',tip:'Zein egun da gaur? → Gaur + día + da.'},
+   dat2:{t:['gaurko','data','azaroaren','6a','da'],es:'La fecha de hoy es el 6 de noviembre.',tip:'mes + -(r)en + número + a: azaroa → azaroaren 6a.'},
+   dat3:{t:['nire','urtebetetzea','maiatzaren','3a','da'],es:'Mi cumpleaños es el 3 de mayo.',tip:'Noiz da zure urtebetetzea? → Nire urtebetetzea + fecha + da.'},
+   adj1:{t:['etxea','handia','da'],es:'La casa es grande.',tip:'El adjetivo va detrás del nombre y con artículo: handia.'},
+   adj2:{t:['liburu','berri','bat','daukat'],es:'Tengo un libro nuevo.',tip:'Con bat el adjetivo pierde el artículo: berri bat (no berria bat).'},
+   urt1:{t:['udan','Baztanera','joaten','naiz'],es:'En verano voy a Baztan.',tip:'-n = en: uda → udan.'}
+ }),[].concat(lsq('dat2','dat3','adj2','urt1'),vq('hilabeteak',3),vq('urtaroak',3),vq('adjetiboak',3),[
+  mc('Data','«¿Qué día es hoy?»','¿Cuál es?','Zein egun da gaur?',['Noiz da gaur?','Non da gaur?','Zein egun dago gaur?'],'<b>Zein egun da gaur?</b> con izan.'),
+  mc('Data','«El 6 de noviembre»','¿Cuál es?','azaroaren 6a',['azaroa 6a','azaroak 6a','azaroan 6a'],'mes + <b>-(r)en</b> + número + <b>a</b>.'),
+  mc('Data','Noiz da zure urtebetetzea?','¿Qué pregunta?','¿Cuándo es tu cumpleaños?',['¿Cuántos años tienes?','¿Dónde vives?','¿Qué día es hoy?'],'<b>noiz</b> = cuándo.'),
+  mc('Urtaroak','«En invierno»','¿Cuál es?','neguan',['negua','neguaren','negutik'],'-n = en: negua → <b>neguan</b>.'),
+  mc('Adjektiboak','«Una casa grande»','¿Cuál es?','etxe handi bat',['etxe handia bat','handi etxe bat','etxea handi bat'],'Con <b>bat</b> el adjetivo va sin artículo.'),
+  mc('Adjektiboak','handia ↔ ?','Su contrario','txikia',['berria','zaharra','garestia'],'<b>handia</b> = grande, <b>txikia</b> = pequeño.')
+ ]))}
 );
 </script>
 <script>
@@ -1067,7 +1108,9 @@ l9:{sum:['Gustar va al revés: <b>niri</b> kafea gustatzen <b>zait</b> (a mí me
 l10:{sum:['Pasado: participio + auxiliar en pasado (<b>nintzen</b> / <b>nuen</b>).','Perfecto («he hecho»): participio + auxiliar en <b>presente</b>.','Futuro: participio + <b>-ko</b> (o <b>-go</b> tras -n) + auxiliar en presente.','Marcas de tiempo: <b>atzo</b> (pasado), <b>gaur</b> (perfecto), <b>bihar</b> (futuro).'],
  kw:[['atzo','ayer'],['gaur','hoy'],['bihar','mañana'],['orain','ahora'],['nintzen','fui / era'],['nuen','tuve / hice'],['jango','comerá / comeré'],['joango','irá / iré'],['ikusiko','verá / veré'],['egingo','hará / haré'],['iragana','pasado'],['geroa','futuro']]},
 l11:{sum:['Pedir: <b>X bat nahi dut, mesedez</b>. Preguntar el precio: <b>Zenbat da?</b>','Preguntar dónde está algo: <b>Non dago…?</b>','Presentarte: izan (Dabid naiz), lugar (Baztangoa naiz), ari izan, gustatu y futuro.','Con las 10 lecciones anteriores ya formas frases completas.'],
- kw:[['kaixo','hola'],['agur','adiós'],['mesedez','por favor'],['eskerrik asko','muchas gracias'],['barkatu','perdón / perdona'],['kafe bat','un café'],['zenbat da?','¿cuánto es?'],['non dago…?','¿dónde está…?'],['komuna','el baño'],['zer moduz?','¿qué tal?'],['ondo nago','estoy bien'],['eta zu?','¿y tú?']]}
+ kw:[['kaixo','hola'],['agur','adiós'],['mesedez','por favor'],['eskerrik asko','muchas gracias'],['barkatu','perdón / perdona'],['kafe bat','un café'],['zenbat da?','¿cuánto es?'],['non dago…?','¿dónde está…?'],['komuna','el baño'],['zer moduz?','¿qué tal?'],['ondo nago','estoy bien'],['eta zu?','¿y tú?']]},
+l12:{sum:['Días y meses van en minúscula; todos los meses acaban en <b>-a</b>.','Estaciones: udaberria, uda, udazkena, negua. «En» = <b>-n</b>: udan, neguan.','Día: <b>Zein egun da gaur?</b> Fecha: <b>Zein da gaurko data?</b>','Fecha = mes + <b>-(r)en</b> + número + <b>a</b>: azaroaren 6a. Con año: 2026ko azaroaren 6a.','Adjetivo detrás del nombre y con artículo (etxe handia); con <b>bat</b> sin artículo (etxe handi bat).'],
+ kw:[['astea','la semana'],['eguna','el día'],['hilabetea','el mes'],['urtea','el año'],['data','la fecha'],['noiz','cuándo'],['urtebetetzea','el cumpleaños'],['udaberria','la primavera'],['uda','el verano'],['udazkena','el otoño'],['negua','el invierno'],['handia','grande'],['txikia','pequeño'],['berria','nuevo'],['zaharra','viejo'],['polita','bonito']]}
 };
 </script>
 <script>

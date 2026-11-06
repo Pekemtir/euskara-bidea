@@ -11,6 +11,11 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v11 · 2026-11-06 · Contenido de clase: fecha, meses, estaciones y adjetivos
+- **Vocabulario nuevo (+41 palabras, 157 en total, 13 temas):** Hilabeteak (12 meses), Urtaroak (estaciones, año, mes, semana, día, cumpleaños), Adjektiboak (16 adjetivos con sus opuestos) y 4 palabras más en Egunak eta denbora (goiza, arratsaldea, gaua, data).
+- **Lección 12 «Data eta denbora»:** días y meses, estaciones con «-n» (udan, neguan), preguntar y decir la fecha (Zein egun da gaur? / azaroaren 6a), cumpleaños y adjetivos (etxe handia / etxe handi bat). Incluye resumen, palabras clave y 19 preguntas de práctica.
+- Cubre lo dado en clase hasta ahora: aurkezpenak, agurrak, izan, galderak, asteartea (días), urtaroak, zenbakiak, adjektiboak y data.
+
 ## v10 · 2026-11-06 · Repaso, buscador, palabra del día y copia de seguridad
 - **Errepasoa**: sesión de 10 preguntas con tus palabras más flojas (según tu dominio de cada una).
 - **Gaurko hitza**: palabra del día en inicio, con botón 🔊 de pronunciación.
