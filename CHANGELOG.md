@@ -11,6 +11,12 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v8 · 2026-11-06 · Botón de volver
+- Botón fijo **← Atzera** arriba a la izquierda en lecciones y sesiones de preguntas (sustituye a la ✕ pequeña, que se perdía al hacer scroll).
+- Si sales de una sesión a medias aparece una confirmación (Jarraitu / Irten); el XP ganado se conserva. En la primera pregunta o en la pantalla de resultado sale directo.
+- El gesto/botón «atrás» del móvil también sale de la lección o sesión en vez de sacarte de la web.
+- Web publicada en GitHub Pages: https://pekemtir.github.io/euskara-bidea/
+
 ## v7 · 2026-11-06 · Navegación que funciona en el visor de WhatsApp
 - Problema: al abrir el archivo desde WhatsApp solo funcionaba el botón rojo; las pestañas y las baldosas no cambiaban de sección. La navegación dependía de la dirección de la página (`#hitzak`…), que ese visor no procesa.
 - Ahora la sección activa se guarda en la propia app. La dirección de la página se actualiza solo si el navegador lo permite.

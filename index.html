@@ -67,6 +67,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 .brand i{width:14px;height:14px;border-radius:50%;background:var(--gorri);box-shadow:9px 0 0 -2px var(--berde)}
 .chips{display:flex;gap:8px}
 .chip{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font:700 14px/1.2 var(--f-body);font-variant-numeric:tabular-nums;white-space:nowrap}
+.backbtn{display:none;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 16px;font:700 16px/1.2 var(--f-body);box-shadow:0 3px 0 var(--line)}
+.backbtn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+body.in-session .backbtn{display:inline-flex}
+body.in-session .brand{display:none}
 h1.big{font:700 clamp(28px,7vw,38px)/1.08 var(--f-display);letter-spacing:-.03em;margin:8px 0 4px;text-wrap:balance}
 h2.sec{font:700 20px/1.2 var(--f-display);letter-spacing:-.02em;margin:28px 0 12px}
 .sub{color:var(--muted);margin:0 0 16px}
@@ -161,6 +165,8 @@ body.in-session .app{padding-bottom:40px}
 .sheetbtn{position:sticky;bottom:0;padding-top:6px}
 .sheet.good .sheetbtn{background:var(--berde-soft)}
 .sheet.bad .sheetbtn{background:var(--gorri-soft)}
+.sheet.ask{background:var(--surface);border-color:var(--line);z-index:26}
+.sheet.ask p{color:var(--muted)}
 @keyframes up{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
 .spacer{height:190px}
 .helpbox{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin:0 0 16px}
@@ -247,6 +253,7 @@ ul.goals.small{font-size:14px;color:var(--muted);margin:10px 0 12px}
 <div class="app">
   <header class="top">
     <div class="brand"><i></i>Euskara Bidea</div>
+    <button class="backbtn" id="back" type="button" aria-label="Volver">← Atzera</button>
     <div class="chips"><span class="chip" id="chStreak"></span><span class="chip" id="chXp"></span></div>
   </header>
   <main id="view"></main>
@@ -551,7 +558,24 @@ function nnQs(n){
 
 /* ===== MOTOR DE SESIONES ===== */
 let SES=null;
+let PUSHED=false;
+function pushState(){try{if(!PUSHED){history.pushState({euskara:1},'');PUSHED=true}}catch(e){}}
+function popOwn(){try{if(PUSHED){PUSHED=false;history.back()}}catch(e){PUSHED=false}}
+function showExitConfirm(){
+  if($('#xc'))return;
+  const d=document.createElement('div');d.className='sheet ask';d.id='xc';
+  d.innerHTML=`<div class="in"><h3>Irten nahi duzu? <small style="font:500 15px var(--f-body)">¿Salir ahora?</small></h3><p>Llevas ${Math.min(SES.i,SES.total)} de ${SES.total} preguntas. El XP ganado se conserva, pero la sesión no cuenta como completada.</p><div class="fbtns"><button class="btn sec" id="xno" type="button">Jarraitu</button><button class="btn" id="xyes" type="button">Irten</button></div></div>`;
+  document.body.appendChild(d);
+  $('#xno').onclick=()=>{d.remove();pushState()};
+  $('#xyes').onclick=()=>{d.remove();endSession()};
+}
+function askExit(){
+  if(typeof LES!=='undefined'&&LES){closeLesson();return}
+  if(!SES)return;
+  if(SES.i>0&&SES.i<SES.qs.length)showExitConfirm();else endSession();
+}
 function runSession(cfg){
+  pushState();
   SES={cfg,qs:cfg.make(),i:0,first:0,xp:0,combo:0,best:0,miss:[],locked:false};
   SES.total=SES.qs.length;
   document.body.classList.add('in-session');
@@ -559,7 +583,8 @@ function runSession(cfg){
 }
 function endSession(){
   const d=$('#sh');if(d)d.remove();
-  document.body.classList.remove('in-session');SES=null;
+  const xc=$('#xc');if(xc)xc.remove();
+  document.body.classList.remove('in-session');SES=null;popOwn();
   if(typeof render==='function')render();
 }
 function award(g){S.xp+=g;S.today+=g;SES.xp+=g;touch();S.bestCombo=Math.max(S.bestCombo,SES.combo);save();refreshHeader()}
@@ -568,11 +593,10 @@ function renderQ(){
   if(!q)return finish();
   SES.locked=false;
   const pct=SES.i/SES.qs.length*100;
-  let h=`<div class="qtop"><button class="x" id="qx" aria-label="Irten">✕</button><div class="prog"><i style="width:${pct}%"></i></div><div class="combo">${SES.combo>1?'⚡ ×'+SES.combo:''}</div></div>`;
+  let h=`<div class="qtop"><div class="prog"><i style="width:${pct}%"></i></div><div class="combo">${SES.combo>1?'⚡ ×'+SES.combo:''}</div></div>`;
   h+=q.k==='flash'?flashHTML(q):q.k==='build'?buildHTML(q):q.k==='type'?typeHTML(q):choiceHTML(q);
   $('#view').innerHTML=h+'<div class="spacer"></div>';
   window.scrollTo(0,0);
-  $('#qx').onclick=endSession;
   bindQ(q);
 }
 function lev(a,b){const d=[];for(let i=0;i<=a.length;i++){d[i]=[i];}for(let j=1;j<=b.length;j++)d[0][j]=j;
@@ -1045,11 +1069,11 @@ let LES=null;
 const lessonById=id=>LESSONS.find(l=>l.id===id);
 const lessonDone=id=>S.lessons&&S.lessons[id]!=null;
 const nextLesson=()=>LESSONS.find(l=>!lessonDone(l.id))||null;
-function openLesson(id){LES={id,step:-1};document.body.classList.add('in-session');lessonRender()}
-function closeLesson(){LES=null;document.body.classList.remove('in-session');render()}
+function openLesson(id){pushState();LES={id,step:-1};document.body.classList.add('in-session');lessonRender()}
+function closeLesson(){LES=null;document.body.classList.remove('in-session');popOwn();render()}
 function lessonRender(){
   const L=lessonById(LES.id),SM=LSUM[L.id],steps=L.steps.concat(SM?[{sum:1}]:[]),n=steps.length,st=LES.step;
-  let h=`<div class="qtop"><button class="x" data-lact="exit" aria-label="Irten">✕</button><div class="prog"><i style="width:${(st+1)/(n+1)*100}%"></i></div><div class="combo">${Math.max(st+1,0)}/${n}</div></div>`;
+  let h=`<div class="qtop"><div class="prog"><i style="width:${(st+1)/(n+1)*100}%"></i></div><div class="combo">${Math.max(st+1,0)}/${n}</div></div>`;
   if(st<0){
     const sc=S.lessons[L.id];
     h+=`<p class="qkind">${L.n}. ikasgaia · ~${L.min} min</p><h1 class="big">${L.ic} ${esc(L.eu)}</h1><p class="sub">${esc(L.es)}</p>
@@ -1098,6 +1122,13 @@ function ikasgelaView(){
     <button class="btn${d?' sec':''} small" data-act="lesson" data-id="${l.id}">${d?'Berrikusi':'Ikasi'}</button></div>`}).join('')}</div>
   <p class="note">Temario adaptado del orden de contenidos de la <a href="https://contenido.uned.es/cuid/oferta_idiomas/guias_2018/euskera_elemental_a1_online_2018.pdf" target="_blank" rel="noopener">guía de euskera A1 de la UNED</a>, el <a href="https://www.ehu.eus/documents/d/nazioarteko-harremanak/ehu-programa-euskera-2c-es" target="_blank" rel="noopener">programa de nivel inicial de la EHU</a> y el <a href="https://www.euskadi.eus/curriculo-basico-de-ensenanza-de-euskera-a-personas-adultas-heoc/web01-ejeduki/es/" target="_blank" rel="noopener">currículo HEOC</a>. Los textos y ejemplos son propios: contrástalos con tu profesor.</p>`;
 }
+$('#back').addEventListener('click',askExit);
+window.addEventListener('popstate',()=>{
+  if(!PUSHED)return;
+  PUSHED=false;
+  if(SES){if(SES.i>0&&SES.i<SES.qs.length)showExitConfirm();else endSession()}
+  else if(LES)closeLesson();
+});
 </script>
 <script>
 /* ===== PANTALLAS ===== */
