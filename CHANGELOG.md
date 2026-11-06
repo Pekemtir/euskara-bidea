@@ -11,6 +11,11 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v16 · 2026-11-06 · Animales
+- Set «Animaliak» ampliado de 8 a 34 palabras (caballo, perro, gato, vaca, oveja, cabra, cerdo, burro, águila, ciervo, león, rana, serpiente, etc.). Los animales sueltos que estaban en «Baztan eta natura» se movieron ahí.
+
+---
+
 ## v15 · 2026-11-06 · A2 completo según planes oficiales
 - **Auditoría del A2** contra UNED A2, Gobierno Vasco (programación A2) y HEOC/HABE. Tras pasar lo básico a A1, el A2 quedaba corto (9 lecciones); ahora tiene **21**.
 - 12 lecciones nuevas: pasado «a quién» (zidan, zizun, zion…), planes y futuro (-tzeko asmoa), hasi/jarraitu/utzi y dagoeneko/oraindik, opiniones (uste dut, nahiago dut), sufijos (-egi, -tsu, -dun, -txo), estados (irekita dago), describir personas, teléfono y mensajes, pasado con duela/joan den/inoiz, restaurante y alojamiento, plural de los casos (-ek, -ei, -en), ekarri/eraman.
