@@ -2111,6 +2111,67 @@ e12:{sum:['<b>ekarri</b> = traer: dakart, dakarzu, dakar…; <b>eraman</b> = lle
 });
 </script>
 <script>
+/* ===== v22: lecciones de repaso de los tipos de verbo ===== */
+const VT_AUXT=(a)=>/^(naiz|zara|da|gara|zarete|dira|nago|zaude|dago|gaude|zaudete|daude|nintzen|zen)$/.test(a)?0:/^(dut|duzu|du|dugu|duzue|dute|nuen|zuen)$/.test(a)?1:/^(zait|zaizu|zaio|zaigu|zaizue|zaie|zaizkit|zaizkizu|zaizkio)$/.test(a)?2:3;
+function typeQsT(n,types){
+  const cl=VT_CL.filter(x=>types.indexOf(x[2])>=0),ax=VT_AUX.filter(x=>types.indexOf(VT_AUXT(x[2]))>=0);
+  const opts=types.map(t=>VT[t]),nc=Math.ceil(n/2),na=n-nc;
+  const q1=pick(cl,Math.min(nc,cl.length)).map(([vb,es,t,eu,ex])=>({
+    k:'choice',kind:'Zein aditz mota?',p:vb,hint:es+' · ¿de qué tipo es?',opts:shuffle(opts.slice()),ans:VT[t],
+    help:'Mira quién participa: solo sujeto (NOR) · sujeto + «qué» (NOR-NORK) · algo que le pasa o le gusta a alguien (NOR-NORI) · alguien da/dice algo a alguien (NOR-NORI-NORK).',
+    expl:'<b>'+vb+'</b> → <b>'+VT[t].split(' · ')[0]+'</b>.<br><small>'+esc(eu)+' · '+esc(ex)+'</small>',rev:'<b>'+vb+'</b> ('+es+') → '+VT[t].split(' · ')[0]}));
+  const q2=pick(ax,Math.min(na,ax.length)).map(([s,es,ans,wr])=>({
+    k:'choice',kind:'Auxiliarra',p:s,hint:es,opts:shuffle([ans].concat(wr)),ans,
+    help:'Decide el tipo de verbo y elige el auxiliar: naiz (NOR) · dut (NOR-NORK) · zait/zaio (NOR-NORI) · diot/dit (NOR-NORI-NORK).',
+    expl:'Auxiliar correcto: <b>'+ans+'</b>.<br><small>'+esc(es)+'</small>',rev:esc(s.replace('___','<b>'+ans+'</b>'))}));
+  return shuffle(q1.concat(q2));
+}
+function lessonAfter(id,L){
+  const base=LESSONS.find(x=>x.id===id),lv=base.lv||'a1';
+  LESSONS.forEach(x=>{if((x.lv||'a1')===lv&&x.n>base.n)x.n++});
+  L.lv=lv;L.n=base.n+1;LESSONS.push(L);
+}
+lessonAfter('l9',{id:'r1',eu:'Errepasoa · NOR eta NORK',es:'Repaso: ¿izan o ukan?',ic:'🔁',min:8,
+ goals:['Decidir entre izan (NOR) y ukan (NOR-NORK)','Repasar naiz/zara/da y dut/duzu/du','Aplicar la regla: ¿hay un «qué»?'],
+ steps:[
+ {t:'La pregunta clave',h:'<p>Antes de elegir auxiliar, pregúntate: <b>¿hay un «qué» (objeto directo)?</b></p><p><b>No</b> → <b>NOR</b> (izan): <i>Ni etxean nago</i>, <i>Ni Iruñera joaten naiz</i>.<br><b>Sí</b> → <b>NOR-NORK</b> (ukan): <i>Nik kafea edaten dut</i>.</p>',
+  tb:mt(['','NOR (izan)','NOR-NORK (ukan)'],[['yo','naiz','dut'],['tú','zara','duzu'],['él/ella','da','du'],['nosotros','gara','dugu'],['vosotros','zarete','duzue'],['ellos','dira','dute']]),
+  tip:'Con NOR el sujeto no lleva -k (ni, zu, hura). Con NORK sí (nik, zuk, hark).'},
+ {t:'Verbos típicos',h:'<p><b>NOR</b> (algo que «eres» o «haces» sin objeto): joan, etorri, bizi, egon, jaio, erori.<br><b>NORK</b> (haces algo a algo): jan, edan, ikusi, irakurri, idatzi, ikasi, nahi izan, behar izan.</p>',
+  ex:[['Ni Elizondon bizi naiz.','Vivo en Elizondo.'],['Nik euskara ikasten dut.','Aprendo euskera.'],['Etxean nago.','Estoy en casa.'],['Zuk ogia jaten duzu.','Comes pan.']]},
+ {t:'Pasado',h:'<p>El mismo criterio en pasado: NOR → <b>nintzen, zinen, zen…</b>; NORK → <b>nuen, zenuen, zuen…</b>.</p>',
+  ex:[['Bilbon jaio nintzen.','Nací en Bilbao.'],['Nik liburu bat irakurri nuen.','Leí un libro.']]}
+ ],
+ make:()=>[].concat(conjQs(['izan','ukan','egon','eduki'],4),typeQsT(5,[0,1]),SQ0(['nik','esnea','edaten','dut'],'Yo bebo leche.','esnea = «qué» → ukan: dut.'),SQ0(['ni','Iruñera','joaten','naiz'],'Voy a Pamplona.','Sin «qué» → izan: naiz.'))});
+lessonAfter('b2',{id:'r2',eu:'Errepasoa · NOR, NORK, NORI',es:'Repaso: los cuatro tipos de verbo',ic:'🧭',min:9,
+ goals:['Distinguir los 4 tipos: NOR, NOR-NORK, NOR-NORI, NOR-NORI-NORK','Elegir el auxiliar: naiz · dut · zait · diot','Reconocer quién es -k y quién es -ri'],
+ steps:[
+ {t:'Mapa de los cuatro tipos',h:'<p>Cuenta quién participa:</p>',
+  tb:mt(['Tipo','Participan','Auxiliar','Ejemplo'],[['NOR','solo el sujeto','naiz, zara, da','Etxean nago.'],['NOR-NORK','sujeto + «qué»','dut, duzu, du','Kafea dut.'],['NOR-NORI','algo + a quién (-ri)','zait, zaizu, zaio','Niri gustatzen zait.'],['NOR-NORI-NORK','quién + qué + a quién','diot, dit, dio','Amari ematen diot.']]),
+  tip:'Truco: ¿Hay «a quién» (-ri)? Entonces zait/zaio (algo me pasa) o diot/dit (alguien da algo).'},
+ {t:'Marcas en el nombre',h:'<p><b>-k</b> = quien hace (nik, amak) · <b>-ri</b> = a quién (niri, amari) · sin marca = el «qué» o el sujeto de NOR.</p>',
+  ex:[['Amak niri liburua ematen dit.','Mamá me da el libro.'],['Niri liburua gustatzen zait.','Me gusta el libro.'],['Nik amari liburua ematen diot.','Le doy el libro a mamá.']]},
+ {t:'Singular y plural',h:'<p>Cuando lo que gusta o se da es plural, el auxiliar cambia: <b>zait → zaizkit</b>, <b>diot → dizkiot</b>.</p>',
+  ex:[['Niri sagarrak gustatzen zaizkit.','Me gustan las manzanas.'],['Amari liburuak ematen dizkiot.','Le doy los libros a mamá.']]}
+ ],
+ make:()=>[].concat(typeQsT(8,[0,1,2,3]),conjQs(['izan','ukan','eman'],2),SQ0(['niri','kafea','gustatzen','zait'],'Me gusta el café.','Lo que gusta (singular) → zait.'),SQ0(['nik','amari','liburua','ematen','diot'],'Le doy el libro a mamá.','amari = a mamá; diot.'))});
+lessonAfter('e1',{id:'r3',lv:'a2',eu:'Errepasoa · aditz motak',es:'Repaso A2: tipos de verbo en presente y pasado',ic:'🔄',min:10,
+ goals:['Consolidar NOR, NORK, NORI y NORI-NORK','Pasar cada tipo a pasado','Elegir bien entre dut / zait / diot / dit'],
+ steps:[
+ {t:'Presente y pasado',h:'<p>Mismo tipo, distinto tiempo:</p>',
+  tb:mt(['Tipo','Presente','Pasado'],[['NOR','naiz','nintzen'],['NOR-NORK','dut','nuen'],['NOR-NORI','zait','zitzaidan'],['NOR-NORI-NORK','diot / dit','nion / zidan']]),
+  tip:'En pasado, «me dio» = zidan; «le di» = nion.'},
+ {t:'¿Quién hace qué a quién?',h:'<p>Con NOR-NORI-NORK hay <b>dos</b> personas en el verbo: quien da (-k) y quien recibe (-ri). <b>dit</b> = (él) me lo da · <b>diot</b> = (yo) se lo doy.</p>',
+  ex:[['Amak liburu bat eman zidan.','Mamá me dio un libro.'],['Nik amari liburua eman nion.','Le di el libro a mamá.'],['Niri musika gustatzen zitzaidan.','Me gustaba la música.']]}
+ ],
+ make:()=>[].concat(typeQsT(6,[0,1,2,3]),conjQs(['izan','ukan','gustatu','eman','eman (hark… niri, zuri…)'],5),SQ0(['amak','niri','liburu','bat','eman','zidan'],'Mamá me dio un libro.','zidan = me lo dio.'))});
+Object.assign(LSUM,{
+r1:{sum:['Pregunta clave: ¿hay «qué»? No → <b>izan</b> (naiz, zara, da…). Sí → <b>ukan</b> (dut, duzu, du…).','Pasado: nintzen / nuen.'],kw:[['naiz','soy/estoy (NOR)'],['dut','lo tengo/hago (NORK)'],['nintzen','era/fui'],['nuen','yo lo…']]},
+r2:{sum:['Cuatro tipos: <b>NOR</b> naiz · <b>NOR-NORK</b> dut · <b>NOR-NORI</b> zait · <b>NOR-NORI-NORK</b> diot/dit.','-k = quien hace · -ri = a quién.'],kw:[['zait','me (gusta)'],['diot','se lo doy'],['dit','me lo da'],['zaizkit','me (gustan)']]},
+r3:{sum:['Presente → pasado: naiz→nintzen · dut→nuen · zait→zitzaidan · diot→nion · dit→zidan.'],kw:[['zidan','me lo dio'],['nion','le di'],['zitzaidan','me (gustaba)']]}
+});
+</script>
+<script>
 /* ===== Niri buruz: cuestionario personal y preguntas con tus datos ===== */
 const MON_GEN=['urtarrilaren','otsailaren','martxoaren','apirilaren','maiatzaren','ekainaren','uztailaren','abuztuaren','irailaren','urriaren','azaroaren','abenduaren'];
 const MON_NOM=['Urtarrila','Otsaila','Martxoa','Apirila','Maiatza','Ekaina','Uztaila','Abuztua','Iraila','Urria','Azaroa','Abendua'];

@@ -11,6 +11,14 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v22 · 2026-11-06
+- 3 lecciones de repaso de los tipos de verbo, colocadas según lo aprendido:
+  - A1 · **Errepasoa · NOR eta NORK** (n10, tras «Gustuak eta beharrak»).
+  - A1 · **Errepasoa · NOR, NORK, NORI** (n24, tras «Nori eman diozu?»). A1 pasa a 30 lecciones.
+  - A2 · **Errepasoa · aditz motak** (n11, tras «Eman zidan»). A2 pasa a 22 lecciones.
+- Numeración de lecciones siguientes desplazada; el progreso no se pierde (se guarda por id).
+
+---
 ## v21 · 2026-11-06 · Los 4 tipos de verbo (NOR, NOR-NORK, NOR-NORI, NOR-NORI-NORK)
 - **Gida, sección 8:** tabla con los cuatro tipos (qué participa, auxiliar y ejemplo), cuatro pasos para reconocer el tipo y la diferencia de dirección diot / dit.
 - **Practicar:** la baldosa «Nor ala nork?» pasa a **Aditz motak** y ahora tiene 10 preguntas de los cuatro tipos: clasificar verbos (joan, jan, gustatu, eman…) y elegir el auxiliar de una frase (naiz, dut, zait, diot, dit…).
