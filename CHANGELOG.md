@@ -11,6 +11,14 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v20 · 2026-11-06 · Test: saltar de nivel y autoevaluación
+- Nueva baldosa **Test** (junto a Gida) con dos opciones; no toca la pantalla principal más allá de esa baldosa.
+- **Maila saltatu** (A1 → A2): 40 preguntas (vocabulario 12, verbos 10, frases 10, gramática de las lecciones 8). Se aprueba con **90 % en total (36 aciertos) y 75 % como mínimo en cada bloque**. Sin ayudas ni explicaciones durante el test, ni marca de acierto/fallo por pregunta. Si suspendes, reintento a las 24 h con preguntas distintas. Al aprobar queda «A1 acreditado» y se abre el A2.
+- **Autoebaluazioa**: 20 preguntas de A1 o A2, con explicación tras cada respuesta, sin nota mínima; resultado por bloques y lista de lo que conviene repasar (temas de vocabulario, verbos y lecciones). No altera XP ni el dominio de palabras.
+- El aviso del candado del A2 menciona ahora el test.
+
+---
+
 ## v19 · 2026-11-06 · Engranaje de ajustes
 - Engranaje ⚙️ arriba a la derecha: abre la pantalla Ezarpenak (meta diaria, mis datos, código de acceso, copia de seguridad, borrar progreso). Pulsarlo otra vez vuelve al inicio.
 - Los ajustes ya no están en la pantalla principal. El engranaje se oculta dentro de lecciones y sesiones.
