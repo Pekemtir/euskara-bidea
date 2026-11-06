@@ -190,6 +190,8 @@ body.in-session .app{padding-bottom:40px}
 
 /* conjugación */
 .sel{display:flex;flex-wrap:wrap;gap:8px}
+.lvbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px}
+.lvbar .sel{margin:0}
 .fld{width:100%;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;padding:12px 14px;font:500 16px var(--f-body)}
 textarea.fld{font:500 13px var(--f-mono,monospace);min-height:84px;resize:vertical;word-break:break-all}
 .hit{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
@@ -296,7 +298,23 @@ const VOCAB=[
 {id:'galderak',eu:'Galdera-hitzak',es:'Palabras de pregunta',ic:'❓',w:[
 ['zer','qué','❓'],['nor','quién',''],['non','dónde','📍'],['nora','adónde',''],['noiz','cuándo','🕒'],['nola','cómo',''],['zergatik','por qué',''],['zenbat','cuánto/s','']]},
 {id:'aditzak',eu:'Aditzak',es:'Verbos (significado)',ic:'🏃',w:[
-['jan','comer','🍽️'],['edan','beber','🥤'],['joan','ir','➡️'],['etorri','venir','⬅️'],['egin','hacer',''],['ikusi','ver','👀'],['irakurri','leer','📖'],['idatzi','escribir','✍️'],['ikasi','aprender / estudiar','🎓'],['ulertu','entender',''],['hitz egin','hablar','🗣️'],['lan egin','trabajar','💼'],['lo egin','dormir','😴'],['bizi','vivir','🏡']]}
+['jan','comer','🍽️'],['edan','beber','🥤'],['joan','ir','➡️'],['etorri','venir','⬅️'],['egin','hacer',''],['ikusi','ver','👀'],['irakurri','leer','📖'],['idatzi','escribir','✍️'],['ikasi','aprender / estudiar','🎓'],['ulertu','entender',''],['hitz egin','hablar','🗣️'],['lan egin','trabajar','💼'],['lo egin','dormir','😴'],['bizi','vivir','🏡']]},
+{id:'lekuak',lv:'a2',eu:'Lekuak',es:'Lugares de la ciudad',ic:'🏙️',w:[
+['denda','la tienda','🏪'],['banku','el banco','🏦'],['ospitalea','el hospital','🏥'],['eskola','la escuela','🏫'],['parkea','el parque','🌳'],['plaza','la plaza',''],['geltokia','la estación','🚉'],['kafetegia','la cafetería','☕'],['jatetxea','el restaurante','🍽️'],['farmazia','la farmacia','💊'],['hiria','la ciudad','🏙️'],['herria','el pueblo','🏘️']]},
+{id:'garraioak',lv:'a2',eu:'Garraioak',es:'Transporte',ic:'🚌',w:[
+['autobusa','el autobús','🚌'],['trena','el tren','🚆'],['autoa','el coche','🚗'],['bizikleta','la bicicleta','🚲'],['hegazkina','el avión','✈️'],['bidaia','el viaje','🧳'],['txartela','la tarjeta / el billete','🎫']]},
+{id:'gorputza',lv:'a2',eu:'Gorputza',es:'El cuerpo',ic:'🧍',w:[
+['burua','la cabeza',''],['aurpegia','la cara',''],['begia','el ojo','👁️'],['sudurra','la nariz','👃'],['ahoa','la boca','👄'],['belarria','la oreja','👂'],['eskua','la mano','✋'],['besoa','el brazo','💪'],['hanka','la pierna','🦵'],['oina','el pie','🦶'],['bihotza','el corazón','❤️'],['ilea','el pelo','']]},
+{id:'arropa',lv:'a2',eu:'Arropa',es:'Ropa',ic:'👕',w:[
+['alkandora','la camisa','👔'],['galtzak','los pantalones','👖'],['jaka','la chaqueta','🧥'],['zapatak','los zapatos','👞'],['txapela','la txapela','🎩'],['soinekoa','el vestido','👗'],['galtzerdiak','los calcetines','🧦']]},
+{id:'sentitu',lv:'a2',eu:'Nola zaude?',es:'Estados y sensaciones',ic:'🙂',w:[
+['gaixorik','enfermo/a','🤒'],['nekatuta','cansado/a','😴'],['pozik','contento/a','😊'],['triste','triste','😢'],['gose','hambre (gose naiz)','🍴'],['egarri','sed (egarri naiz)','🥤'],['hotz','frío (hotz naiz)','🥶'],['bero','calor (bero naiz)','🥵']]},
+{id:'kokapena',lv:'a2',eu:'Non? Kokapena',es:'Dónde está: sobre, bajo, dentro…',ic:'📍',w:[
+['gainean','sobre, encima de',''],['azpian','debajo de',''],['barruan','dentro de',''],['kanpoan','fuera de',''],['ondoan','al lado de',''],['aurrean','delante de',''],['atzean','detrás de',''],['artean','entre','']]},
+{id:'errutina',lv:'a2',eu:'Egunerokoa',es:'Rutina diaria',ic:'⏰',w:[
+['jaiki','levantarse','⏰'],['dutxatu','ducharse','🚿'],['gosaldu','desayunar','🥐'],['bazkaldu','comer (mediodía)','🍝'],['afaldu','cenar','🍲'],['ohera joan','irse a la cama','🛏️'],['garbitu','limpiar',''],['ordua','la hora / una hora','🕒']]},
+{id:'aditzak2',lv:'a2',eu:'Aditz gehiago',es:'Más verbos',ic:'🛠️',w:[
+['lagundu','ayudar',''],['eman','dar',''],['ekarri','traer',''],['erosi','comprar','🛒'],['saldu','vender',''],['ireki','abrir',''],['itxi','cerrar',''],['esan','decir',''],['galdetu','preguntar',''],['erantzun','responder',''],['bilatu','buscar','🔎'],['aurkitu','encontrar',''],['erabili','usar',''],['ordaindu','pagar','💶']]}
 ];
 
 const PRON=['ni','zu','hura','gu','zuek','haiek'];
@@ -322,7 +340,13 @@ eduki:{es:'tener (posesión) · daukat = tengo',ty:'nork',T:{
 joan:{es:'ir · forma sintética (sin auxiliar)',ty:'nor',T:{
  oraina:{n:'Orainaldia',e:'presente',f:['noa','zoaz','doa','goaz','zoazte','doaz']}}},
 etorri:{es:'venir · forma sintética (sin auxiliar)',ty:'nor',T:{
- oraina:{n:'Orainaldia',e:'presente',f:['nator','zatoz','dator','gatoz','zatozte','datoz']}}}
+ oraina:{n:'Orainaldia',e:'presente',f:['nator','zatoz','dator','gatoz','zatozte','datoz']}}},
+gustatu:{lv:'a2',es:'gustar · «a quién» + zait/zaio… (nor-nori)',ty:'nori',T:{
+ oraina1:{n:'Orainaldia · 1 gauza',e:'presente, gusta una cosa',f:['zait','zaizu','zaio','zaigu','zaizue','zaie']},
+ oraina2:{n:'Orainaldia · gauza asko',e:'presente, gustan varias cosas',f:['zaizkit','zaizkizu','zaizkio','zaizkigu','zaizkizue','zaizkie']}}},
+eman:{lv:'a2',es:'dar (a él/ella) · diot = yo se lo doy (nork-nori)',ty:'nork',T:{
+ oraina1:{n:'Orainaldia · 1 gauza',e:'presente, se da una cosa',f:['diot','diozu','dio','diogu','diozue','diote']},
+ oraina2:{n:'Orainaldia · gauza asko',e:'presente, se dan varias cosas',f:['dizkiot','dizkiozu','dizkio','dizkiogu','dizkiozue','dizkiote']}}}
 };
 
 /* verbos «participio + auxiliar» */
@@ -396,6 +420,31 @@ const SENT=[
 {t:['gu','Baztanera','goaz'],es:'Nosotros vamos a Baztan.',tip:'goaz = nosotros vamos (forma sintética de joan).'}
 ];
 
+/* frases del A2 */
+const SENT2=[
+{t:['mahaiaren','gainean','liburu','bat','dago'],es:'Hay un libro sobre la mesa.',tip:'mahaia + ren (genitivo) + gainean = sobre la mesa.'},
+{t:['katua','aulkiaren','azpian','dago'],es:'El gato está debajo de la silla.',tip:'aulkia + ren + azpian = debajo de la silla.'},
+{t:['txakurra','etxearen','kanpoan','dago'],es:'El perro está fuera de la casa.',tip:'etxea + ren + kanpoan = fuera de la casa.'},
+{t:['nik','amari','liburua','ematen','diot'],es:'Yo le doy el libro a mamá.',tip:'ama + ri = amari (a quién). diot = yo se lo (a él/ella) doy.'},
+{t:['amari','kafea','gustatzen','zaio'],es:'A mamá le gusta el café.',tip:'-ri = a quién; zaio = le (a él/ella) gusta (una cosa).'},
+{t:['guri','mendia','gustatzen','zaigu'],es:'A nosotros nos gusta el monte.',tip:'guri = a nosotros; zaigu = nos gusta (una cosa).'},
+{t:['nire','etxea','zurea','baino','handiagoa','da'],es:'Mi casa es más grande que la tuya.',tip:'adjetivo + -ago = más; baino = que.'},
+{t:['gaur','ezin','dut','etorri'],es:'Hoy no puedo venir.',tip:'ezin = no poder. Lleva el auxiliar justo detrás (ezin dut).'},
+{t:['gaixorik','nagoelako','etxean','nago'],es:'Estoy en casa porque estoy enfermo.',tip:'nago + -elako = nagoelako (porque estoy).'},
+{t:['zortziak','dira'],es:'Son las ocho.',tip:'Hora: número + -ak + dira (una hora: «bata da»).'},
+{t:['goizean','zortzietan','jaikitzen','naiz'],es:'Por la mañana me levanto a las ocho.',tip:'zortziak → zortzietan (a las ocho).'},
+{t:['euskaraz','hitz','egiten','al','duzu'],es:'¿Hablas euskera?',tip:'Pregunta de sí/no: «al» justo delante del auxiliar.'},
+{t:['atzo','liburu','bat','erosi','nuen'],es:'Ayer compré un libro.',tip:'Pasado: erosi (participio) + nuen.'},
+{t:['hiru','t\'erdiak','dira'],es:'Son las tres y media.',tip:'t\'erdiak = y media.'}
+];
+
+const NORI=['niri','zuri','hari','guri','zuei','haiei'];
+const NORI_ES=['a mí','a ti','a él / ella','a nosotros/as','a vosotros/as','a ellos / ellas'];
+const pronOf=c=>c.ty==='nork'?NORK:c.ty==='nori'?NORI:PRON;
+const pronEs=c=>c.ty==='nori'?NORI_ES:PRON_ES;
+const lvOf=x=>x.lv||'a1';
+
+
 /* nor ala nork: ¿qué auxiliar usa cada verbo? */
 const NN=[
 ['jan','comer','nork'],['edan','beber','nork'],['ikusi','ver','nork'],['irakurri','leer','nork'],['idatzi','escribir','nork'],['ikasi','aprender','nork'],['ulertu','entender','nork'],
@@ -415,8 +464,9 @@ const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
 const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[¿?¡!.,]/g,'').replace(/\s+/g,' ').trim();
 const dayStr=d=>d.toLocaleDateString('sv-SE');
 
-let S={lessons:{},xp:0,today:0,day:'',streak:0,last:'',m:{},badges:[],typeMode:false,sess:0,conj:0,built:0,bestCombo:0,goal:50};
+let S={lessons:{},xp:0,today:0,day:'',streak:0,last:'',m:{},badges:[],typeMode:false,sess:0,conj:0,built:0,bestCombo:0,goal:50,level:'a1'};
 try{Object.assign(S,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){}
+if(S.level!=='a1'&&S.level!=='a2')S.level='a1';
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 (function rollDay(){
   const t=dayStr(new Date());
@@ -445,7 +495,8 @@ const BADGES=[
 ['aditza','🧩','Aditz-gaztea','3 sesiones de conjugación',()=>S.conj>=3],
 ['esaldiak','🧱','Esaldigilea','Construye 8 frases bien',()=>S.built>=8],
 ['seria','🔥','3 egun','3 días seguidos',()=>S.streak>=3],
-['ikasgaiak','🎓','Ikasle saiatua','Completa 3 lecciones',()=>Object.keys(S.lessons||{}).length>=3]
+['ikasgaiak','🎓','Ikasle saiatua','Completa 3 lecciones',()=>Object.keys(S.lessons||{}).length>=3],
+['a2','🔓','Bigarren maila','Desbloquea el A2 (completa el A1)',()=>a2Open()]
 ];
 function checkBadges(){
   BADGES.forEach(b=>{if(!S.badges.includes(b[0])&&b[4]()){S.badges.push(b[0]);toast(b[1]+' '+b[2]+'!');burst()}});
@@ -477,7 +528,7 @@ function say(t){
 
 /* ===== VOCABULARIO ===== */
 const wid=(s,w)=>s.id+':'+w[0];
-const allWords=()=>VOCAB.flatMap(s=>s.w.map(w=>({id:wid(s,w),eu:w[0],es:w[1],em:w[2],set:s.id})));
+const allWords=all=>VOCAB.filter(s=>all||lvOf(s)===S.level).flatMap(s=>s.w.map(w=>({id:wid(s,w),eu:w[0],es:w[1],em:w[2],set:s.id})));
 const setWords=s=>s.w.map(w=>({id:wid(s,w),eu:w[0],es:w[1],em:w[2],set:s.id}));
 const mast=id=>S.m[id]||0;
 const bump=(id,ok)=>{S.m[id]=Math.max(0,Math.min(4,mast(id)+(ok?1:-1)))};
@@ -514,7 +565,7 @@ function flashQs(pool,n){
 const segHTML=a=>a.map(([s,r])=>`<span class="m-${r}">${esc(s)}</span>`).join('');
 function genConj(vk){
   const c=CONJ[vk],tks=Object.keys(c.T),tk=tks[rnd(tks.length)],i=rnd(6),t=c.T[tk],ans=t.f[i];
-  const pr=(c.ty==='nork'?NORK:PRON)[i];
+  const pr=pronOf(c)[i];
   const forms=Object.values(c.T).flatMap(x=>x.f);
   const same=t.f.filter(f=>f!==ans);
   const rest=shuffle(forms.filter(f=>f!==ans&&!same.includes(f)));
@@ -523,8 +574,8 @@ function genConj(vk){
   const rev=`${esc(pr)} <b>${esc(ans)}</b> · ${vk}, ${esc(t.e)}`;
   const series=t.f.map((f,k)=>k===i?`<b>${esc(f)}</b>`:esc(f)).join(' · ');
   const note=(typeof VNOTE!=='undefined'&&VNOTE[vk])?`<br><small>${VNOTE[vk]}</small>`:'';
-  const why=`Se pedía <b>${vk}</b>, ${esc(t.e)}, persona <b>${esc(pr)}</b> (${PRON_ES[i]}): <b>${seg}</b>.<br><small>Serie completa: ${series}</small>${note}`;
-  return{k:S.typeMode?'type':'choice',kind:'Aditza · konjugatu',p:pr+' ___',hint:`${vk} · ${t.e} · ${PRON_ES[i]}`,opts,ans,expl:`${esc(pr)} <b>${seg}</b>`,why,rev,key:vk+tk+i,vk,meta:{vk,tk,i}};
+  const why=`Se pedía <b>${vk}</b>, ${esc(t.e)}, persona <b>${esc(pr)}</b> (${pronEs(c)[i]}): <b>${seg}</b>.<br><small>Serie completa: ${series}</small>${note}`;
+  return{k:S.typeMode?'type':'choice',kind:'Aditza · konjugatu',p:pr+' ___',hint:`${vk} · ${t.e} · ${pronEs(c)[i]}`,opts,ans,expl:`${esc(pr)} <b>${seg}</b>`,why,rev,key:vk+tk+i,vk,meta:{vk,tk,i}};
 }
 function conjQs(vks,n){
   const out=[],seen=new Set();let tries=0;
@@ -547,6 +598,7 @@ function genTip(v,tk){
   return a+'<br>'+t;
 }
 function buildQs(n){
+  if(S.level==='a2')return pick(SENT2,n).map(s=>sq({es:s.es,t:s.t,x:s.x,tip:s.tip}));
   const nCur=Math.ceil(n*0.6);
   const cur=pick(SENT,nCur).map(s=>({k:'build',kind:'Eraiki esaldia',es:s.es,tokens:s.t,extra:s.x||[],expl:`${esc(s.es)}<br><small>${esc(s.tip)}</small><br><small>Hay otros órdenes posibles; este es el neutro.</small>`,rev:`<b>${esc(cap(s.t.join(' ')))}.</b> ${esc(s.es)}`}));
   const gen=[],seen=new Set();let tries=0;
@@ -594,10 +646,10 @@ function runSession(cfg){
   document.body.classList.add('in-session');
   renderQ();
 }
-function endSession(){
+function endSession(keep){
   const d=$('#sh');if(d)d.remove();
   const xc=$('#xc');if(xc)xc.remove();
-  document.body.classList.remove('in-session');SES=null;popOwn();
+  document.body.classList.remove('in-session');SES=null;if(keep!==true)popOwn();
   if(typeof render==='function')render();
 }
 function award(g){S.xp+=g;S.today+=g;SES.xp+=g;touch();S.bestCombo=Math.max(S.bestCombo,SES.combo);save();refreshHeader()}
@@ -622,7 +674,7 @@ function yoursText(q,given){
     const m=q.meta,hits=allForms().filter(x=>x.f===String(given).trim().toLowerCase());
     if(!hits.length)return `Tu respuesta <b>${g}</b> no es una forma de ningún verbo del curso. Revisa la ortografía.`;
     const h=hits.find(x=>x.vk===m.vk&&x.tk===m.tk)||hits.find(x=>x.vk===m.vk)||hits[0];
-    const pr=(h.c.ty==='nork'?NORK:PRON)[h.i],want=(CONJ[m.vk].ty==='nork'?NORK:PRON)[m.i];
+    const pr=pronOf(h.c)[h.i],want=pronOf(CONJ[m.vk])[m.i];
     let r;
     if(h.vk!==m.vk)r=`es de otro verbo, no de <b>${m.vk}</b>`;
     else if(h.tk===m.tk)r=`es de otra persona (aquí se pedía <b>${esc(want)}</b>)`;
@@ -631,7 +683,7 @@ function yoursText(q,given){
     return `Tu respuesta <b>${g}</b> es de <b>${h.vk}</b> · ${esc(h.t.e)} · ${esc(pr)}: ${r}.`;
   }
   if(q.wid){
-    const typed=norm(given),hit=allWords().find(w=>w.id!==q.wid&&(w.eu===given||w.es===given||norm(w.eu)===typed));
+    const typed=norm(given),hit=allWords(true).find(w=>w.id!==q.wid&&(w.eu===given||w.es===given||norm(w.eu)===typed));
     if(hit){return (hit.eu===given||norm(hit.eu)===typed)?`Tu respuesta <b>${g}</b> significa «${esc(hit.es)}», otra palabra.`:`«${g}» se dice <b>${esc(hit.eu)}</b> en euskera, no esta.`}
     if(q.k==='type'){const d=lev(typed,norm(q.ans));if(d<=2)return `Estabas cerca (${d===1?'1 letra':'2 letras'} de diferencia). Revisa la ortografía.`}
     return '';
@@ -760,20 +812,25 @@ function finish(){
       if(prev==null){S.xp+=20;S.today+=20;SES.xp+=20;lessonMsg='🎓 Ikasgaia osatu duzu · lección completada · +20 XP'}
       else lessonMsg='🎓 Lección superada de nuevo';
       S.lessons[id]=Math.max(prev||0,acc);
+      if(a2Open()&&!S.a2unl){S.a2unl=1;lessonMsg+=' · 🔓 ¡A2 desbloqueado! Cámbialo en el selector de nivel'}
     }else lessonMsg='Con un 60 % la lección queda hecha. Repasa los errores y vuelve a intentarlo.';
   }
   const t=acc>=90?['Bikain!','¡Sesión perfecta!']:acc>=60?['Oso ondo!','¡Muy bien!']:['Aurrera!','¡Sigue, vas bien!'];
+  const cl=SES.cfg.lesson?LESSONS.find(l=>l.id===SES.cfg.lesson):null;
+  const lst=cl?LESSONS.filter(l=>lvOf(l)===lvOf(cl)):[];
+  const nxt=(cl&&acc>=60)?lst[lst.indexOf(cl)+1]:null;
   const miss=Array.from(new Set(SES.miss.map(q=>q.rev))).slice(0,6);
   $('#view').innerHTML=`<div class="result"><div style="font-size:54px">${acc>=90?'🏆':acc>=60?'🎉':'💪'}</div><h1 class="big">${t[0]}</h1><p class="sub">${t[1]}</p><div class="num">+${SES.xp} XP</div>
   <div class="stats3"><div><b>${acc}%</b><span>a la primera</span></div><div><b>⚡ ${SES.best}</b><span>mejor racha</span></div><div><b>🔥 ${S.streak}</b><span>días seguidos</span></div></div>
   ${lessonMsg?`<div class="explain"><p><b>${lessonMsg}</b></p></div>`:''}
   ${miss.length?`<div class="card" style="text-align:left;margin-top:14px"><b>Berrikusi · repasa</b><div class="stack" style="margin-top:8px">${miss.map(m=>`<div class="ex">${m}</div>`).join('')}</div></div>`:''}
-  <div class="stack" style="margin-top:20px"><button class="btn block" id="again">${SES.cfg.lesson?'Berriro praktikatu':'Beste saio bat'}</button>${SES.cfg.lesson?'<button class="btn sec block" id="rev">Ikasgaia berrikusi · releer la lección</button>':''}<button class="btn sec block" id="home">Itzuli</button></div></div>`;
+  <div class="stack" style="margin-top:20px">${nxt?`<button class="btn block" id="nextl">Hurrengo ikasgaia · ${nxt.n}. ${esc(nxt.eu)}</button>`:''}<button class="btn${nxt?' sec':''} block" id="again">${SES.cfg.lesson?'Berriro praktikatu':'Beste saio bat'}</button>${SES.cfg.lesson?'<button class="btn sec block" id="rev">Ikasgaia berrikusi · releer la lección</button>':''}<button class="btn sec block" id="home">Itzuli</button></div></div>`;
   window.scrollTo(0,0);
   const cfg=SES.cfg;
   $('#again').onclick=()=>runSession(cfg);
-  $('#home').onclick=endSession;
-  if(cfg.lesson)$('#rev').onclick=()=>{endSession();openLesson(cfg.lesson)};
+  $('#home').onclick=()=>endSession();
+  if(nxt)$('#nextl').onclick=()=>{endSession(true);openLesson(nxt.id)};
+  if(cfg.lesson)$('#rev').onclick=()=>{endSession(true);openLesson(cfg.lesson)};
   save();checkBadges();refreshHeader();
   if(acc>=60)burst();
 }
@@ -1114,11 +1171,196 @@ l12:{sum:['Días y meses van en minúscula; todos los meses acaban en <b>-a</b>.
 };
 </script>
 <script>
+/* ===== A2: lecciones y resúmenes ===== */
+LESSONS.push(
+{id:'b1',lv:'a2',n:1,eu:'Non dago?',es:'Dónde está: sobre, bajo, dentro…',ic:'📍',min:7,
+ goals:['Decir dónde está algo con gainean, azpian, barruan, ondoan…','Unir el nombre con -ren / -en antes de la posición','Preguntar y contestar «Non dago…?»'],
+ steps:[
+ {t:'Las posiciones',h:'<p>En euskera la posición va <b>detrás</b> del nombre, y el nombre lleva el genitivo <b>-ren</b> («de»): <b>mahaiaren gainean</b> = sobre (de) la mesa.</p>',
+  tb:'<table class="mini"><tr><th>Euskera</th><th>Español</th></tr><tr><td><b>gainean</b></td><td>sobre, encima de</td></tr><tr><td><b>azpian</b></td><td>debajo de</td></tr><tr><td><b>barruan</b></td><td>dentro de</td></tr><tr><td><b>kanpoan</b></td><td>fuera de</td></tr><tr><td><b>ondoan</b></td><td>al lado de</td></tr><tr><td><b>aurrean</b></td><td>delante de</td></tr><tr><td><b>atzean</b></td><td>detrás de</td></tr><tr><td><b>artean</b></td><td>entre</td></tr></table>',
+  tip:'Si el nombre acaba en -a, se añade <b>-ren</b> (mahaia → mahaiaren). Si acaba en consonante, <b>-en</b> (Dabid → Dabiden).'},
+ {t:'Con personas y cosas',h:'<p>Con los posesivos no hace falta genitivo: <b>nire ondoan</b> (a mi lado), <b>zure atzean</b> (detrás de ti).</p>',
+  ex:[['Liburua mahaiaren gainean dago.','El libro está sobre la mesa.'],['Katua aulkiaren azpian dago.','El gato está debajo de la silla.'],['Txakurra etxearen kanpoan dago.','El perro está fuera de la casa.'],['Nire ondoan dago.','Está a mi lado.']]},
+ {t:'Preguntar dónde está',h:'<p>La pregunta es <b>Non dago…?</b> (singular) o <b>Non daude…?</b> (plural). Contestas con la posición y <b>dago / daude</b> al final.</p>',
+  ex:[['Non dago telefonoa?','¿Dónde está el teléfono?'],['Mahaiaren gainean dago.','Está sobre la mesa.'],['Non daude gakoak?','¿Dónde están las llaves?']],
+  tip:'Siempre <b>egon</b> (dago / daude) para decir dónde está algo.'}
+ ],
+ make:()=>[].concat(SQ0(['mahaiaren','gainean','liburu','bat','dago'],'Hay un libro sobre la mesa.','mahaia + ren + gainean.'),SQ0(['katua','aulkiaren','azpian','dago'],'El gato está debajo de la silla.','aulkia + ren + azpian.'),vq('kokapena',4),[
+  mc('Kokapena','«Sobre la mesa»','¿Cuál es?','mahaiaren gainean',['mahaia gainean','mahaiak gainean','mahaian gainean'],'nombre + <b>-ren</b> + posición.'),
+  mc('Kokapena','«Dentro de la casa»','¿Cuál es?','etxearen barruan',['etxeren barruan','etxea barruan','etxearen azpian'],'etxea + <b>ren</b> = etxearen.'),
+  mc('Galdera','«¿Dónde está el teléfono?»','¿Cuál es?','Non dago telefonoa?',['Nor dago telefonoa?','Non da telefonoa?','Zer dago telefonoa?'],'<b>Non dago…?</b> con <b>egon</b>.'),
+  mc('Kokapena','Plural: «¿Dónde están las llaves?»','¿Cuál es?','Non daude gakoak?',['Non dago gakoak?','Non dira gakoak?','Non daude gakoa?'],'Plural: <b>daude</b>.')
+ ])},
+
+{id:'b2',lv:'a2',n:2,eu:'Nori eman diozu?',es:'«A quién» (-ri) y «para quién» (-rentzat)',ic:'🎁',min:8,
+ goals:['Decir a quién se hace algo con -ri','Decir para quién con -(r)entzat','Usar diot, diozu, dio… (eman)'],
+ steps:[
+ {t:'-ri: «a quién»',h:'<p>Para decir <b>a quién</b> (el destinatario) se añade <b>-ri</b> al nombre: <b>ama → amari</b>. Con pronombres cambia:</p>',
+  tb:'<table class="mini"><tr><th>Pronombre</th><th>A…</th></tr><tr><td>ni</td><td><b>niri</b> a mí</td></tr><tr><td>zu</td><td><b>zuri</b> a ti</td></tr><tr><td>hura</td><td><b>hari</b> a él / ella</td></tr><tr><td>gu</td><td><b>guri</b> a nosotros</td></tr><tr><td>zuek</td><td><b>zuei</b> a vosotros</td></tr><tr><td>haiek</td><td><b>haiei</b> a ellos</td></tr></table>',
+  tip:'Con nombres propios: Dabid → <b>Dabiri</b>. En plural: amak → <b>amei</b>.'},
+ {t:'-rentzat: «para quién»',h:'<p><b>-(r)entzat</b> = <b>para</b>. Si el nombre acaba en -a: <b>-rentzat</b> (amarentzat); si no, <b>-entzat</b>. Con pronombres: <b>niretzat</b>, <b>zuretzat</b>, <b>harentzat</b>…</p>',
+  ex:[['Hau zuretzat da.','Esto es para ti.'],['Kafea amarentzat da.','El café es para mamá.'],['Opari bat niretzat?','¿Un regalo para mí?']]},
+ {t:'eman: dar',h:'<p><b>eman</b> (dar) lleva tres cosas: quien da (nik), lo que se da (liburua) y a quién (amari). En el verbo aparece todo junto: <b>diot</b> = yo se lo doy (a él/ella).</p>',
+  tb:'<table class="mini"><tr><th></th><th>(a él/ella)</th></tr><tr><td>nik</td><td><b>diot</b></td></tr><tr><td>zuk</td><td><b>diozu</b></td></tr><tr><td>hark</td><td><b>dio</b></td></tr><tr><td>guk</td><td><b>diogu</b></td></tr><tr><td>zuek</td><td><b>diozue</b></td></tr><tr><td>haiek</td><td><b>diote</b></td></tr></table>',
+  ex:[['Nik amari liburua ematen diot.','Yo le doy el libro a mamá.'],['Nori eman diozu kafea?','¿A quién le has dado el café?'],['Zuk Dabiri ura ematen diozu.','Tú le das agua a David.']],
+  tip:'Con varias cosas: <b>dizkiot, dizkiozu, dio→dizkio…</b> (liburuak ematen dizkiot).'}
+ ],
+ make:()=>[].concat(SQ0(['nik','amari','liburua','ematen','diot'],'Yo le doy el libro a mamá.','amari = a mamá; diot = yo se lo doy.'),SQ0(['kafea','amarentzat','da'],'El café es para mamá.','ama + rentzat = para mamá.'),conjQs(['eman'],3),vq('aditzak2',3),[
+  mc('-ri','«A mamá»','¿Cuál es?','amari',['amak','amarentzat','amaren'],'Destinatario: <b>-ri</b>.'),
+  mc('-ri','«A mí»','¿Cuál es?','niri',['nik','nire','niretzat'],'<b>niri</b> = a mí.'),
+  mc('-rentzat','«Para ti»','¿Cuál es?','zuretzat',['zuri','zuk','zure'],'<b>zuretzat</b> = para ti.'),
+  mc('eman','«Yo se lo doy»','¿Cuál es?','diot',['dut','dio','diozu'],'<b>diot</b> = nik (yo) + a él/ella.'),
+  mc('eman','«Tú se lo das»','¿Cuál es?','diozu',['diot','dio','duzu'],'<b>diozu</b> = zuk (tú).')
+ ])},
+
+{id:'b3',lv:'a2',n:3,eu:'Gustatzen zait / zaio',es:'Gustar con todas las personas',ic:'💚',min:8,
+ goals:['Decir a quién le gusta algo: niri, zuri, hari, guri…','Distinguir zait / zaio… (una cosa) de zaizkit / zaizkio… (varias)','Hacer y contestar «¿Zer gustatzen zaizu?»'],
+ steps:[
+ {t:'A quién le gusta',h:'<p>En <b>gustatu</b> lo que gusta es el «sujeto» y a quién le gusta va en <b>-ri</b>. El verbo concuerda con <b>a quién</b>:</p>',
+  tb:'<table class="mini"><tr><th>A quién</th><th>1 cosa</th><th>Varias</th></tr><tr><td>niri (a mí)</td><td><b>zait</b></td><td><b>zaizkit</b></td></tr><tr><td>zuri (a ti)</td><td><b>zaizu</b></td><td><b>zaizkizu</b></td></tr><tr><td>hari (a él/ella)</td><td><b>zaio</b></td><td><b>zaizkio</b></td></tr><tr><td>guri (a nosotros)</td><td><b>zaigu</b></td><td><b>zaizkigu</b></td></tr><tr><td>zuei (a vosotros)</td><td><b>zaizue</b></td><td><b>zaizkizue</b></td></tr><tr><td>haiei (a ellos)</td><td><b>zaie</b></td><td><b>zaizkie</b></td></tr></table>',
+  tip:'Si gustan <b>varias</b> cosas aparece <b>-zki-</b>: zait → zaizkit.'},
+ {t:'Frases',h:'<p>Orden: <b>a quién + lo que gusta + gustatzen + verbo</b>.</p>',
+  ex:[['Amari kafea gustatzen zaio.','A mamá le gusta el café.'],['Guri mendia gustatzen zaigu.','A nosotros nos gusta el monte.'],['Niri sagarrak gustatzen zaizkit.','A mí me gustan las manzanas.'],['Zer gustatzen zaizu?','¿Qué te gusta?']]},
+ {t:'No me gusta',h:'<p>Para negar, <b>ez</b> justo antes del auxiliar: <b>Niri ez zait kafea gustatzen</b>. Para preguntar: <b>Gustatzen al zaizu…?</b></p>',
+  ex:[['Niri ez zait gustatzen.','A mí no me gusta.'],['Gustatzen al zaizu euskara?','¿Te gusta el euskera?'],['Bai, asko gustatzen zait.','Sí, me gusta mucho.']]}
+ ],
+ make:()=>[].concat(SQ0(['amari','kafea','gustatzen','zaio'],'A mamá le gusta el café.','zaio = le gusta (una cosa).'),SQ0(['guri','mendia','gustatzen','zaigu'],'A nosotros nos gusta el monte.','zaigu = nos gusta.'),conjQs(['gustatu'],4),[
+  mc('Gustatu','«A ti te gusta el café»','¿Cuál es?','Zuri kafea gustatzen zaizu',['Zuri kafea gustatzen zait','Zuk kafea gustatzen duzu','Zuri kafea gustatzen zaio'],'<b>zuri</b> → <b>zaizu</b>.'),
+  mc('Gustatu','«A mí me gustan las manzanas»','¿Cuál es?','Niri sagarrak gustatzen zaizkit',['Niri sagarrak gustatzen zait','Niri sagarrak gustatzen zaizkio','Nik sagarrak gustatzen dut'],'Varias cosas: <b>zaizkit</b>.'),
+  mc('Gustatu','«A mamá le gusta…»','Elige la forma del verbo','zaio',['zait','zaie','zaigu'],'<b>Amari</b> (a él/ella) → <b>zaio</b>.'),
+  mc('Gustatu','«A ellos les gusta»','Elige la forma del verbo','zaie',['zaio','zaigu','zaizu'],'<b>haiei</b> → <b>zaie</b>.'),
+  mc('Gustatu','«¿Te gusta el euskera?»','¿Cuál es?','Gustatzen al zaizu euskara?',['Gustatzen al duzu euskara?','Gustatzen zaizu al euskara?','Al gustatzen zaizu euskara?'],'<b>al</b> justo antes del auxiliar.')
+ ])},
+
+{id:'b4',lv:'a2',n:4,eu:'Nahi, behar, ezin',es:'Querer, tener que y no poder',ic:'🚧',min:7,
+ goals:['Usar nahi dut, behar dut y ezin dut con otro verbo','Colocar el auxiliar correctamente','Dar una excusa o decir lo que puedes hacer'],
+ steps:[
+ {t:'Tres verbos útiles',h:'<p>Los tres se usan con <b>otro verbo en infinitivo</b> (el participio) y el auxiliar <b>ukan</b>.</p>',
+  tb:'<table class="mini"><tr><th>Euskera</th><th>Español</th></tr><tr><td><b>nahi dut</b></td><td>quiero</td></tr><tr><td><b>behar dut</b></td><td>tengo que / necesito</td></tr><tr><td><b>ezin dut</b></td><td>no puedo</td></tr></table>',
+  ex:[['Euskara ikasi nahi dut.','Quiero aprender euskera.'],['Etxera joan behar dut.','Tengo que ir a casa.'],['Gaur ezin dut ikasi.','Hoy no puedo estudiar.']],
+  tip:'<b>nahi / behar</b> van detrás del verbo; <b>ezin</b> va <b>delante</b> (ezin dut ikasi).'},
+ {t:'Otras personas',h:'<p>Cambia el auxiliar como ya sabes: <b>duzu</b> (tú), <b>du</b> (él/ella), <b>dugu</b> (nosotros)…</p>',
+  ex:[['Zuk kafea nahi duzu.','Tú quieres café.'],['Amak lan egin behar du.','Mamá tiene que trabajar.'],['Guk ezin dugu etorri.','Nosotros no podemos venir.']]},
+ {t:'Preguntas y excusas',h:'<p>Con <b>al</b> preguntas y con <b>ezin</b> te excusas: <b>Etorri nahi al duzu?</b> — <b>Ezin dut, lan egin behar dut.</b></p>',
+  ex:[['Kafe bat nahi al duzu?','¿Quieres un café?'],['Bai, mesedez.','Sí, por favor.'],['Ezin dut, barkatu.','No puedo, perdona.']]}
+ ],
+ make:()=>[].concat(SQ0(['gaur','ezin','dut','etorri'],'Hoy no puedo venir.','ezin dut + verbo.'),SQ0(['euskara','ikasi','nahi','dut'],'Quiero aprender euskera.','verbo + nahi dut.'),[
+  mc('Nahi','«Quiero un café»','¿Cuál es?','Kafe bat nahi dut',['Kafe bat naiz nahi','Nahi kafe bat zait','Kafe bat behar zait'],'<b>nahi dut</b>.'),
+  mc('Behar','«Tengo que trabajar»','¿Cuál es?','Lan egin behar dut',['Lan egin ezin dut','Lan egin nahi zait','Behar lan egin naiz'],'<b>behar dut</b> = tengo que.'),
+  mc('Ezin','«No puedo estudiar»','¿Cuál es?','Ezin dut ikasi',['Ikasi ezin naiz','Ez dut ikasi behar','Ikasi nahi ez dut'],'<b>ezin</b> va delante: ezin dut ikasi.'),
+  mc('Behar','«Mamá tiene que trabajar»','Elige el auxiliar','du',['dut','duzu','dute'],'Hark (ella) → <b>du</b>.'),
+  mc('Nahi','«¿Quieres un café?»','¿Cuál es?','Kafe bat nahi al duzu?',['Kafe bat al nahi duzu?','Nahi al kafe bat duzu?','Kafe bat nahi duzu al?'],'<b>al</b> justo antes del auxiliar.')
+ ],vq('aditzak2',3))},
+
+{id:'b5',lv:'a2',n:5,eu:'Konparazioak',es:'Comparar: más que, el más…',ic:'⚖️',min:7,
+ goals:['Formar -ago (más) con los adjetivos del A1','Comparar con baino','Decir «el más…» con -ena'],
+ steps:[
+ {t:'-ago: «más»',h:'<p>Quita la <b>-a</b> final del adjetivo y añade <b>-ago</b> (y el artículo <b>-a</b>): <b>handia → handiagoa</b> (más grande).</p>',
+  tb:'<table class="mini"><tr><th>Base</th><th>Más…</th></tr><tr><td>handia</td><td><b>handiagoa</b></td></tr><tr><td>txikia</td><td><b>txikiagoa</b></td></tr><tr><td>zaharra</td><td><b>zaharragoa</b></td></tr><tr><td>berria</td><td><b>berriagoa</b></td></tr><tr><td>garestia</td><td><b>garestiagoa</b></td></tr><tr><td>merkea</td><td><b>merkeagoa</b></td></tr><tr><td>ona</td><td><b>hobea</b> (irregular)</td></tr></table>',
+  tip:'<b>gehiago</b> = más, <b>gutxiago</b> = menos. <b>ona → hobea</b> es irregular.'},
+ {t:'baino: «que»',h:'<p><b>A baino B-ago da</b> = B es más… que A. Se usa con el segundo término delante de <b>baino</b>.</p>',
+  ex:[['Nire etxea zurea baino handiagoa da.','Mi casa es más grande que la tuya.'],['Kafea ura baino beroagoa da.','El café está más caliente que el agua.'],['Hau hori baino merkeagoa da.','Esto es más barato que eso.']],
+  tip:'<b>zurea</b> = la tuya, <b>nirea</b> = la mía.'},
+ {t:'-ena: «el más»',h:'<p>Añade <b>-ena</b> a la base: <b>handi → handiena</b> (el más grande), <b>txikiena</b>, <b>onena</b>…</p>',
+  ex:[['Hau da handiena.','Este es el más grande.'],['Zein da onena?','¿Cuál es el mejor?'],['Mendia da altuena.','El monte es el más alto.']]}
+ ],
+ make:()=>[].concat(SQ0(['nire','etxea','zurea','baino','handiagoa','da'],'Mi casa es más grande que la tuya.','baino = que; handi + ago + a.'),vq('adjetiboak',4),[
+  mc('-ago','«Más pequeño»','¿Cuál es?','txikiagoa',['txikiena','txikia','gehiago txikia'],'<b>txikia</b> → <b>txikiagoa</b>.'),
+  mc('-ago','«Más caro»','¿Cuál es?','garestiagoa',['merkeagoa','garestiena','garestia'],'<b>garestia</b> + ago.'),
+  mc('-ena','«El más grande»','¿Cuál es?','handiena',['handiagoa','handia','handiak'],'<b>-ena</b> = el más.'),
+  mc('Konparazioa','«Mejor»','¿Cuál es?','hobea',['onagoa','onena','ongoa'],'<b>ona → hobea</b> (irregular).'),
+  mc('Konparazioa','«Más que»','¿Qué palabra?','baino',['eta','edo','eta gero'],'<b>baino</b> = que (comparación).')
+ ])},
+
+{id:'b6',lv:'a2',n:6,eu:'Zergatik? -lako',es:'Explicar por qué',ic:'🧩',min:8,
+ goals:['Preguntar «Zergatik…?»','Contestar con -lako (porque)','Unir ideas con eta, baina, edo'],
+ steps:[
+ {t:'Zergatik? / -lako',h:'<p><b>Zergatik?</b> = ¿por qué? Para contestar, al auxiliar se le añade <b>-lako</b> (porque).</p>',
+  tb:'<table class="mini"><tr><th>Auxiliar</th><th>Porque…</th></tr><tr><td>naiz (soy)</td><td><b>naizelako</b></td></tr><tr><td>nago (estoy)</td><td><b>nagoelako</b></td></tr><tr><td>da (es)</td><td><b>delako</b></td></tr><tr><td>dago (está)</td><td><b>dagoelako</b></td></tr><tr><td>dut (tengo)</td><td><b>dudalako</b></td></tr><tr><td>du (tiene)</td><td><b>duelako</b></td></tr></table>',
+  tip:'La causa lleva el auxiliar con <b>-lako</b> al final de la frase de la causa.'},
+ {t:'Ejemplos',h:'<p>Primero la pregunta y luego la causa:</p>',
+  ex:[['Zergatik zaude etxean?','¿Por qué estás en casa?'],['Gaixorik nagoelako.','Porque estoy enfermo.'],['Zergatik ez zara etortzen?','¿Por qué no vienes?'],['Lan egin behar dudalako.','Porque tengo que trabajar.']]},
+ {t:'Eta, baina, edo',h:'<p>Tres conectores básicos:</p>',
+  tb:'<table class="mini"><tr><th>Euskera</th><th>Español</th></tr><tr><td><b>eta</b></td><td>y</td></tr><tr><td><b>baina</b></td><td>pero</td></tr><tr><td><b>edo</b></td><td>o</td></tr></table>',
+  ex:[['Kafea nahi dut, baina ez dut gosaltzen.','Quiero café, pero no desayuno.'],['Ura edo kafea?','¿Agua o café?']]}
+ ],
+ make:()=>[].concat(SQ0(['gaixorik','nagoelako','etxean','nago'],'Estoy en casa porque estoy enfermo.','nago + elako = nagoelako.'),vq('sentitu',4),[
+  mc('Zergatik','«Porque estoy cansado» (egon)','¿Cuál es?','nekatuta nagoelako',['nekatuta nagoen','nekatuta nago bai','nekatuta nagolako'],'nago + <b>-elako</b> = nagoelako.'),
+  mc('-lako','«Porque soy» (izan)','¿Cuál es?','naizelako',['naizlako','nagoelako','izateko'],'naiz + <b>-elako</b>.'),
+  mc('-lako','«Porque tengo» (ukan)','¿Cuál es?','dudalako',['duelako','dutelako','dudaz'],'dut → <b>dudalako</b>.'),
+  mc('Zergatik','«¿Por qué?»','¿Cuál es?','Zergatik?',['Noiz?','Nola?','Zenbat?'],'<b>zergatik</b> = por qué.'),
+  mc('Lokailuak','«Pero»','¿Cuál es?','baina',['eta','edo','ez'],'<b>baina</b> = pero.')
+ ])},
+
+{id:'b7',lv:'a2',n:7,eu:'Ba al…?',es:'Preguntas de sí/no y peticiones',ic:'🙋',min:7,
+ goals:['Hacer preguntas de sí/no con al','Contestar con bai / ez','Pedir cosas y ofrecer'],
+ steps:[
+ {t:'La partícula «al»',h:'<p>Para preguntas de sí o no, se pone <b>al</b> <b>justo antes del auxiliar</b>: <b>Euskaraz hitz egiten al duzu?</b></p>',
+  ex:[['Euskaraz hitz egiten al duzu?','¿Hablas euskera?'],['Etxean al zaude?','¿Estás en casa?'],['Kafea nahi al duzu?','¿Quieres café?']],
+  tip:'En el habla también se entiende solo con entonación, pero <b>al</b> es lo correcto en clase.'},
+ {t:'Contestar',h:'<p>Se contesta con <b>bai</b> (sí) o <b>ez</b> (no), repitiendo el auxiliar.</p>',
+  ex:[['Bai, hitz egiten dut.','Sí, hablo.'],['Ez, ez dut hitz egiten.','No, no hablo.'],['Bai, etxean nago.','Sí, estoy en casa.']]},
+ {t:'Pedir y ofrecer',h:'<p>Frases hechas que ya puedes usar:</p>',
+  ex:[['Ura nahi al duzu?','¿Quieres agua?'],['Bai, mesedez.','Sí, por favor.'],['Ez, eskerrik asko.','No, muchas gracias.'],['Lagun al zaitzaket?','¿Puedo ayudarte? (se oye mucho)']]}
+ ],
+ make:()=>[].concat(SQ0(['euskaraz','hitz','egiten','al','duzu'],'¿Hablas euskera?','al justo antes del auxiliar.'),[
+  mc('Al','«¿Estás en casa?»','¿Cuál es?','Etxean al zaude?',['Etxean zaude al?','Al etxean zaude?','Etxean zaude?'],'<b>al</b> antes del auxiliar.'),
+  mc('Al','«¿Quieres café?»','¿Cuál es?','Kafea nahi al duzu?',['Kafea al nahi duzu?','Kafea nahi duzu al?','Al kafea nahi duzu?'],'<b>al duzu</b> juntos.'),
+  mc('Bai/ez','Contestas que sí hablas euskera','¿Cuál es?','Bai, hitz egiten dut',['Ez, hitz egiten dut','Bai, hitz egiten naiz','Bai, ez dut hitz egiten'],'<b>bai</b> + auxiliar.'),
+  mc('Bai/ez','«No, gracias»','¿Cuál es?','Ez, eskerrik asko',['Bai, eskerrik asko','Ez, mesedez','Bai, mesedez'],'<b>ez</b> = no.'),
+  mc('Al','«¿Vives en Elizondo?»','¿Cuál es?','Elizondon bizi al zara?',['Elizondon bizi zara al?','Al Elizondon bizi zara?','Elizondon al bizi zara?'],'<b>al</b> antes del auxiliar: al zara.')
+ ],vq('lekuak',3))},
+
+{id:'b8',lv:'a2',n:8,eu:'Ordua eta egunerokoa',es:'La hora y tu rutina diaria',ic:'⏰',min:9,
+ goals:['Preguntar y decir la hora','Decir a qué hora haces algo (-etan)','Contar tu rutina con verbos habituales'],
+ steps:[
+ {t:'Zer ordu da?',h:'<p>Pregunta: <b>Zer ordu da?</b> Respuesta: el número en plural + <b>dira</b>; la una es singular: <b>bata da</b>.</p>',
+  tb:'<table class="mini"><tr><th>Hora</th><th>Euskera</th></tr><tr><td>1:00</td><td><b>Bata da</b></td></tr><tr><td>2:00</td><td><b>Biak dira</b></td></tr><tr><td>3:00</td><td><b>Hirurak dira</b></td></tr><tr><td>4:00</td><td><b>Laurak dira</b></td></tr><tr><td>5:00</td><td><b>Bostak dira</b></td></tr><tr><td>6:00</td><td><b>Seiak dira</b></td></tr><tr><td>7:00</td><td><b>Zazpiak dira</b></td></tr><tr><td>8:00</td><td><b>Zortziak dira</b></td></tr><tr><td>9:00</td><td><b>Bederatziak dira</b></td></tr><tr><td>10:00</td><td><b>Hamarrak dira</b></td></tr><tr><td>11:00</td><td><b>Hamaikak dira</b></td></tr><tr><td>12:00</td><td><b>Hamabiak dira</b></td></tr></table>',
+  tip:'«Y media» = <b>t\'erdiak</b>: <b>Hiru t\'erdiak dira</b> (las tres y media).'},
+ {t:'¿A qué hora? -etan',h:'<p>Para <b>a las…</b> el número lleva <b>-etan</b>: zortziak → <b>zortzietan</b>. La una: <b>ordu batean</b>.</p>',
+  ex:[['Zortzietan jaikitzen naiz.','Me levanto a las ocho.'],['Hirurak t\'erdietan bazkaltzen dut.','Como a las tres y media.'],['Bederatzietan ohera joaten naiz.','Me voy a la cama a las nueve.']]},
+ {t:'Mi día',h:'<p>La rutina se cuenta con la <b>forma habitual (-ten / -tzen)</b> que ya conoces, más momentos del día: <b>goizean</b> (por la mañana), <b>arratsaldean</b> (por la tarde), <b>gauean</b> (por la noche).</p>',
+  ex:[['Goizean jaikitzen naiz eta gosaltzen dut.','Por la mañana me levanto y desayuno.'],['Arratsaldean lan egiten dut.','Por la tarde trabajo.'],['Gauean afaltzen dut eta ohera joaten naiz.','Por la noche ceno y me voy a la cama.']]}
+ ],
+ make:()=>[].concat(SQ0(['zortziak','dira'],'Son las ocho.','Hora: número en plural + dira.'),SQ0(['goizean','zortzietan','jaikitzen','naiz'],'Por la mañana me levanto a las ocho.','zortziak → zortzietan.'),vq('errutina',4),[
+  mc('Ordua','«¿Qué hora es?»','¿Cuál es?','Zer ordu da?',['Noiz da?','Zer egun da?','Zenbat ordu?'],'<b>Zer ordu da?</b>'),
+  mc('Ordua','«Son las cinco»','¿Cuál es?','Bostak dira',['Bost da','Bostetan da','Bostak da'],'Plural: número + ak + <b>dira</b>.'),
+  mc('Ordua','«Es la una»','¿Cuál es?','Bata da',['Batak dira','Bat dira','Ordu bat dira'],'La una es singular: <b>bata da</b>.'),
+  mc('Ordua','«A las ocho» (me levanto…)','¿Cuál es?','zortzietan',['zortziak','zortziko','zortzien'],'<b>-etan</b> = a las…'),
+  mc('Ohiturak','«Por la tarde»','¿Cuál es?','arratsaldean',['goizean','gauean','arratsaldea'],'<b>-ean</b> = en/por la.')
+ ])}
+);
+function SQ0(t,es,tip){return [sq({t,es,tip})]}
+
+Object.assign(LSUM,{
+b1:{sum:['La posición va detrás del nombre, que lleva el genitivo <b>-ren / -en</b>: mahaiaren gainean.','Posiciones: gainean, azpian, barruan, kanpoan, ondoan, aurrean, atzean, artean.','Preguntas: <b>Non dago…?</b> / <b>Non daude…?</b> (siempre egon).'],
+ kw:[['gainean','sobre'],['azpian','debajo de'],['barruan','dentro de'],['kanpoan','fuera de'],['ondoan','al lado de'],['aurrean','delante de'],['atzean','detrás de'],['artean','entre'],['non dago?','¿dónde está?']]},
+b2:{sum:['<b>-ri</b> = a quién: amari, niri, zuri, hari, guri, zuei, haiei.','<b>-(r)entzat</b> = para quién: amarentzat, niretzat, zuretzat.','<b>eman</b>: diot, diozu, dio, diogu, diozue, diote (a él/ella); varias cosas: dizkiot…'],
+ kw:[['eman','dar'],['amari','a mamá'],['niri','a mí'],['zuri','a ti'],['hari','a él / ella'],['niretzat','para mí'],['zuretzat','para ti'],['diot','yo se lo doy'],['nori?','¿a quién?'],['opari','regalo']]},
+b3:{sum:['A quién le gusta va en <b>-ri</b>: niri, zuri, hari, guri, zuei, haiei.','1 cosa: zait, zaizu, zaio, zaigu, zaizue, zaie; varias: zaizkit, zaizkizu, zaizkio…','Negar: <b>ez zait gustatzen</b>. Preguntar: <b>Gustatzen al zaizu?</b>'],
+ kw:[['gustatu','gustar'],['zait','me gusta'],['zaizu','te gusta'],['zaio','le gusta'],['zaigu','nos gusta'],['zaizkit','me gustan'],['asko','mucho'],['gutxi','poco']]},
+b4:{sum:['<b>nahi dut</b> = quiero, <b>behar dut</b> = tengo que, <b>ezin dut</b> = no puedo.','Los tres van con otro verbo en participio y el auxiliar ukan.','<b>ezin</b> va delante del auxiliar; <b>nahi / behar</b> detrás del verbo.'],
+ kw:[['nahi','querer'],['behar','necesitar / tener que'],['ezin','no poder'],['gaur ezin dut','hoy no puedo'],['barkatu','perdón'],['laguntza','ayuda']]},
+b5:{sum:['<b>-ago</b> = más: handi → handiagoa, txiki → txikiagoa.','<b>baino</b> = que: Nire etxea zurea baino handiagoa da.','<b>-ena</b> = el más: handiena. Irregular: ona → <b>hobea</b>.'],
+ kw:[['handiagoa','más grande'],['txikiagoa','más pequeño'],['gehiago','más'],['gutxiago','menos'],['baino','que'],['hobea','mejor'],['handiena','el más grande'],['nirea','el mío'],['zurea','el tuyo']]},
+b6:{sum:['<b>Zergatik?</b> = ¿por qué? Se contesta con el auxiliar + <b>-lako</b>: nagoelako, naizelako, dudalako, delako.','Conectores: <b>eta</b> (y), <b>baina</b> (pero), <b>edo</b> (o).'],
+ kw:[['zergatik','por qué'],['-lako','porque'],['eta','y'],['baina','pero'],['edo','o'],['gaixorik','enfermo'],['nekatuta','cansado'],['pozik','contento'],['triste','triste']]},
+b7:{sum:['Preguntas de sí/no: <b>al</b> justo antes del auxiliar: Euskaraz hitz egiten al duzu?','Contestar: <b>bai</b> / <b>ez</b> + el auxiliar.','Pedir y ofrecer: nahi al duzu…? / Bai, mesedez / Ez, eskerrik asko.'],
+ kw:[['al','(partícula de pregunta)'],['bai','sí'],['ez','no'],['mesedez','por favor'],['eskerrik asko','muchas gracias'],['denda','tienda'],['banku','banco'],['kafetegia','cafetería']]},
+b8:{sum:['<b>Zer ordu da?</b> → <b>Hirurak dira</b> (la una: <b>bata da</b>). Y media: <b>t\'erdiak</b>.','A las…: <b>-etan</b> (zortzietan). Momentos: goizean, arratsaldean, gauean.','Rutina: forma habitual (-ten / -tzen) + auxiliar.'],
+ kw:[['ordua','la hora'],['jaiki','levantarse'],['gosaldu','desayunar'],['bazkaldu','comer'],['afaldu','cenar'],['ohera joan','irse a la cama'],['goizean','por la mañana'],['arratsaldean','por la tarde'],['gauean','por la noche']]}
+});
+</script>
+<script>
 /* ===== IKASGELA: reproductor de lecciones ===== */
 let LES=null;
 const lessonById=id=>LESSONS.find(l=>l.id===id);
 const lessonDone=id=>S.lessons&&S.lessons[id]!=null;
-const nextLesson=()=>LESSONS.find(l=>!lessonDone(l.id))||null;
+const LL=()=>LESSONS.filter(l=>lvOf(l)===S.level);
+const a1Total=()=>LESSONS.filter(l=>lvOf(l)==='a1').length;
+const a1Done=()=>LESSONS.filter(l=>lvOf(l)==='a1'&&lessonDone(l.id)).length;
+const a2Open=()=>a1Done()>=a1Total();
+const nextLesson=()=>LL().find(l=>!lessonDone(l.id))||null;
 function openLesson(id){pushState();LES={id,step:-1};document.body.classList.add('in-session');lessonRender()}
 function closeLesson(){LES=null;document.body.classList.remove('in-session');popOwn();render()}
 function lessonRender(){
@@ -1160,12 +1402,12 @@ $('#view').addEventListener('click',e=>{
   }
 });
 function ikasgelaView(){
-  const nx=nextLesson(),done=LESSONS.filter(l=>lessonDone(l.id)).length;
-  return `<h1 class="big">Ikasgela</h1>
-  <p class="sub">El curso en ${LESSONS.length} lecciones cortas. Cada una explica una idea, la muestra aplicada y termina con una práctica. Sigue el orden o salta a lo que necesites.</p>
-  <div class="card row" style="justify-content:space-between"><b style="font:700 18px var(--f-display)">${done}/${LESSONS.length} ikasgai osatuta</b><div class="bar grow" style="margin:0;min-width:120px"><i style="width:${done/LESSONS.length*100}%"></i></div></div>
+  const nx=nextLesson(),done=LL().filter(l=>lessonDone(l.id)).length;
+  return `${levelBar()}<h1 class="big">Ikasgela</h1>
+  <p class="sub">El curso ${S.level.toUpperCase()} en ${LL().length} lecciones cortas. Cada una explica una idea, la muestra aplicada y termina con una práctica. Sigue el orden o salta a lo que necesites.</p>
+  <div class="card row" style="justify-content:space-between"><b style="font:700 18px var(--f-display)">${done}/${LL().length} ikasgai osatuta</b><div class="bar grow" style="margin:0;min-width:120px"><i style="width:${done/LL().length*100}%"></i></div></div>
   ${nx?`<button class="btn block" style="margin-top:12px" data-act="lesson" data-id="${nx.id}">Jarraitu: ${nx.n}. ${esc(nx.eu)}</button>`:'<p class="sub" style="margin-top:12px">¡Has completado todas las lecciones! Repásalas cuando quieras.</p>'}
-  <div class="stack" style="margin-top:16px">${LESSONS.map(l=>{
+  <div class="stack" style="margin-top:16px">${LL().map(l=>{
     const sc=S.lessons[l.id],d=sc!=null;
     return `<div class="card"><div class="setrow"><span class="ic">${l.ic}</span><div class="grow"><b>${l.n}. ${esc(l.eu)}</b><div class="es">${esc(l.es)} · ${l.min} min</div></div>${d?`<span class="chip">✓ ${sc}%</span>`:''}</div>
     <ul class="goals small">${l.goals.map(g=>`<li>${esc(g)}</li>`).join('')}</ul>
@@ -1184,6 +1426,7 @@ window.addEventListener('popstate',()=>{
 <script>
 /* ===== PANTALLAS ===== */
 const TABS=[['home','🏠','Hasiera'],['ikasgela','🎓','Ikasgela'],['hitzak','📚','Hitzak'],['aditzak','🧩','Aditzak'],['esaldiak','🧱','Esaldiak']];
+const verbKeys=()=>Object.keys(CONJ).filter(k=>lvOf(CONJ[k])===S.level);
 const UI={verb:'izan',lab:{v:0,tk:'oraina',i:0}};
 const validRoute=h=>TABS.some(t=>t[0]===h)||h==='gida';
 let CUR=(function(){let h='';try{h=location.hash.slice(1)}catch(e){}return validRoute(h)?h:'home'})();
@@ -1194,6 +1437,10 @@ function goTo(name){
   render();window.scrollTo(0,0);
 }
 
+function levelBar(){
+  const open=a2Open();
+  return `<div class="lvbar"><span class="qkind" style="margin:0">Maila · nivel</span><div class="sel"><button class="pill${S.level==='a1'?' on':''}" data-act="lvl" data-l="a1">A1</button><button class="pill${S.level==='a2'?' on':''}" data-act="lvl" data-l="a2">A2${open?'':' 🔒'}</button></div></div>${open?'':`<p class="note" style="margin:0 0 12px">El A2 se abre al completar las ${a1Total()} lecciones del A1 (llevas ${a1Done()}/${a1Total()}).</p>`}`;
+}
 function wotdCard(){
   const a=allWords(),w=a[Math.floor(Date.now()/864e5)%a.length];
   return `<div class="card wotd"><div class="grow"><span class="qkind">Gaurko hitza · palabra del día</span><div class="big2">${esc(w.em?w.em+' ':'')}${esc(w.eu)}</div><span class="es">${esc(w.es)}</span></div><button class="spk" data-act="say" data-t="${esc(w.eu)}" aria-label="Escuchar">🔊</button></div>`;
@@ -1210,7 +1457,7 @@ function settingsCard(){
 }
 function wordsFind(q){
   q=norm(q);if(q.length<2)return [];
-  return allWords().filter(w=>norm(w.eu).includes(q)||norm(w.es).includes(q)).slice(0,25);
+  return allWords(true).filter(w=>norm(w.eu).includes(q)||norm(w.es).includes(q)).slice(0,25);
 }
 function weakQs(){
   const a=allWords().map(w=>({w,k:mast(w.id)+Math.random()*1.5})).sort((x,y)=>x.k-y.k).slice(0,12).map(x=>x.w);
@@ -1234,7 +1481,7 @@ function homeView(){
     ['nn','', '⚖️','Nor ala nork?','¿izan o ukan?'],
     ['go','gida','💡','Gida','Gramática en claro']
   ];
-  return `<h1 class="big">Kaixo! Gaur zer ikasiko dugu?</h1>
+  return `${levelBar()}<h1 class="big">Kaixo! Gaur zer ikasiko dugu?</h1>
   <p class="sub">¡Hola! ¿Qué aprendemos hoy? Sesiones de unos 3 minutos.</p>
   <div class="stack">
   <div class="card goal">
@@ -1255,20 +1502,22 @@ function homeView(){
 }
 
 function hitzakView(){
-  return `<h1 class="big">Hitzak</h1><p class="sub">Vocabulario por temas. Cuanto menos domines una palabra, más veces aparece.</p>
+  return `${levelBar()}<h1 class="big">Hitzak</h1><p class="sub">Vocabulario por temas. Cuanto menos domines una palabra, más veces aparece.</p>
   <div class="stack"><input class="fld" id="srch" type="search" placeholder="🔍 Bilatu · busca en euskera o español" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="card" id="srr" hidden></div><button class="btn block" data-act="mixv">Dena nahastu · 10 galdera</button>
-  ${VOCAB.map(s=>`<div class="card"><div class="setrow"><span class="ic">${s.ic}</span><div class="grow"><b>${s.eu}</b><div class="es">${s.es} · ${s.w.length} hitz</div></div><span class="chip">${setPct(s)}%</span></div>
+  ${VOCAB.filter(s=>lvOf(s)===S.level).map(s=>`<div class="card"><div class="setrow"><span class="ic">${s.ic}</span><div class="grow"><b>${s.eu}</b><div class="es">${s.es} · ${s.w.length} hitz</div></div><span class="chip">${setPct(s)}%</span></div>
   <div class="bar"><i style="width:${setPct(s)}%"></i></div>
   <div class="words">${s.w.slice(0,6).map(w=>`<span class="w">${esc(w[0])}</span>`).join('')}${s.w.length>6?'<span class="w">…</span>':''}</div>
   <div class="row" style="margin-top:12px"><button class="btn small" data-act="quiz" data-set="${s.id}">Galderak</button><button class="btn sec small" data-act="flash" data-set="${s.id}">Txartelak</button></div></div>`).join('')}</div>`;
 }
 
 function conjTable(vk){
-  const c=CONJ[vk],tks=Object.keys(c.T),pr=c.ty==='nork'?NORK:PRON;
-  return `<div class="tscroll"><table class="conj"><thead><tr><th></th>${tks.map(k=>`<th>${esc(c.T[k].n)}</th>`).join('')}</tr></thead><tbody>${PRON.map((p,i)=>`<tr><th scope="row">${pr[i]}<br><small>${PRON_ES[i]}</small></th>${tks.map(k=>{const t=c.T[k];return `<td>${t.seg?segHTML(t.seg[i]):esc(t.f[i])}</td>`}).join('')}</tr>`).join('')}</tbody></table></div>`;
+  const c=CONJ[vk],tks=Object.keys(c.T),pr=pronOf(c),pe=pronEs(c);
+  return `<div class="tscroll"><table class="conj"><thead><tr><th></th>${tks.map(k=>`<th>${esc(c.T[k].n)}</th>`).join('')}</tr></thead><tbody>${PRON.map((p,i)=>`<tr><th scope="row">${pr[i]}<br><small>${pe[i]}</small></th>${tks.map(k=>{const t=c.T[k];return `<td>${t.seg?segHTML(t.seg[i]):esc(t.f[i])}</td>`}).join('')}</tr>`).join('')}</tbody></table></div>`;
 }
 const VNOTE={
   izan:'<b>izan</b> dice quién o qué eres: <i>Ni Dabid naiz</i>. También es el auxiliar de los verbos sin objeto (joan, etorri, bizi…).',
+  gustatu:'<b>gustatu</b> (nor-nori): lo que gusta es el «sujeto» y a quién le gusta va en -ri. <i>Amari kafea gustatzen zaio</i> = a mamá le gusta el café. <b>zait / zaio…</b> si gusta una cosa; <b>zaizkit / zaizkio…</b> si gustan varias.',
+  eman:'<b>eman</b> (nork-nori-nork): <i>Amari liburua ematen diot</i> = le doy el libro a mamá. Aquí la tabla es para «le» (a él/ella): <b>diot, diozu, dio…</b>; con varias cosas: <b>dizkiot…</b>',
   egon:'<b>egon</b> dice dónde o cómo estás: <i>Etxean nago. Ondo nago.</i>',
   ukan:'<b>ukan</b> es el auxiliar de los verbos con objeto: <i>ogia jaten dut</i>. Su forma cambia según cuántas cosas haya: <b>dut</b> (una), <b>ditut</b> (varias).',
   eduki:'<b>eduki</b> = tener: <i>Liburu bat daukat</i> (tengo un libro), <i>Bi liburu dauzkat</i> (tengo dos libros).',
@@ -1299,12 +1548,13 @@ function labHTML(){
   <div class="explain"><p><b>${esc(cap(g.tokens.join(' ')))}.</b></p><p class="es">${esc(es)}</p><p>${genTip(v,L.tk)}</p></div></div>`;
 }
 function aditzakView(){
+  if(!verbKeys().includes(UI.verb))UI.verb=verbKeys()[0];
   const vk=UI.verb;
-  return `<h1 class="big">Aditzak</h1><p class="sub">Elige un verbo, mira cómo se forma y practica. Los colores te enseñan qué hace cada pieza.</p>
-  <div class="sel" style="margin-bottom:14px">${Object.keys(CONJ).map(k=>`<button class="pill${k===vk?' on':''}" data-act="verb" data-v="${k}">${k}</button>`).join('')}</div>
+  return `${levelBar()}<h1 class="big">Aditzak</h1><p class="sub">Elige un verbo, mira cómo se forma y practica. Los colores te enseñan qué hace cada pieza.</p>
+  <div class="sel" style="margin-bottom:14px">${verbKeys().map(k=>`<button class="pill${k===vk?' on':''}" data-act="verb" data-v="${k}">${k}</button>`).join('')}</div>
   <p style="margin:0 0 12px">${VNOTE[vk]}</p>
   ${conjTable(vk)}
-  ${CONJ[vk].T.oraina1?`<div class="legend"><span><b class="m-obj">d-</b> el objeto («lo»)</span><span><b class="m-root">u / itu</b> raíz (u = una cosa, itu = varias)</span><span><b class="m-person">-t -zu -gu…</b> quién lo hace</span></div>`:''}
+  ${(CONJ[vk].T.oraina1&&CONJ[vk].T.oraina1.seg)?`<div class="legend"><span><b class="m-obj">d-</b> el objeto («lo»)</span><span><b class="m-root">u / itu</b> raíz (u = una cosa, itu = varias)</span><span><b class="m-person">-t -zu -gu…</b> quién lo hace</span></div>`:''}
   <div class="stack" style="margin-top:16px">
     <button class="btn block" data-act="practice">Praktikatu: ${vk}</button>
     <button class="btn sec block" data-act="practiceall">Aditz guztiak · 10 galdera</button>
@@ -1393,7 +1643,11 @@ $('#view').addEventListener('click',e=>{
   const setPool=()=>setWords(VOCAB.find(s=>s.id===d.set));
   if(a==='go'){goTo(d.to)}
   else if(a==='lesson'){openLesson(d.id)}
-  else if(a==='quick')runSession({tag:'mix',make:()=>shuffle(vocabQs(all,4).concat(conjQs(['izan','egon','ukan'],3),buildQs(3)))});
+  else if(a==='lvl'){
+    if(d.l==='a2'&&!a2Open()){toast('🔒 Completa las '+a1Total()+' lecciones del A1 para abrir el A2 ('+a1Done()+'/'+a1Total()+')');return}
+    S.level=d.l;save();render();window.scrollTo(0,0);
+  }
+  else if(a==='quick')runSession({tag:'mix',make:()=>S.level==='a2'?shuffle(vocabQs(all,5).concat(conjQs(['gustatu','eman'],3),buildQs(2))):shuffle(vocabQs(all,4).concat(conjQs(['izan','egon','ukan'],3),buildQs(3)))});
   else if(a==='weak')runSession({tag:'vocab',make:weakQs});
   else if(a==='say')say(d.t);
   else if(a==='goal'){S.goal=+d.g;save();render()}
@@ -1406,19 +1660,19 @@ $('#view').addEventListener('click',e=>{
   else if(a==='imp'){
     const t=$('#bk');
     if(t.hidden||t.dataset.mode==='exp'){t.hidden=false;t.value='';t.dataset.mode='imp';t.focus();bkMsg('Pega tu código y pulsa «Inportatu» otra vez.',true);return}
-    try{const o=importCode(t.value);S=Object.assign({lessons:{},xp:0,today:0,day:'',streak:0,last:'',m:{},badges:[],typeMode:false,sess:0,conj:0,built:0,bestCombo:0,goal:50},o);save();render();bkMsg('¡Progreso importado!',true)}
+    try{const o=importCode(t.value);S=Object.assign({lessons:{},xp:0,today:0,day:'',streak:0,last:'',m:{},badges:[],typeMode:false,sess:0,conj:0,built:0,bestCombo:0,goal:50,level:'a1'},o);if(S.level!=='a2'||!a2Open())S.level='a1';save();render();bkMsg('¡Progreso importado!',true)}
     catch(e){bkMsg('Código no válido. Cópialo entero, sin cortar.',false)}
   }
   else if(a==='reset'){
     if(b.dataset.arm!=='1'){b.dataset.arm='1';b.textContent='¿Seguro? Pulsa otra vez para borrar todo';return}
-    S={lessons:{},xp:0,today:0,day:S.day,streak:0,last:'',m:{},badges:[],typeMode:false,sess:0,conj:0,built:0,bestCombo:0,goal:S.goal};save();render();window.scrollTo(0,0);
+    S={lessons:{},xp:0,today:0,day:S.day,streak:0,last:'',m:{},badges:[],typeMode:false,sess:0,conj:0,built:0,bestCombo:0,goal:S.goal,level:'a1'};save();render();window.scrollTo(0,0);
   }
   else if(a==='mixv')runSession({tag:'vocab',make:()=>vocabQs(all,10)});
   else if(a==='quiz'){const p=setPool();runSession({tag:'vocab',make:()=>vocabQs(p,Math.min(8,p.length))})}
   else if(a==='flash'){const p=setPool();runSession({tag:'flash',make:()=>flashQs(p,Math.min(10,p.length))})}
   else if(a==='verb'){UI.verb=d.v;render()}
   else if(a==='practice'){const vk=UI.verb;runSession({tag:'conj',make:()=>conjQs([vk],8)})}
-  else if(a==='practiceall')runSession({tag:'conj',make:()=>conjQs(Object.keys(CONJ),10)});
+  else if(a==='practiceall')runSession({tag:'conj',make:()=>conjQs(verbKeys(),10)});
   else if(a==='build')runSession({tag:'build',make:()=>buildQs(6)});
   else if(a==='nn')runSession({tag:'nn',make:()=>nnQs(8)});
   else if(a==='typemode'){S.typeMode=b.checked;save()}
@@ -1433,6 +1687,7 @@ $('#view').addEventListener('input',e=>{
   box.hidden=false;
   box.innerHTML=r.length?r.map(w=>`<div class="hit"><button class="spk" data-act="say" data-t="${esc(w.eu)}" aria-label="Escuchar">🔊</button><b>${esc(w.em?w.em+' ':'')}${esc(w.eu)}</b><span class="es">${esc(w.es)}</span></div>`).join(''):'<p class="es">Sin resultados.</p>';
 });
+if(S.level==='a2'&&!a2Open())S.level='a1';
 refreshHeader();
 render();
 checkBadges();
