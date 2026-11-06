@@ -11,6 +11,13 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v21 · 2026-11-06 · Los 4 tipos de verbo (NOR, NOR-NORK, NOR-NORI, NOR-NORI-NORK)
+- **Gida, sección 8:** tabla con los cuatro tipos (qué participa, auxiliar y ejemplo), cuatro pasos para reconocer el tipo y la diferencia de dirección diot / dit.
+- **Practicar:** la baldosa «Nor ala nork?» pasa a **Aditz motak** y ahora tiene 10 preguntas de los cuatro tipos: clasificar verbos (joan, jan, gustatu, eman…) y elegir el auxiliar de una frase (naiz, dut, zait, diot, dit…).
+- **Aditzak:** cada verbo muestra su tipo (NOR, NOR-NORK, NOR-NORI, NOR-NORI-NORK) y se unificaron los nombres en las notas.
+
+---
+
 ## v20 · 2026-11-06 · Test: saltar de nivel y autoevaluación
 - Nueva baldosa **Test** (junto a Gida) con dos opciones; no toca la pantalla principal más allá de esa baldosa.
 - **Maila saltatu** (A1 → A2): 40 preguntas (vocabulario 12, verbos 10, frases 10, gramática de las lecciones 8). Se aprueba con **90 % en total (36 aciertos) y 75 % como mínimo en cada bloque**. Sin ayudas ni explicaciones durante el test, ni marca de acierto/fallo por pregunta. Si suspendes, reintento a las 24 h con preguntas distintas. Al aprobar queda «A1 acreditado» y se abre el A2.

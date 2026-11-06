@@ -430,7 +430,7 @@ joan:{es:'ir · forma sintética (sin auxiliar)',ty:'nor',T:{
  oraina:{n:'Orainaldia',e:'presente',f:['noa','zoaz','doa','goaz','zoazte','doaz']}}},
 etorri:{es:'venir · forma sintética (sin auxiliar)',ty:'nor',T:{
  oraina:{n:'Orainaldia',e:'presente',f:['nator','zatoz','dator','gatoz','zatozte','datoz']}}},
-gustatu:{lv:'a2',es:'gustar · «a quién» + zait/zaio… (nor-nori)',ty:'nori',T:{
+gustatu:{lv:'a2',es:'gustar · «a quién» + zait/zaio… (NOR-NORI)',ty:'nori',T:{
  oraina1:{n:'Orainaldia · 1 gauza',e:'presente, gusta una cosa',f:['zait','zaizu','zaio','zaigu','zaizue','zaie']},
  oraina2:{n:'Orainaldia · gauza asko',e:'presente, gustan varias cosas',f:['zaizkit','zaizkizu','zaizkio','zaizkigu','zaizkizue','zaizkie']}}},
 'joan (iragana)':{lv:'a2',es:'ir (pasado) · forma sintética: nindoan = iba',ty:'nor',T:{
@@ -443,7 +443,7 @@ ibili:{es:'andar, moverse · forma sintética (sin auxiliar)',ty:'nor',T:{
  iragana:{n:'Iragana',e:'pasado',f:['nenbilen','zenbiltzan','zebilen','genbiltzan','zenbiltzaten','zebiltzan']}}},
 jakin:{es:'saber · forma sintética con objeto (nork): dakit = lo sé',ty:'nork',T:{
  oraina:{n:'Orainaldia',e:'presente',f:['dakit','dakizu','daki','dakigu','dakizue','dakite']}}},
-'eman (hark… niri, zuri…)':{lv:'a2',es:'«él/ella me/te… da» · nork-nori con «a quién» variable (dit, dizu, dio…)',ty:'nori',T:{
+'eman (hark… niri, zuri…)':{lv:'a2',es:'«él/ella me/te… da» · NOR-NORI-NORK con «a quién» variable (dit, dizu, dio…)',ty:'nori',T:{
  oraina1:{n:'Orainaldia · 1 gauza',e:'presente, una cosa',f:['dit','dizu','dio','digu','dizue','die']},
  oraina2:{n:'Orainaldia · gauza asko',e:'presente, varias cosas',f:['dizkit','dizkizu','dizkio','dizkigu','dizkizue','dizkie']},
  iragana1:{n:'Iragana · 1 gauza',e:'pasado, una cosa',f:['zidan','zizun','zion','zigun','zizuen','zien']},
@@ -458,7 +458,7 @@ eraman:{lv:'a2',es:'llevar (hacia allá) · daramat = lo llevo',ty:'nork',T:{
  oraina:{n:'Orainaldia',e:'potencial, presente',f:['dezaket','dezakezu','dezake','dezakegu','dezakezue','dezakete']}}},
 'ahal (naiteke)':{lv:'a2',es:'poder sin objeto · naiteke = puedo (ir, venir…)',ty:'nor',T:{
  oraina:{n:'Orainaldia',e:'potencial, presente',f:['naiteke','zaitezke','daiteke','gaitezke','zaitezkete','daitezke']}}},
-eman:{es:'dar (a él/ella) · diot = yo se lo doy (nork-nori)',ty:'nork',T:{
+eman:{es:'dar (a él/ella) · diot = yo se lo doy (NOR-NORI-NORK)',ty:'nork',T:{
  oraina1:{n:'Orainaldia · 1 gauza',e:'presente, se da una cosa',f:['diot','diozu','dio','diogu','diozue','diote']},
  oraina2:{n:'Orainaldia · gauza asko',e:'presente, se dan varias cosas',f:['dizkiot','dizkiozu','dizkio','dizkiogu','dizkiozue','dizkiote']}}}
 };
@@ -761,6 +761,43 @@ function nnQs(n){
     expl:ty==='nor'?`<b>${vb}</b> no lleva objeto directo → <b>izan</b>, sujeto sin -k.`:`<b>${vb}</b> lleva objeto directo (¿qué?) → <b>ukan</b>, sujeto con -k.`,
     rev:`<b>${vb}</b> (${es}) → ${ty==='nor'?'izan':'ukan'}`
   }));
+}
+
+/* ===== Tipos de verbo: NOR · NOR-NORK · NOR-NORI · NOR-NORI-NORK ===== */
+const VT=['NOR · izan (naiz, zara, da…)','NOR-NORK · ukan (dut, duzu, du…)','NOR-NORI · zait, zaizu, zaio…','NOR-NORI-NORK · diot, dit, dio…'];
+const VT_CL=[
+['joan','ir',0,'Ni Iruñera joaten naiz.','Voy a Pamplona.'],['etorri','venir',0,'Zu etxera zatoz.','Vienes a casa.'],['bizi','vivir',0,'Ni Elizondon bizi naiz.','Vivo en Elizondo.'],['egon','estar',0,'Etxean nago.','Estoy en casa.'],['jaio','nacer',0,'Bilbon jaio nintzen.','Nací en Bilbao.'],['erori','caer',0,'Haurra erori da.','El niño se ha caído.'],
+['jan','comer',1,'Nik ogia jaten dut.','Como pan.'],['edan','beber',1,'Zuk ura edaten duzu.','Bebes agua.'],['ikusi','ver',1,'Nik mendia ikusten dut.','Veo el monte.'],['irakurri','leer',1,'Amak liburua irakurtzen du.','Mamá lee el libro.'],['idatzi','escribir',1,'Nik gutuna idazten dut.','Escribo la carta.'],['ikasi','aprender',1,'Guk euskara ikasten dugu.','Aprendemos euskera.'],['ulertu','entender',1,'Nik ez dut ulertzen.','No entiendo.'],['ireki','abrir',1,'Nik atea irekitzen dut.','Abro la puerta.'],
+['gustatu','gustar',2,'Niri kafea gustatzen zait.','Me gusta el café.'],['iruditu','parecer',2,'Niri polita iruditzen zait.','Me parece bonito.'],['ahaztu','olvidarse',2,'Niri izena ahaztu zait.','Se me ha olvidado el nombre.'],['interesatu','interesar',2,'Niri euskara interesatzen zait.','Me interesa el euskera.'],['gertatu','pasar, ocurrir',2,'Zer gertatu zaizu?','¿Qué te ha pasado?'],
+['eman','dar',3,'Nik amari liburua ematen diot.','Le doy el libro a mamá.'],['esan','decir',3,'Amak niri esaten dit.','Mamá me lo dice.'],['bidali','enviar',3,'Nik lagunari mezua bidaltzen diot.','Le envío el mensaje a un amigo.'],['erakutsi','mostrar',3,'Irakasleak guri mapa erakusten digu.','El profesor nos muestra el mapa.'],['irakatsi','enseñar',3,'Irakasleak guri euskara irakasten digu.','El profesor nos enseña euskera.'],['azaldu','explicar',3,'Nik zuri azaltzen dizut.','Te lo explico.'],['galdetu','preguntar',3,'Nik amari galdetzen diot.','Le pregunto a mamá.']
+];
+const VT_AUX=[
+['Nik ogia jaten ___.','Como pan.','dut',['naiz','zait','diot']],
+['Ni Iruñean bizi ___.','Vivo en Pamplona.','naiz',['dut','zait','diot']],
+['Amari kafea gustatzen ___.','A mamá le gusta el café.','zaio',['du','dio','da']],
+['Niri euskara gustatzen ___.','Me gusta el euskera.','zait',['dut','naiz','dit']],
+['Nik amari liburua ematen ___.','Le doy el libro a mamá.','diot',['dut','zaio','dio']],
+['Amak niri liburua ematen ___.','Mamá me da el libro.','dit',['dut','zait','diot']],
+['Gu amari ogia ematen ___.','Le damos el pan a mamá.','diogu',['dugu','zaigu','digu']],
+['Haiek ogia jaten ___.','Ellos comen pan.','dute',['dira','zaie','diote']],
+['Gu Baztanera joaten ___.','Vamos a Baztan.','gara',['dugu','zaigu','diogu']],
+['Haurrei txokolatea gustatzen ___.','A los niños les gusta el chocolate.','zaie',['dute','diote','dira']],
+['Zuri zer iruditzen ___?','¿Qué te parece?','zaizu',['duzu','dizu','zara']],
+['Zuk liburu bat ikusten ___.','Ves un libro.','duzu',['zara','zaizu','diozu']],
+['Mikelek niri mezu bat bidaltzen ___.','Mikel me envía un mensaje.','dit',['dut','zait','diot']],
+['Irakasleak guri euskara irakasten ___.','El profesor nos enseña euskera.','digu',['dugu','zaigu','diogu']]
+];
+function typeQs(n){
+  const nc=Math.ceil(n/2),na=n-nc;
+  const cl=pick(VT_CL,nc).map(([vb,es,t,eu,ex])=>({
+    k:'choice',kind:'Zein aditz mota?',p:vb,hint:es+' · ¿de qué tipo es?',opts:shuffle(VT.slice()),ans:VT[t],
+    help:'Mira quién participa: solo sujeto (NOR) · sujeto + objeto «qué» (NOR-NORK) · algo que le pasa o le gusta a alguien (NOR-NORI) · alguien da/dice algo a alguien (NOR-NORI-NORK).',
+    expl:`<b>${vb}</b> → <b>${VT[t].split(' · ')[0]}</b>.<br><small>${esc(eu)} · ${esc(ex)}</small>`,rev:`<b>${vb}</b> (${es}) → ${VT[t].split(' · ')[0]}`}));
+  const ax=pick(VT_AUX,na).map(([s,es,ans,wr])=>({
+    k:'choice',kind:'Auxiliarra',p:s,hint:es,opts:shuffle([ans].concat(wr)),ans,
+    help:'Decide el tipo de verbo y elige el auxiliar: naiz (NOR) · dut (NOR-NORK) · zait/zaio (NOR-NORI) · diot/dit (NOR-NORI-NORK).',
+    expl:`Auxiliar correcto: <b>${ans}</b>.<br><small>${esc(es)}</small>`,rev:`${esc(s.replace('___','<b>'+ans+'</b>'))}`}));
+  return shuffle(cl.concat(ax));
 }
 
 /* ===== MOTOR DE SESIONES ===== */
@@ -2426,7 +2463,7 @@ function homeView(){
     ['go','hitzak','📚','Hitzak','Vocabulario por temas',avg],
     ['go','aditzak','🧩','Aditzak','Tablas y práctica de conjugación'],
     ['go','esaldiak','🧱','Esaldiak','Construir frases'],
-    ['nn','', '⚖️','Nor ala nork?','¿izan o ukan?'],
+    ['nn','', '⚖️','Aditz motak','NOR, NORK, NORI…'],
     ['me','','👤','Niri buruz',S.me?'Frases con tus datos':'Cuéntanos de ti'],
     ['go','gida','💡','Gida','Gramática en claro'],
     ['go','test','📝','Test','Saltar nivel o autoevaluarte']
@@ -2478,8 +2515,8 @@ const VNOTE={
   eraman:'<b>eraman</b> = llevar (hacia allá): <i>daramat</i>, <i>daramazu</i>… Varias cosas: <i>daramatzat</i>.',
   'ahal (dezaket)':'<b>dezaket</b> = puedo (con verbos que llevan objeto): <i>Euskaraz hitz egin dezaket</i>.',
   'ahal (naiteke)':'<b>naiteke</b> = puedo (con verbos sin objeto): <i>Etor naiteke. Sar naiteke?</i>',
-  gustatu:'<b>gustatu</b> (nor-nori): lo que gusta es el «sujeto» y a quién le gusta va en -ri. <i>Amari kafea gustatzen zaio</i> = a mamá le gusta el café. <b>zait / zaio…</b> si gusta una cosa; <b>zaizkit / zaizkio…</b> si gustan varias.',
-  eman:'<b>eman</b> (nork-nori-nork): <i>Amari liburua ematen diot</i> = le doy el libro a mamá. Aquí la tabla es para «le» (a él/ella): <b>diot, diozu, dio…</b>; con varias cosas: <b>dizkiot…</b>',
+  gustatu:'<b>gustatu</b> (NOR-NORI): lo que gusta es el «sujeto» y a quién le gusta va en -ri. <i>Amari kafea gustatzen zaio</i> = a mamá le gusta el café. <b>zait / zaio…</b> si gusta una cosa; <b>zaizkit / zaizkio…</b> si gustan varias.',
+  eman:'<b>eman</b> (NOR-NORI-NORK): <i>Amari liburua ematen diot</i> = le doy el libro a mamá. Aquí la tabla es para «le» (a él/ella): <b>diot, diozu, dio…</b>; con varias cosas: <b>dizkiot…</b>',
   egon:'<b>egon</b> dice dónde o cómo estás: <i>Etxean nago. Ondo nago.</i>',
   ukan:'<b>ukan</b> es el auxiliar de los verbos con objeto: <i>ogia jaten dut</i>. Su forma cambia según cuántas cosas haya: <b>dut</b> (una), <b>ditut</b> (varias).',
   eduki:'<b>eduki</b> = tener: <i>Liburu bat daukat</i> (tengo un libro), <i>Bi liburu dauzkat</i> (tengo dos libros).',
@@ -2509,12 +2546,13 @@ function labHTML(){
   <div class="pieces" style="margin-top:18px">${g.tokens.map((t,k)=>`<div class="piece ${cls[roles[k]]}"><span class="f">${esc(t)}</span><span class="l">${lab[roles[k]]}</span></div>`).join('')}</div>
   <div class="explain"><p><b>${esc(cap(g.tokens.join(' ')))}.</b></p><p class="es">${esc(es)}</p><p>${genTip(v,L.tk)}</p></div></div>`;
 }
+const vtype=k=>/^eman/.test(k)?'NOR-NORI-NORK':({nor:'NOR',nork:'NOR-NORK',nori:'NOR-NORI'})[CONJ[k].ty]||'';
 function aditzakView(){
   if(!verbKeys().includes(UI.verb))UI.verb=verbKeys()[0];
   const vk=UI.verb;
   return `${levelBar()}<h1 class="big">Aditzak</h1><p class="sub">Elige un verbo, mira cómo se forma y practica. Los colores te enseñan qué hace cada pieza.</p>
   <div class="sel" style="margin-bottom:14px">${verbKeys().map(k=>`<button class="pill${k===vk?' on':''}" data-act="verb" data-v="${k}">${k}</button>`).join('')}</div>
-  <p style="margin:0 0 12px">${VNOTE[vk]}</p>
+  <p style="margin:0 0 6px"><span class="chip">${vtype(vk)}</span></p><p style="margin:0 0 12px">${VNOTE[vk]}</p>
   ${conjTable(vk)}
   ${(CONJ[vk].T.oraina1&&CONJ[vk].T.oraina1.seg)?`<div class="legend"><span><b class="m-obj">d-</b> el objeto («lo»)</span><span><b class="m-root">u / itu</b> raíz (u = una cosa, itu = varias)</span><span><b class="m-person">-t -zu -gu…</b> quién lo hace</span></div>`:''}
   <div class="stack" style="margin-top:16px">
@@ -2548,7 +2586,7 @@ function gidaView(){
   const ex=(eu,es)=>`<div class="ex">${eu}<small>${es}</small></div>`;
   const t6=[['Oraina (hábito)','habitual + auxiliar','jaten dut','joaten naiz'],['Ari izan (ahora)','habitual + ari + izan','jaten ari naiz','joaten ari naiz'],['Iragana','participio + aux. pasado','jan nuen','joan nintzen'],['Perfektua','participio + aux. presente','jan dut','joan naiz'],['Geroa','participio + ko / go + aux.','jango dut','joango naiz']];
   return `<h1 class="big">Gida</h1><p class="sub">La gramática del A1 en claro. Abre una sección y practica después.</p>
-  <button class="btn block" data-act="nn" style="margin-bottom:14px">Probatu: nor ala nork?</button>
+  <button class="btn block" data-act="nn" style="margin-bottom:14px">Probatu: zein aditz mota? · NOR, NORK, NORI</button>
   <details class="g" open><summary>1 · El orden de la frase</summary><div class="body">
   <p>Sujeto → objeto → verbo + auxiliar. El verbo cierra la frase.</p>
   ${ex('<b>Nik</b> ogia jaten dut.','Yo pan como = Yo como pan.')}${ex('<b>Ni</b> Iruñera joaten naiz.','Yo a Pamplona voy = Voy a Pamplona.')}</div></details>
@@ -2584,7 +2622,19 @@ function gidaView(){
   <tr><td><b>zergatik</b> por qué</td><td>Zergatik ikasten duzu euskara?</td></tr><tr><td><b>zenbat</b> cuánto</td><td>Zenbat da?</td></tr></table></div></details>
   <details class="g"><summary>7 · Decir que no</summary><div class="body">
   <p>«<b>ez</b>» va justo antes del auxiliar. El verbo queda detrás.</p>
-  ${ex('<b>Ez</b> nago etxean.','No estoy en casa.')}${ex('<b>Ez</b> dut kaferik edaten.','No bebo café. Con ez, el objeto lleva -rik.')}</div></details>`;
+  ${ex('<b>Ez</b> nago etxean.','No estoy en casa.')}${ex('<b>Ez</b> dut kaferik edaten.','No bebo café. Con ez, el objeto lleva -rik.')}</div></details>
+  <details class="g"><summary>8 · Los 4 tipos de verbo: NOR, NOR-NORK, NOR-NORI, NOR-NORI-NORK</summary><div class="body">
+  <p>El auxiliar depende de <b>quién participa</b> en la acción. <b>NOR</b> = quién/qué (sin marca), <b>NORK</b> = quién lo hace (lleva <b>-k</b>), <b>NORI</b> = a quién (lleva <b>-ri</b>).</p>
+  <div class="tscroll"><table class="mini"><tr><th>Tipo</th><th>Participan</th><th>Auxiliar</th><th>Ejemplo</th></tr>
+  <tr><td style="white-space:nowrap"><b>NOR</b></td><td>solo el sujeto</td><td>naiz, zara, da, gara…</td><td>Ni Iruñean bizi <b>naiz</b>.</td></tr>
+  <tr><td style="white-space:nowrap"><b>NOR-NORK</b></td><td>sujeto + objeto («qué»)</td><td>dut, duzu, du, dugu…</td><td>Nik ogia jaten <b>dut</b>.</td></tr>
+  <tr><td style="white-space:nowrap"><b>NOR-NORI</b></td><td>una cosa + «a quién»</td><td>zait, zaizu, zaio, zaigu…</td><td>Niri euskara gustatzen <b>zait</b>.</td></tr>
+  <tr><td style="white-space:nowrap"><b>NOR-NORI-NORK</b></td><td>quien lo hace + «qué» + «a quién»</td><td>diot, diozu, dio… / dit, dizu, dio…</td><td>Nik amari liburua ematen <b>diot</b>.</td></tr></table></div>
+  <p style="margin-top:12px"><b>Cómo reconocer el tipo</b></p>
+  <ol style="margin:0 0 10px;padding-left:20px"><li>¿Hay «a quién» (-ri) además del «qué»? → <b>NOR-NORI-NORK</b> (dar, decir, enviar, enseñar, explicar, preguntar).</li><li>¿Algo «le gusta, le parece, se le olvida» a alguien? → <b>NOR-NORI</b> (gustatu, iruditu, ahaztu, interesatu).</li><li>¿Hay un objeto directo («qué»)? → <b>NOR-NORK</b>.</li><li>¿Solo sujeto? → <b>NOR</b> (izan, egon, joan, etorri, bizi, jaio).</li></ol>
+  <p><b>Ojo con la dirección:</b> <i>Nik amari ematen <b>diot</b></i> (yo le doy a mamá) frente a <i>Amak niri ematen <b>dit</b></i> (mamá me da a mí). El auxiliar cambia según quién da y quién recibe.</p>
+  ${ex('Amak niri liburu bat eman <b>dit</b>.','Mamá me ha dado un libro.')}${ex('Irakasleak guri euskara irakasten <b>digu</b>.','El profesor nos enseña euskera.')}
+  <p class="es">Practica: lección 22 «Nori eman diozu?» (A1), lecciones 1 y 10 del A2, la pestaña Aditzak y el botón «Probatu» de arriba.</p></div></details>`;
 }
 
 /* ===== RUTAS Y EVENTOS ===== */
@@ -2653,7 +2703,7 @@ $('#view').addEventListener('click',e=>{
   else if(a==='practice'){const vk=UI.verb;runSession({tag:'conj',make:()=>conjQs([vk],8)})}
   else if(a==='practiceall')runSession({tag:'conj',make:()=>conjQs(verbKeys(),10)});
   else if(a==='build')runSession({tag:'build',make:()=>buildQs(6)});
-  else if(a==='nn')runSession({tag:'nn',make:()=>nnQs(8)});
+  else if(a==='nn')runSession({tag:'nn',make:()=>typeQs(10)});
   else if(a==='typemode'){S.typeMode=b.checked;save()}
   else if(a==='dict'){UI.dict=true;UI.dc=null;render();scrollTo(0,0)}
   else if(a==='dictx'){UI.dict=false;UI.dc=null;render()}
