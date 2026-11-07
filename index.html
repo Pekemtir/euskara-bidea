@@ -307,6 +307,7 @@ body.in-session .gear{display:none}
 @media (max-width:370px){.brand{font-size:21px}.chip{padding:3px 6px;font-size:12px}.gear{width:32px;height:32px}.gear svg{width:19px;height:19px}}
 @media (max-width:340px){.brand i{display:none}.brand{font-size:19px}.chip{padding:3px 5px;font-size:11.5px}.chips{gap:4px}}
 .recap .rc-h{font:700 17px var(--f-display);margin:16px 0 6px;color:var(--ac,inherit)}.recap .rc-step{border-top:1px dashed rgba(128,128,128,.35);margin-top:12px;padding-top:2px}.recap p{line-height:1.45}
+.ex.tr small{filter:blur(7px);cursor:pointer;transition:filter .2s;user-select:none}.ex.tr small::after{content:' 👁';filter:none}.ex.tr.on small{filter:none;user-select:text}
 </style>
 
 <div class="app">
@@ -2278,8 +2279,8 @@ function meQs(){
 }
 function meForm(){
   const m=S.me||{},ms=MON_NOM.map((x,i)=>`<option value="${i+1}"${m.m===i+1?' selected':''}>${x}</option>`).join('');
-  return `<div class="card" id="meform"><b style="font:400 24px var(--f-display)">Aurkeztu zaitez · cuéntanos de ti</b>
-  <p class="es" style="margin:6px 0 12px">Con estos datos la app crea preguntas con tu nombre, tu pueblo y tu cumpleaños. Se guardan solo en este navegador. Todo es opcional.</p>
+  return `<div class="card" id="meform"><b style="font:400 24px var(--f-display)">Aurkeztu zaitez${S.level==='a2'?'':' · cuéntanos de ti'}</b>
+  <p class="es" style="margin:6px 0 12px">${S.level==='a2'?'Datu hauekin galderak sortzen dira zure izenarekin, herriarekin eta urtebetetzearekin. Nabigatzaile honetan bakarrik gordetzen dira. Dena aukerakoa da.':'Con estos datos la app crea preguntas con tu nombre, tu pueblo y tu cumpleaños. Se guardan solo en este navegador. Todo es opcional.'}</p>
   <div class="stack" style="gap:8px">
   <input class="fld" id="me-n" placeholder="Zure izena · tu nombre" value="${esc(m.n||'')}" autocomplete="off" maxlength="30">
   <input class="fld" id="me-h" placeholder="Non bizi zara? · dónde vives (ej. Elizondo)" value="${esc(m.h||'')}" autocomplete="off" maxlength="30">
@@ -2461,6 +2462,9 @@ const a1Done=()=>LESSONS.filter(l=>lvOf(l)==='a1'&&lessonDone(l.id)).length;
 const a1Complete=()=>a1Done()>=a1Total();
 const a2Open=()=>S.a2key===1||S.a1test===1||a1Complete();
 const nextLesson=()=>LL().find(l=>!lessonDone(l.id))||null;
+/* A2: el castellano se reduce poco a poco: desde la lección 8 las traducciones se ocultan (tocar para verlas) */
+const hideTr=L=>lvOf(L)==='a2'&&L.n>=8;
+$('#view').addEventListener('click',e=>{const x=e.target.closest('.ex.tr');if(x)x.classList.toggle('on')});
 function lessonRecap(id){
   const L=lessonById(id),SM=LSUM[id];if(!L)return'';
   const first=h=>{const m=/<p>([\s\S]*?)<\/p>/.exec(h||'');return m?m[1]:''};
@@ -2470,7 +2474,7 @@ function lessonRecap(id){
     o+='<div class="rc-step"><p class="rc-h">'+(i+1)+'. '+esc(s.t)+'</p>';
     const f=first(s.h);if(f)o+='<p>'+f+'</p>';
     if(s.tb)o+='<div class="tscroll">'+s.tb+'</div>';
-    if(s.ex)o+=s.ex.slice(0,2).map(e=>'<div class="ex">'+esc(e[0])+'<small>'+esc(e[1])+'</small></div>').join('');
+    if(s.ex)o+=s.ex.slice(0,2).map(e=>'<div class="ex'+(hideTr(L)?' tr':'')+'">'+esc(e[0])+'<small>'+esc(e[1])+'</small></div>').join('');
     if(s.tip)o+='<div class="explain"><p>💡 '+s.tip+'</p></div>';
     o+='</div>';
   });
@@ -2484,7 +2488,7 @@ function lessonRender(){
   let h=`<div class="qtop"><div class="prog"><i style="width:${(st+1)/(n+1)*100}%"></i></div><div class="combo">${Math.max(st+1,0)}/${n}</div></div>`;
   if(st<0){
     const sc=S.lessons[L.id];
-    h+=`<p class="qkind">${L.n}. ikasgaia · ~${L.min} min</p><h1 class="big">${L.ic} ${esc(L.eu)}</h1><p class="sub">${esc(L.es)}</p>
+    h+=`<p class="qkind">${L.n}. ikasgaia · ~${L.min} min</p><h1 class="big">${L.ic} ${esc(L.eu)}</h1><p class="sub">${lvOf(L)==='a2'&&L.n>=16?'':esc(L.es)}</p>
     <div class="card"><b style="font:700 18px var(--f-display)">Zer ikasiko dugu · qué vas a aprender</b><ul class="goals">${L.goals.map(g=>`<li>${esc(g)}</li>`).join('')}</ul></div>
     <p class="note">Primero ${n} pasos cortos de explicación con ejemplos y luego una práctica. Con un 60 % la lección queda hecha.${sc!=null?` Tu mejor resultado hasta ahora: ${sc} %.`:''}</p>
     <div class="stack" style="margin-top:18px"><button class="btn block" data-lact="next">Hasi · empezar</button></div>`;
@@ -2493,7 +2497,7 @@ function lessonRender(){
     h+=`<p class="qkind">${L.n}. ikasgaia · ${st+1}/${n}</p><h1 class="big" style="font-size:clamp(24px,6vw,32px)">${esc(s.t)}</h1><div class="lbody">${s.h||''}`;
     if(s.pc)h+=`<div class="pieces">${s.pc.map(p=>`<div class="piece ${p[1]}"><span class="f">${esc(p[0])}</span><span class="l">${esc(p[2])}</span></div>`).join('')}</div>`;
     if(s.tb)h+=`<div class="tscroll">${s.tb}</div>`;
-    if(s.ex)h+=s.ex.map(e=>`<div class="ex">${esc(e[0])}<small>${esc(e[1])}</small></div>`).join('');
+    if(s.ex)h+=s.ex.map(e=>`<div class="ex${hideTr(L)?' tr':''}">${esc(e[0])}<small>${esc(e[1])}</small></div>`).join('');
     if(s.tip)h+=`<div class="explain"><p>💡 ${s.tip}</p></div>`;
     if(s.cards)h+=`<button class="btn sec block" style="margin-top:14px" data-lact="cards">🃏 Txartelekin errepasatu · repasar con tarjetas</button>`;
     h+=`</div><div class="fbtns" style="margin-top:22px"><button class="btn sec" data-lact="prev">Atzera</button><button class="btn${last?' ok':''}" data-lact="${last?'practice':'next'}">${last?'Praktikatu':'Hurrengoa'}</button></div>`;
@@ -2555,11 +2559,11 @@ function goTo(name){
 
 function levelBar(){
   const open=a2Open();
-  return `<div class="lvbar"><span class="qkind" style="margin:0">Maila · nivel</span><div class="sel"><button class="pill${S.level==='a1'?' on':''}" data-act="lvl" data-l="a1">A1</button><button class="pill${S.level==='a2'?' on':''}" data-act="lvl" data-l="a2">A2${open?'':' 🔒'}</button></div></div>${open?'':`<p class="note" style="margin:0 0 12px">El A2 se abre al completar las ${a1Total()} lecciones del A1 (llevas ${a1Done()}/${a1Total()}) o al superar el <b>Test</b> de salto de nivel. ¿Profesor o demo? Código en Ezarpenak (⚙️).</p>`}`;
+  return `<div class="lvbar"><span class="qkind" style="margin:0">Maila${S.level==='a2'?'':' · nivel'}</span><div class="sel"><button class="pill${S.level==='a1'?' on':''}" data-act="lvl" data-l="a1">A1</button><button class="pill${S.level==='a2'?' on':''}" data-act="lvl" data-l="a2">A2${open?'':' 🔒'}</button></div></div>${open?'':`<p class="note" style="margin:0 0 12px">El A2 se abre al completar las ${a1Total()} lecciones del A1 (llevas ${a1Done()}/${a1Total()}) o al superar el <b>Test</b> de salto de nivel. ¿Profesor o demo? Código en Ezarpenak (⚙️).</p>`}`;
 }
 function wotdCard(){
   const a=allWords(),w=a[Math.floor(Date.now()/864e5)%a.length];
-  return `<div class="card wotd"><div class="grow"><span class="qkind">Gaurko hitza · palabra del día</span><div class="big2">${esc(w.em?w.em+' ':'')}${esc(w.eu)}</div><span class="es">${esc(w.es)}</span></div><button class="spk" data-act="say" data-t="${esc(w.eu)}" aria-label="Escuchar">🔊</button></div>`;
+  return `<div class="card wotd"><div class="grow"><span class="qkind">Gaurko hitza${S.level==='a2'?'':' · palabra del día'}</span><div class="big2">${esc(w.em?w.em+' ':'')}${esc(w.eu)}</div><span class="es">${esc(w.es)}</span></div><button class="spk" data-act="say" data-t="${esc(w.eu)}" aria-label="Escuchar">🔊</button></div>`;
 }
 function settingsCard(){
   return `  <div class="card"><b>Eguneko helburua · meta diaria</b><div class="sel" style="margin-top:8px">${[30,50,100,150].map(g=>`<button class="pill${S.goal===g?' on':''}" data-act="goal" data-g="${g}">${g} XP</button>`).join('')}</div></div>
@@ -2592,34 +2596,35 @@ function bkMsg(t,ok){const m=$('#bkm');if(m)m.innerHTML=`<p class="${ok?'okmsg':
 function homeView(){
   const g=Math.min(1,S.today/S.goal),circ=2*Math.PI*30;
   const avg=Math.round(allWords().reduce((a,w)=>a+mast(w.id),0)/(allWords().length*4)*100);
+  const A2=S.level==='a2',X=(sp,eu)=>A2?eu:sp;
   const tiles=[
-    ['go','ikasgela','🎓','Ikasgela','Lecciones: aprende y practica'],
-    ['go','hitzak','📚','Hitzak','Vocabulario por temas',avg],
-    ['go','aditzak','🧩','Aditzak','Tablas y práctica de conjugación'],
-    ['go','esaldiak','🧱','Esaldiak','Construir frases'],
+    ['go','ikasgela','🎓','Ikasgela',X('Lecciones: aprende y practica','Ikasgaiak: ikasi eta praktikatu')],
+    ['go','hitzak','📚','Hitzak',X('Vocabulario por temas','Gaikako hiztegia'),avg],
+    ['go','aditzak','🧩','Aditzak',X('Tablas y práctica de conjugación','Taulak eta konjugazioa')],
+    ['go','esaldiak','🧱','Esaldiak',X('Construir frases','Esaldiak eraiki')],
     ['nn','', '⚖️','Aditz motak','NOR, NORK, NORI…'],
-    ['me','','👤','Niri buruz',S.me?'Frases con tus datos':'Cuéntanos de ti'],
-    ['go','gida','💡','Gida','Gramática en claro'],
-    ['go','test','📝','Test','Saltar nivel o autoevaluarte']
+    ['me','','👤','Niri buruz',S.me?X('Frases con tus datos','Zure datuekin esaldiak'):X('Cuéntanos de ti','Kontatu zerbait zuri buruz')],
+    ['go','gida','💡','Gida',X('Gramática en claro','Gramatika argian')],
+    ['go','test','📝','Test',X('Saltar nivel o autoevaluarte','Maila saltatu edo autoebaluazioa')]
   ];
   const nm=S.me&&S.me.n?esc(S.me.n):'';
   return `${levelBar()}<h1 class="big">Kaixo${nm?', '+nm:''}! Gaur zer ikasiko dugu?</h1>
-  <p class="sub">${meBirthdayToday()?'🎂 <b>Zorionak!</b> Hoy es tu cumpleaños. ':'¡Hola! ¿Qué aprendemos hoy? '}Sesiones de unos 3 minutos.</p>
+  <p class="sub">${meBirthdayToday()?'🎂 <b>Zorionak!</b> '+X('Hoy es tu urtebetetzea. ','Gaur zure urtebetetzea da! '):X('¡Hola! ¿Qué aprendemos hoy? ','')}${X('Sesiones de unos 3 minutos.','3 minutuko saioak.')}</p>
   <div class="stack">
   ${meCard()}
   <div class="card goal">
     <svg class="ring" viewBox="0 0 76 76" role="img" aria-label="Meta diaria"><circle class="bg" cx="38" cy="38" r="30"/><circle class="fg" cx="38" cy="38" r="30" stroke-dasharray="${circ}" stroke-dashoffset="${circ*(1-g)}" transform="rotate(-90 38 38)"/><text x="38" y="44" text-anchor="middle">${Math.round(g*100)}%</text></svg>
-    <div class="grow"><b>Gaurko helburua · ${Math.min(S.today,S.goal)}/${S.goal} XP</b><span class="es">${S.today>=S.goal?'¡Meta cumplida! Lo de hoy ya es extra.':'Unas 5 respuestas seguidas la completan.'}</span></div>
+    <div class="grow"><b>Gaurko helburua · ${Math.min(S.today,S.goal)}/${S.goal} XP</b><span class="es">${S.today>=S.goal?X('¡Meta cumplida! Lo de hoy ya es extra.','Helburua beteta! Gainerakoa ekarpen gehigarria da.'):X('Unas 5 respuestas seguidas la completan.','5 erantzun segidak nahikoak dira.')}</span></div>
   </div>
-  <div class="card"><div class="row" style="justify-content:space-between"><b style="font:700 18px var(--f-display)">${LV[lvl()][0]}</b><span class="es">${LV[lvl()][1]} · nivel ${lvl()+1}/${LV.length}</span></div><div class="lvl"><i style="width:${lvlPct()}%"></i></div></div>
+  <div class="card"><div class="row" style="justify-content:space-between"><b style="font:700 18px var(--f-display)">${LV[lvl()][0]}</b><span class="es">${A2?'':LV[lvl()][1]+' · '}${X('nivel','maila')} ${lvl()+1}/${LV.length}</span></div><div class="lvl"><i style="width:${lvlPct()}%"></i></div></div>
   ${nextLesson()?`<button class="btn block" data-act="lesson" data-id="${nextLesson().id}">🎓 Hurrengo ikasgaia · ${nextLesson().n}. ${esc(nextLesson().eu)}</button>`:''}
   <button class="btn sec block" data-act="quick">Saio azkarra · 10 galdera</button>
-  <button class="btn sec block" data-act="weak">🎯 Errepasoa · tus 10 palabras más flojas</button>
+  <button class="btn sec block" data-act="weak">🎯 Errepasoa · ${X('tus 10 palabras más flojas','zure 10 hitz ahulenak')}</button>
   ${wotdCard()}
   </div>
-  <h2 class="sec">Aukeratu bidea <span class="es" style="font:500 14px var(--f-body)">· elige tu camino</span></h2>
+  <h2 class="sec">Aukeratu bidea ${A2?'':'<span class="es" style="font:500 14px var(--f-body)">· elige tu camino</span>'}</h2>
   <div class="tiles">${tiles.map(t=>`<button class="tile" data-act="${t[0]}"${t[1]?` data-to="${t[1]}"`:''}><span class="ic">${t[2]}</span><span class="t">${t[3]}</span><span class="s">${t[4]}</span>${t[5]!=null?`<div class="bar"><i style="width:${t[5]}%"></i></div>`:''}</button>`).join('')}</div>
-  <h2 class="sec">Lorpenak <span class="es" style="font:500 14px var(--f-body)">· logros</span></h2>
+  <h2 class="sec">Lorpenak ${A2?'':'<span class="es" style="font:500 14px var(--f-body)">· logros</span>'}</h2>
   <div class="badges">${BADGES.map(b=>`<div class="badge${S.badges.includes(b[0])?'':' off'}" title="${esc(b[3])}"><span>${b[1]}</span><div><b>${b[2]}</b><br><small>${b[3]}</small></div></div>`).join('')}</div>`;
 }
 

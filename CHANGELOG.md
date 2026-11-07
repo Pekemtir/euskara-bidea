@@ -11,6 +11,12 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v25 · 2026-11-07
+- **A2 con menos castellano**: la pantalla principal pasa a euskera (subtítulos de las casillas, saludo, meta diaria, nivel, logros, formulario «Niri buruz»).
+- Lecciones A2 1–7: traducciones visibles. Desde la 8: las traducciones de los ejemplos salen borrosas (tocar para verlas). Desde la 16 se oculta también el subtítulo en castellano.
+- A1 no cambia.
+
+---
 ## v24 · 2026-11-07
 - Al terminar cada lección (pantalla de resultado) aparece un **resumen explicado**: lo esencial, cada paso con su explicación, tablas, ejemplos clave, consejos y palabras clave. Disponible en las 55 lecciones.
 
