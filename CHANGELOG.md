@@ -11,6 +11,13 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v28 · 2026-11-07
+- **Frases generadas por plantillas** (miles de combinaciones, con traducción y explicación automáticas): 20 plantillas (identidad, origen, egon, bizi, joan/etorri, verbos con objeto, ari, gustatu, nahi, behar, eman, pasado, «he hecho», futuro, pasado habitual, poder, asmoa, hasi, -lako).
+- Las lecciones ya no repiten las mismas frases de construir: cada práctica genera frases nuevas del tema de la lección.
+- «Esaldiak» y las sesiones rápidas mezclan ~25 % de frases fijas y ~75 % generadas, solo con lo ya estudiado (nada de pasado ni futuro antes de su lección).
+- Corregido: el generador antiguo podía mostrar pasado/futuro en A1 antes de tiempo.
+
+---
 ## v27 · 2026-11-07
 - Corregido: con el código de profesor (A2 abierto) las preguntas de conjugación de A1 seguían mezclando pasado antes de la lección del pasado. Ahora el pasado solo aparece al estar en nivel A2, tras completar la lección «Atzo · izan eta egon» o pasar el test de nivel.
 
