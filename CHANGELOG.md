@@ -11,6 +11,13 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v29 · 2026-11-07
+- **Jolak (juegos)**, nueva sección en el inicio: Kontra-erlojua (60 s de conjugaciones), Parekatu (memoria por categoría de Hitzak + modo general; contrarreloj o sin tiempo) y Aditz-ehiza (frases que caen; eliges los tipos de verbo o modo general). Aviso al cambiar de objetivo, se vacía lo que cae, +1 vida cada 20 aciertos y aceleración muy suave por cambio. XP y récords guardados; logro nuevo «Jokalaria».
+- Desbloqueos reales: Kontra-erlojua con el repaso 1 (o A2), Parekatu al dominar el 60 % de una categoría (el general con al menos una completada), Aditz-ehiza al ver 2 tipos de verbo (el general con los 4).
+- **Repaso total**: ahora no se pregunta nada no dado. «Sesión rápida», «Errepasoa» y «Aditz guztiak» solo usan verbos y vocabulario ya vistos; corregidas opciones erróneas que adelantaban futuro/pasado (repasos y lecciones 8, 11 y t2); ibili y jakin pasan a A2; en A1 la lección b2/b4 usa el vocabulario de A1.
+- Test de autovalidación (t-audit) sin hallazgos y regresión completa en verde.
+
+---
 ## v28 · 2026-11-07
 - **Frases generadas por plantillas** (miles de combinaciones, con traducción y explicación automáticas): 20 plantillas (identidad, origen, egon, bizi, joan/etorri, verbos con objeto, ari, gustatu, nahi, behar, eman, pasado, «he hecho», futuro, pasado habitual, poder, asmoa, hasi, -lako).
 - Las lecciones ya no repiten las mismas frases de construir: cada práctica genera frases nuevas del tema de la lección.
