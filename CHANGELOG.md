@@ -11,6 +11,10 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v24 · 2026-11-07
+- Al terminar cada lección (pantalla de resultado) aparece un **resumen explicado**: lo esencial, cada paso con su explicación, tablas, ejemplos clave, consejos y palabras clave. Disponible en las 55 lecciones.
+
+---
 ## v23 · 2026-11-06
 - **Presente primero, pasado y futuro después**: los ejercicios de conjugación solo usan presente hasta que se completa la lección del pasado (en A2, en el test de nivel y en la autoevaluación sí entran todos los tiempos).
 - A1: la lección «Iragana eta geroa» (antes n10, todo junto) se parte en 3, colocadas tras haber asentado el presente y los 4 tipos de verbo (n26–28):
