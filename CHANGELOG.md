@@ -11,6 +11,11 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v26 · 2026-11-07
+- **Móvil**: la versión publicada (GitHub Pages) no declaraba el viewport y el móvil la dibujaba a 980 px de ancho, por eso se veía diminuta. Corregido (`width=device-width`).
+- Además, en pantallas de hasta 600 px el texto, los botones, las tablas y los ejemplos son algo mayores. Escritorio sin cambios (comprobado: mismo tamaño de letra).
+
+---
 ## v25 · 2026-11-07
 - **A2 con menos castellano**: la pantalla principal pasa a euskera (subtítulos de las casillas, saludo, meta diaria, nivel, logros, formulario «Niri buruz»).
 - Lecciones A2 1–7: traducciones visibles. Desde la 8: las traducciones de los ejemplos salen borrosas (tocar para verlas). Desde la 16 se oculta también el subtítulo en castellano.
