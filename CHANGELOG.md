@@ -249,3 +249,7 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 ---
 
 Nota sobre v1–v3: no se guardó copia de esos archivos en su momento, porque se editaba siempre el mismo fichero. El archivo versionado empieza en v4. A partir de ahora, cada cambio genera una copia nueva en `versiones/` antes de sustituir la última.
+
+## v17 (2026-11-08)
+- Modo silencio: botón 🔊/🔇 (cabecera, sesión, Ezarpenak); `S.mute`; `say()` mudo; `silenceQs` quita dictados/números/deletreo y convierte «Entzun» en lectura.
+- Variedad: 13 lecciones con preguntas 100 % fijas (l1,b10,b11,b15,b16,c4,d1,d2,e3,e5,e6,e8,e11) barajan el orden y añaden 6 preguntas de repaso de lecciones ya hechas (no rompe el gating). Probado en node.

@@ -368,6 +368,7 @@ table.mini{font-size:16.5px}table.mini th{font-size:13px}
 .cont .ic{font-size:32px}.cont b{display:block;font:700 22px var(--f-display)}.cont small{display:block;color:var(--muted);font-size:14px}.cont .play{font-size:20px;margin-left:auto}
 .tiles2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
+body.muted .speak,body.muted .spk{display:none!important}
 </style>
 </head>
 <body>
@@ -378,7 +379,7 @@ table.mini{font-size:16.5px}table.mini th{font-size:13px}
   <header class="top">
     <button class="brand" id="logo" type="button" aria-label="Ir a la pantalla principal"><i></i>Euskara Bidea</button>
     <button class="backbtn" id="back" type="button" aria-label="Volver">← Atzera</button>
-    <div class="chips"><span class="chip" id="chStreak"></span><span class="chip" id="chXp"></span></div>
+    <div class="chips"><span class="chip" id="chStreak"></span><span class="chip" id="chXp"></span><button class="chip" id="chMute" type="button" aria-label="Sonido" style="cursor:pointer"></button></div>
   </header>
   <main id="view"></main>
 </div>
@@ -725,6 +726,7 @@ function burst(){
   })();
 }
 function say(t,slow){
+  if(S.mute)return;
   try{
     const s=window.speechSynthesis;if(!s)return;
     const u=new SpeechSynthesisUtterance(t);
@@ -886,9 +888,22 @@ function askExit(){
   if(!SES)return;
   if(SES.i>0&&SES.i<SES.qs.length)showExitConfirm();else endSession();
 }
+/* ===== MODO SILENCIO: sin sonido y sin ejercicios que lo necesiten ===== */
+function silenceQs(qs){qs=(qs||[]).filter(Boolean);if(!S.mute)return qs;
+  return qs.map(q=>{
+    if(q.hide&&q.k==='choice'&&/Entzun/.test(q.kind||'')&&q.say)return Object.assign({},q,{hide:0,auto:0,say:'',kind:'Zer esan nahi du?',p:q.say,hint:'¿Qué significa?'});
+    if(q.hide)return null;
+    return q}).filter(Boolean)}
+function applyMute(){document.body.classList.toggle('muted',!!S.mute);
+  document.querySelectorAll('[data-act="mute"],#chMute').forEach(b=>{if(b.classList.contains('pill')){b.textContent=S.mute?'🔇 Silenciado · sin sonido':'🔊 Activado'}else b.textContent=S.mute?'🔇':'🔊'})}
+function toggleMute(){S.mute=!S.mute;if(S.mute){try{speechSynthesis.cancel()}catch(e){}}save();
+  toast(S.mute?'🔇 Silencio: sin sonido ni ejercicios de escucha':'🔊 Sonido activado');
+  applyMute();render()}
 function runSession(cfg){
+  const qs0=silenceQs(cfg.make());
+  if(!qs0.length){toast('🔇 Este ejercicio necesita sonido: pulsa 🔇 para activarlo');return}
   pushState();
-  SES={cfg,qs:cfg.make(),i:0,first:0,xp:0,combo:0,best:0,miss:[],locked:false};
+  SES={cfg,qs:qs0,i:0,first:0,xp:0,combo:0,best:0,miss:[],locked:false};
   SES.total=SES.qs.length;
   document.body.classList.add('in-session');
   renderQ();
@@ -905,7 +920,7 @@ function renderQ(){
   if(!q)return SES.cfg.test?testFinish():finish();
   SES.locked=false;
   const pct=SES.i/SES.qs.length*100;
-  let h=`<div class="qtop"><div class="prog"><i style="width:${pct}%"></i></div><div class="combo">${SES.combo>1?'⚡ ×'+SES.combo:''}</div></div>`;
+  let h=`<div class="qtop"><div class="prog"><i style="width:${pct}%"></i></div><button class="chip" data-act="mute" aria-label="Sonido" style="cursor:pointer">${S.mute?'🔇':'🔊'}</button><div class="combo">${SES.combo>1?'⚡ ×'+SES.combo:''}</div></div>`;
   h+=q.k==='flash'?flashHTML(q):q.k==='build'?buildHTML(q):q.k==='type'?typeHTML(q):choiceHTML(q);
   $('#view').innerHTML=h+'<div class="spacer"></div>';
   window.scrollTo(0,0);
@@ -2293,6 +2308,20 @@ t3:{sum:['Futuro: participio + <b>-ko</b> (o <b>-go</b> tras -n) + auxiliar en p
 r4:{sum:['Pasado: nintzen / nuen · presente/perfecto: naiz / dut · futuro: -ko/-go + naiz / dut.','Conectores: lehenengo, gero, azkenik.'],kw:[['lehenengo','primero'],['gero','luego'],['azkenik','por fin'],['joan den asteburuan','el fin de semana pasado'],['datorren asteburuan','el fin de semana que viene']]},
 r3:{sum:['Presente → pasado: naiz→nintzen · dut→nuen · zait→zitzaidan · diot→nion · dit→zidan.'],kw:[['zidan','me lo dio'],['nion','le di'],['zitzaidan','me (gustaba)']]}
 });
+/* ===== VARIEDAD: lecciones con preguntas fijas -> orden aleatorio + repaso de lecciones ya hechas ===== */
+(function(){
+ const FIX=['l1','b10','b11','b15','b16','c4','d1','d2','e3','e5','e6','e8','e11'];
+ LESSONS.forEach(l=>{ if(!FIX.includes(l.id))return; const mk=l.make;
+  l.make=function(){
+   const own=shuffle((mk.call(l)||[]).filter(Boolean));
+   const done=LESSONS.filter(x=>x.id!==l.id&&!FIX.includes(x.id)&&S.lessons&&S.lessons[x.id]!=null);
+   let extra=[];
+   for(const x of shuffle(done).slice(0,3)){try{extra=extra.concat(shuffle((x.make()||[]).filter(Boolean)).slice(0,2))}catch(e){}}
+   const seen=new Set(),out=[];
+   own.concat(extra).forEach(q=>{const k=(q.p||'')+'|'+q.ans;if(!seen.has(k)){seen.add(k);out.push(q)}});
+   return shuffle(out).slice(0,Math.max(own.length,12));
+  }});
+})();
 </script>
 <script>
 /* ===== v28: generador de frases por plantillas (casi infinitas, coherentes con la lección) ===== */
@@ -3006,6 +3035,7 @@ function ikasgelaView(){
   <p class="note">Temario adaptado del orden de contenidos de la <a href="https://contenido.uned.es/cuid/oferta_idiomas/guias_2018/euskera_elemental_a1_online_2018.pdf" target="_blank" rel="noopener">guía de euskera A1 de la UNED</a>, el <a href="https://www.ehu.eus/documents/d/nazioarteko-harremanak/ehu-programa-euskera-2c-es" target="_blank" rel="noopener">programa de nivel inicial de la EHU</a> y el <a href="https://www.euskadi.eus/curriculo-basico-de-ensenanza-de-euskera-a-personas-adultas-heoc/web01-ejeduki/es/" target="_blank" rel="noopener">currículo HEOC</a>. Los textos y ejemplos son propios: contrástalos con tu profesor.</p>`;
 }
 $('#back').addEventListener('click',askExit);
+$('#chMute').addEventListener('click',toggleMute);
 $('#logo').addEventListener('click',()=>{if(!SES&&!LES)goTo('home')});
 window.addEventListener('popstate',()=>{
   if(!PUSHED)return;
@@ -3039,7 +3069,8 @@ function wotdCard(){
   return `<div class="card wotd"><div class="grow"><span class="qkind">Gaurko hitza${S.level==='a2'?'':' · palabra del día'}</span><div class="big2">${esc(w.em?w.em+' ':'')}${esc(w.eu)}</div><span class="es">${esc(w.es)}</span></div><button class="spk" data-act="say" data-t="${esc(w.eu)}" aria-label="Escuchar">🔊</button></div>`;
 }
 function settingsCard(){
-  return `  <div class="card"><b>Itxura · tema</b><div class="sel" style="margin-top:8px">${[['dark','🌙 Pizarra'],['light','☀️ Argia'],['auto','🌓 Automatikoa']].map(t=>`<button class="pill${(S.theme||'dark')===t[0]?' on':''}" data-act="theme" data-t="${t[0]}">${t[1]}</button>`).join('')}</div></div>
+  return `  <div class="card"><b>Soinua · sonido</b><p class="es" style="margin:6px 0 10px">Para la calle o el metro: sin sonido ni ejercicios de escucha.</p><div class="sel"><button class="pill${S.mute?'':' on'}" data-act="mute">${S.mute?'🔇 Silenciado · sin sonido':'🔊 Activado'}</button></div></div>
+  <div class="card"><b>Itxura · tema</b><div class="sel" style="margin-top:8px">${[['dark','🌙 Pizarra'],['light','☀️ Argia'],['auto','🌓 Automatikoa']].map(t=>`<button class="pill${(S.theme||'dark')===t[0]?' on':''}" data-act="theme" data-t="${t[0]}">${t[1]}</button>`).join('')}</div></div>
   <div class="card"><b>Eguneko helburua · meta diaria</b><div class="sel" style="margin-top:8px">${[30,50,100,150].map(g=>`<button class="pill${S.goal===g?' on':''}" data-act="goal" data-g="${g}">${g} XP</button>`).join('')}</div></div>
   <div class="card" style="margin-top:12px"><b>Nire datuak · mis datos</b><p class="es" style="margin:6px 0 10px">Nombre, pueblo y cumpleaños para las preguntas personales.</p><button class="btn sec small" data-act="medit">Editatu · editar</button></div>
   <div class="card" style="margin-top:12px"><b>Sarbide-kodea · código de acceso</b>
@@ -3338,6 +3369,7 @@ $('#view').addEventListener('click',e=>{
   else if(a==='tlv'){if(d.l==='a2'&&!a2Open()){toast('El A2 sigue bloqueado');return}UI.tlv=d.l;render()}
   else if(a==='quick')runSession({tag:'mix',make:()=>S.level==='a2'?shuffle(vocabQs(KW(),5).concat(conjQs(pick(knownVerbs(),3),3),buildQs(2))):shuffle(vocabQs(KW(),4).concat(conjQs(pick(knownVerbs(),3),3),buildQs(3)))});
   else if(a==='daily')runSession({tag:'mix',daily:1,make:dailyQs});
+  else if(a==='mute')toggleMute();
   else if(a==='listen')runSession({tag:'vocab',make:()=>listenQs(7)});
   else if(a==='dict')runSession({tag:'vocab',make:()=>dictQs(6)});
   else if(a==='numq')runSession({tag:'mix',make:()=>numQs(6).concat(numRevQs(3))});
@@ -3388,7 +3420,7 @@ $('#view').addEventListener('input',e=>{
 });
 if(S.level==='a2'&&!a2Open())S.level='a1';
 refreshHeader();
-render();
+applyMute();render();
 checkBadges();
 </script>
 
