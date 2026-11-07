@@ -11,6 +11,14 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v33 · 2026-11-07
+- **Pantalla principal y navegación al estilo Camí Català**: 5 pestañas fijas (Hasiera · Ikasgela · Praktika · Hiztegia · Ni).
+- Hasiera: saludo, meta diaria, tarjeta «Jarraitu» con la siguiente lección, palabra del día, accesos a Saio azkarra y Errepasoa, progreso A1/A2 y logros (el formulario «Niri buruz» baja al final).
+- Praktika (nueva): rejilla con Saio azkarra, Errepasoa, Hitzak, Aditzak, Esaldiak, Jolak, Aditz motak, Gida y Test; cada pantalla tiene «← Praktika».
+- Hiztegia: el diccionario pasa a ser pestaña propia.
+- Ni (nueva): XP, racha, nivel, logros y ajustes (meta, datos, código de acceso, copia de seguridad). El engranaje del encabezado desaparece.
+
+---
 ## v32 · 2026-11-07
 - Corregido: en la lista de categorías de Parekatu las barras de progreso se veían como manchas verdes y descolocaban los títulos.
 

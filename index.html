@@ -344,13 +344,18 @@ table.mini{font-size:16.5px}table.mini th{font-size:13px}
 .jg-fall.good{background:var(--berde);color:#fff}.jg-fall.bad{background:var(--gorri);color:#fff}
 .jg-notice{position:absolute;left:8%;right:8%;top:38%;z-index:5;text-align:center;padding:14px;border-radius:14px;background:var(--ink);color:var(--bg);font-size:15px}.jg-notice b{display:block;font:800 22px var(--f-display)}.jg-notice.heal{background:var(--berde);color:#fff}
 @media(max-width:600px){.jg-q{font-size:30px}.jg-opt{font-size:19px}.jg-fall{font-size:17px}}
+
+/* ===== v33: inicio al estilo Camí Català ===== */
+.card.cont{display:flex;align-items:center;gap:14px;text-align:left;width:100%;border-color:var(--urre)!important;cursor:pointer;color:inherit;font:inherit}
+.cont .ic{font-size:32px}.cont b{display:block;font:700 22px var(--f-display)}.cont small{display:block;color:var(--muted);font-size:14px}.cont .play{font-size:20px;margin-left:auto}
+.tiles2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 </style>
 
 <div class="app">
   <header class="top">
     <button class="brand" id="logo" type="button" aria-label="Ir a la pantalla principal"><i></i>Euskara Bidea</button>
     <button class="backbtn" id="back" type="button" aria-label="Volver">← Atzera</button>
-    <div class="chips"><span class="chip" id="chStreak"></span><span class="chip" id="chXp"></span><button class="gear" id="gear" type="button" aria-label="Ezarpenak · ajustes"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.65 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9a1.7 1.7 0 0 0 1.03-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9a1.7 1.7 0 0 0 1.56 1.03H21a2 2 0 1 1 0 4h-.09A1.7 1.7 0 0 0 19.4 15z"/></svg></button></div>
+    <div class="chips"><span class="chip" id="chStreak"></span><span class="chip" id="chXp"></span></div>
   </header>
   <main id="view"></main>
 </div>
@@ -2926,13 +2931,15 @@ window.addEventListener('popstate',()=>{
 </script>
 <script>
 /* ===== PANTALLAS ===== */
-const TABS=[['home','🏠','Hasiera'],['ikasgela','🎓','Ikasgela'],['hitzak','📚','Hitzak'],['aditzak','🧩','Aditzak'],['esaldiak','🧱','Esaldiak']];
+const TABS=[['home','🏠','Hasiera'],['ikasgela','🎓','Ikasgela'],['praktika','🎯','Praktika'],['hiztegia','🔍','Hiztegia'],['ni','👤','Ni']];
+const PAR={hitzak:'praktika',aditzak:'praktika',esaldiak:'praktika',jolak:'praktika',gida:'praktika',test:'praktika',ezarpenak:'ni'};
 const verbKeys=()=>Object.keys(CONJ).filter(k=>lvOf(CONJ[k])===S.level);
 const UI={verb:'izan',lab:{v:0,tk:'oraina',i:0}};
-const validRoute=h=>TABS.some(t=>t[0]===h)||h==='gida'||h==='ezarpenak'||h==='test'||h==='jolak';
-let CUR=(function(){let h='';try{h=location.hash.slice(1)}catch(e){}return validRoute(h)?h:'home'})();
+const validRoute=h=>TABS.some(t=>t[0]===h)||!!PAR[h];
+let CUR=(function(){let h='';try{h=location.hash.slice(1)}catch(e){}if(h==='ezarpenak')h='ni';return validRoute(h)?h:'home'})();
 const route=()=>CUR;
 function goTo(name){
+  if(name==='ezarpenak')name='ni';
   CUR=validRoute(name)?name:'home';
   try{if(location.hash.slice(1)!==CUR)location.hash=CUR}catch(e){}
   render();window.scrollTo(0,0);
@@ -2940,7 +2947,7 @@ function goTo(name){
 
 function levelBar(){
   const open=a2Open();
-  return `<div class="lvbar"><span class="qkind" style="margin:0">Maila${S.level==='a2'?'':' · nivel'}</span><div class="sel"><button class="pill${S.level==='a1'?' on':''}" data-act="lvl" data-l="a1">A1</button><button class="pill${S.level==='a2'?' on':''}" data-act="lvl" data-l="a2">A2${open?'':' 🔒'}</button></div></div>${open?'':`<p class="note" style="margin:0 0 12px">El A2 se abre al completar las ${a1Total()} lecciones del A1 (llevas ${a1Done()}/${a1Total()}) o al superar el <b>Test</b> de salto de nivel. ¿Profesor o demo? Código en Ezarpenak (⚙️).</p>`}`;
+  return `<div class="lvbar"><span class="qkind" style="margin:0">Maila${S.level==='a2'?'':' · nivel'}</span><div class="sel"><button class="pill${S.level==='a1'?' on':''}" data-act="lvl" data-l="a1">A1</button><button class="pill${S.level==='a2'?' on':''}" data-act="lvl" data-l="a2">A2${open?'':' 🔒'}</button></div></div>${open?'':`<p class="note" style="margin:0 0 12px">El A2 se abre al completar las ${a1Total()} lecciones del A1 (llevas ${a1Done()}/${a1Total()}) o al superar el <b>Test</b> de salto de nivel. ¿Profesor o demo? Código en Ni.</p>`}`;
 }
 function wotdCard(){
   const a=allWords(),w=a[Math.floor(Date.now()/864e5)%a.length];
@@ -2974,42 +2981,67 @@ function importCode(c){
   return o;
 }
 function bkMsg(t,ok){const m=$('#bkm');if(m)m.innerHTML=`<p class="${ok?'okmsg':'errmsg'}">${esc(t)}</p>`}
+function lvDone(lv){const L=LESSONS.filter(l=>lvOf(l)===lv);return[L.filter(l=>lessonDone(l.id)).length,L.length]}
 function homeView(){
   const g=Math.min(1,S.today/S.goal),circ=2*Math.PI*30;
-  const avg=Math.round(allWords().reduce((a,w)=>a+mast(w.id),0)/(allWords().length*4)*100);
   const A2=S.level==='a2',X=(sp,eu)=>A2?eu:sp;
-  const tiles=[
-    ['go','ikasgela','🎓','Ikasgela',X('Lecciones: aprende y practica','Ikasgaiak: ikasi eta praktikatu')],
-    ['go','hitzak','📚','Hitzak',X('Vocabulario por temas','Gaikako hiztegia'),avg],
-    ['go','aditzak','🧩','Aditzak',X('Tablas y práctica de conjugación','Taulak eta konjugazioa')],
+  const nm=S.me&&S.me.n?esc(S.me.n):'',nx=nextLesson();
+  const [d1,t1]=lvDone('a1'),[d2,t2]=lvDone('a2');
+  const wk=KW().filter(w=>mast(w.id)<2).length;
+  const tile=(act,ic,t,s,extra)=>`<button class="tile" data-act="${act}"${extra||''}><span class="ic">${ic}</span><span class="t">${t}</span><span class="s">${s}</span></button>`;
+  return `<h1 class="big">Kaixo${nm?', '+nm:''}!</h1>
+  <p class="sub">${meBirthdayToday()?'🎂 <b>Zorionak!</b> '+X('Hoy es tu urtebetetzea.','Gaur zure urtebetetzea da!'):X('Curso de euskera A1 + A2','Euskara ikastaroa A1 + A2')}</p>
+  <div class="stack">
+  <div class="card goal">
+    <svg class="ring" viewBox="0 0 76 76" role="img" aria-label="Meta diaria"><circle class="bg" cx="38" cy="38" r="30"/><circle class="fg" cx="38" cy="38" r="30" stroke-dasharray="${circ}" stroke-dashoffset="${circ*(1-g)}" transform="rotate(-90 38 38)"/><text x="38" y="44" text-anchor="middle" class="rt">${Math.round(g*100)}%</text></svg>
+    <div class="grow"><b>Gaurko helburua</b><span class="es">${Math.min(S.today,S.goal)} / ${S.goal} XP · ${X('racha','bolada')} ${S.streak} ${X('días','egun')}</span></div>
+  </div>
+  ${nx?`<button class="card cont" data-act="lesson" data-id="${nx.id}"><span class="ic">${nx.ic}</span><span class="grow"><small>${X('Continúa','Jarraitu')} · ${S.level.toUpperCase()} ${nx.n}. ${X('lección','ikasgaia')}</small><b>${esc(nx.eu)}</b>${A2&&nx.n>=16?'':`<small>${esc(nx.es)}</small>`}</span><span class="play">▶</span></button>`:`<div class="card"><b>${X('¡Has completado todas las lecciones! Repásalas cuando quieras.','Ikasgai guztiak osatu dituzu! Errepasatu nahi duzunean.')}</b></div>`}
+  ${wotdCard()}
+  <div class="tiles2">
+    ${tile('quick','⚡','Saio azkarra',X('10 preguntas · +XP','10 galdera'))}
+    ${tile('weak','🎯','Errepasoa',X(wk+' palabras por repasar',wk+' hitz errepasatzeko'))}
+  </div>
+  <h2 class="sec">${X('Tu progreso','Zure aurrerapena')}</h2>
+  <div class="card prog">
+    <div class="row" style="justify-content:space-between"><b>A1</b><span class="es">${d1} / ${t1}</span></div><div class="bar"><i style="width:${d1/t1*100}%"></i></div>
+    <div class="row" style="justify-content:space-between;margin-top:12px"><b>A2</b><span class="es">${d2} / ${t2}</span></div><div class="bar"><i style="width:${d2/t2*100}%"></i></div>
+  </div>
+  <p class="es" style="margin:0">${X('Logros','Lorpenak')}: ${S.badges.length} / ${BADGES.length}</p>
+  ${meCard()}
+  </div>`;
+}
+function praktikaView(){
+  const A2=S.level==='a2',X=(sp,eu)=>A2?eu:sp;
+  const avg=Math.round(allWords().reduce((a,w)=>a+mast(w.id),0)/(allWords().length*4)*100);
+  const wk=KW().filter(w=>mast(w.id)<2).length;
+  const tl=[
+    ['quick','','⚡','Saio azkarra',X('Mezcla de todo','Dena nahastuta')],
+    ['weak','','🎯','Errepasoa',X(wk+' por repasar',wk+' errepasatzeko')],
+    ['go','hitzak','📚','Hitzak',X('Vocabulario por temas · '+avg+'%','Gaikako hiztegia · %'+avg)],
+    ['go','aditzak','🧩','Aditzak',X('Tablas y conjugación','Taulak eta konjugazioa')],
     ['go','esaldiak','🧱','Esaldiak',X('Construir frases','Esaldiak eraiki')],
-    ['go','jolak','🎮','Jolak',X('Juegos: practica jugando','Jolasak: jolastu ikasteko')],
-    ['nn','', '⚖️','Aditz motak','NOR, NORK, NORI…'],
-    ['me','','👤','Niri buruz',S.me?X('Frases con tus datos','Zure datuekin esaldiak'):X('Cuéntanos de ti','Kontatu zerbait zuri buruz')],
+    ['go','jolak','🎮','Jolak',X('3 juegos','3 jolas')],
+    ['nn','','⚖️','Aditz motak','NOR, NORK, NORI…'],
     ['go','gida','💡','Gida',X('Gramática en claro','Gramatika argian')],
     ['go','test','📝','Test',X('Saltar nivel o autoevaluarte','Maila saltatu edo autoebaluazioa')]
   ];
-  const nm=S.me&&S.me.n?esc(S.me.n):'';
-  return `${levelBar()}<h1 class="big">Kaixo${nm?', '+nm:''}! Gaur zer ikasiko dugu?</h1>
-  <p class="sub">${meBirthdayToday()?'🎂 <b>Zorionak!</b> '+X('Hoy es tu urtebetetzea. ','Gaur zure urtebetetzea da! '):X('¡Hola! ¿Qué aprendemos hoy? ','')}${X('Sesiones de unos 3 minutos.','3 minutuko saioak.')}</p>
-  <div class="stack">
-  ${meCard()}
-  <div class="card goal">
-    <svg class="ring" viewBox="0 0 76 76" role="img" aria-label="Meta diaria"><circle class="bg" cx="38" cy="38" r="30"/><circle class="fg" cx="38" cy="38" r="30" stroke-dasharray="${circ}" stroke-dashoffset="${circ*(1-g)}" transform="rotate(-90 38 38)"/><text x="38" y="44" text-anchor="middle">${Math.round(g*100)}%</text></svg>
-    <div class="grow"><b>Gaurko helburua · ${Math.min(S.today,S.goal)}/${S.goal} XP</b><span class="es">${S.today>=S.goal?X('¡Meta cumplida! Lo de hoy ya es extra.','Helburua beteta! Gainerakoa ekarpen gehigarria da.'):X('Unas 5 respuestas seguidas la completan.','5 erantzun segidak nahikoak dira.')}</span></div>
-  </div>
-  <div class="card"><div class="row" style="justify-content:space-between"><b style="font:700 18px var(--f-display)">${LV[lvl()][0]}</b><span class="es">${A2?'':LV[lvl()][1]+' · '}${X('nivel','maila')} ${lvl()+1}/${LV.length}</span></div><div class="lvl"><i style="width:${lvlPct()}%"></i></div></div>
-  ${nextLesson()?`<button class="btn block" data-act="lesson" data-id="${nextLesson().id}">🎓 Hurrengo ikasgaia · ${nextLesson().n}. ${esc(nextLesson().eu)}</button>`:''}
-  <button class="btn sec block" data-act="quick">Saio azkarra · 10 galdera</button>
-  <button class="btn sec block" data-act="weak">🎯 Errepasoa · ${X('tus 10 palabras más flojas','zure 10 hitz ahulenak')}</button>
-  ${wotdCard()}
-  </div>
-  <h2 class="sec">Aukeratu bidea ${A2?'':'<span class="es" style="font:500 14px var(--f-body)">· elige tu camino</span>'}</h2>
-  <div class="tiles">${tiles.map(t=>`<button class="tile" data-act="${t[0]}"${t[1]?` data-to="${t[1]}"`:''}><span class="ic">${t[2]}</span><span class="t">${t[3]}</span><span class="s">${t[4]}</span>${t[5]!=null?`<div class="bar"><i style="width:${t[5]}%"></i></div>`:''}</button>`).join('')}</div>
-  <h2 class="sec">Lorpenak ${A2?'':'<span class="es" style="font:500 14px var(--f-body)">· logros</span>'}</h2>
-  <div class="badges">${BADGES.map(b=>`<div class="badge${S.badges.includes(b[0])?'':' off'}" title="${esc(b[3])}"><span>${b[1]}</span><div><b>${b[2]}</b><br><small>${b[3]}</small></div></div>`).join('')}</div>`;
+  const html=tl.map(t=>`<button class="tile" data-act="${t[0]}"${t[1]?` data-to="${t[1]}"`:''}><span class="ic">${t[2]}</span><span class="t">${t[3]}</span><span class="s">${t[4]}</span></button>`).join('');
+  return `<h1 class="big">Praktika</h1><p class="sub">${X('Elige cómo quieres entrenar.','Aukeratu nola entrenatu.')}</p><div class="tiles">${html}</div>`;
 }
-
+function niView(){
+  const A2=S.level==='a2',X=(sp,eu)=>A2?eu:sp;
+  return `<h1 class="big">Ni</h1>
+  ${UI.meEdit?meForm():''}
+  <div class="stats3"><div><span>XP</span><b>⭐ ${S.xp}</b></div><div><span>${X('Racha','Bolada')}</span><b>🔥 ${S.streak}</b></div><div><span>${X('Nivel','Maila')}</span><b>${lvl()+1}/${LV.length}</b></div></div>
+  <p class="es" style="margin:-8px 0 14px"><b>${LV[lvl()][0]}</b>${A2?'':' · '+LV[lvl()][1]}</p>
+  <h2 class="sec">${X('Logros','Lorpenak')}</h2>
+  <div class="badges">${BADGES.map(b=>`<div class="badge${S.badges.includes(b[0])?'':' off'}" title="${esc(b[3])}"><span>${b[1]}</span><div><b>${b[2]}</b><br><small>${b[3]}</small></div></div>`).join('')}</div>
+  <div class="tiles2" style="margin:18px 0 0"><button class="tile" data-act="me"><span class="ic">👤</span><span class="t">Niri buruz</span><span class="s">${S.me?X('Frases con tus datos','Zure datuekin esaldiak'):X('Cuéntanos de ti','Kontatu zerbait zuri buruz')}</span></button><button class="tile" data-act="go" data-to="test"><span class="ic">📝</span><span class="t">Test</span><span class="s">${X('Saltar nivel o autoevaluarte','Maila saltatu edo autoebaluazioa')}</span></button></div>
+  <h2 class="sec">${X('Ajustes','Ezarpenak')}</h2>
+  <div class="stack">${settingsCard()}</div>`;
+}
+function hiztegiaView(){UI.dict=true;return dictView()}
 function hitzakView(){
   if(UI.dict)return dictView();
   return `${levelBar()}<h1 class="big">Hitzak</h1><p class="sub">Vocabulario por temas. Cuanto menos domines una palabra, más veces aparece.</p>
@@ -3164,13 +3196,16 @@ function render(){
   if(LES){lessonRender();return}
   const r=route();
   if(r!=='jolak')JG.stop();
-  $('#view').innerHTML=({home:homeView,ikasgela:ikasgelaView,hitzak:hitzakView,aditzak:aditzakView,esaldiak:esaldiakView,jolak:jolakView,gida:gidaView,ezarpenak:ezarpenakView,test:testView})[r]();
-  $('#tabs').innerHTML=TABS.map(t=>`<button class="tab${t[0]===r?' on':''}" data-go="${t[0]}"><span>${t[1]}</span>${t[2]}</button>`).join('');
-  const gr=$('#gear');if(gr)gr.classList.toggle('on',r==='ezarpenak');
-  refreshHeader();
+  if(r!=='hiztegia')UI.dict=false;
+  $('#view').innerHTML=({home:homeView,ikasgela:ikasgelaView,hitzak:hitzakView,aditzak:aditzakView,esaldiak:esaldiakView,jolak:jolakView,gida:gidaView,ezarpenak:niView,test:testView,praktika:praktikaView,hiztegia:hiztegiaView,ni:niView})[r]();
+  if(PAR[r]==='praktika'&&!(r==='jolak'&&UI.jg&&UI.jg.v!=='menu')&&!(r==='hitzak'&&UI.dict))$('#view').insertAdjacentHTML('afterbegin','<button class="btn sec small" data-act="go" data-to="praktika" style="margin-bottom:10px">← Praktika</button>');
+  const rp=PAR[r]||r;
+  $('#tabs').innerHTML=TABS.map(t=>`<button class="tab${t[0]===rp?' on':''}" data-go="${t[0]}"><span>${t[1]}</span>${t[2]}</button>`).join('');
+    refreshHeader();
 }
 $('#tabs').addEventListener('click',e=>{
   const b=e.target.closest('[data-go]');if(!b)return;
+  if(b.dataset.go==='hiztegia')UI.dfrom=null;
   goTo(b.dataset.go);
 });
 window.addEventListener('hashchange',()=>{let h='';try{h=location.hash.slice(1)}catch(e){}if(validRoute(h)&&h!==CUR){CUR=h;render();window.scrollTo(0,0)}});
@@ -3227,8 +3262,8 @@ $('#view').addEventListener('click',e=>{
   else if(a==='build')runSession({tag:'build',make:()=>buildQs(6)});
   else if(a==='nn')runSession({tag:'nn',make:()=>typeQs(10)});
   else if(a==='typemode'){S.typeMode=b.checked;save()}
-  else if(a==='dict'){UI.dict=true;UI.dc=null;render();scrollTo(0,0)}
-  else if(a==='dictx'){UI.dict=false;UI.dc=null;render()}
+  else if(a==='dict'){UI.dc=null;UI.dfrom=route();goTo('hiztegia')}
+  else if(a==='dictx'){UI.dict=false;UI.dc=null;if(route()==='hiztegia'){const f=UI.dfrom||'home';UI.dfrom=null;goTo(f)}else render()}
   else if(a==='dcat'){UI.dc=d.i===''||d.i==null?null:+d.i;render();scrollTo(0,0)}
   else if(a==='labv'){UI.lab.v=+d.i;render()}
   else if(a==='labt'){UI.lab.tk=d.t;render()}
@@ -3242,7 +3277,6 @@ $('#view').addEventListener('input',e=>{
   box.hidden=false;
   box.innerHTML=r.length?r.map(w=>`<div class="hit"><button class="spk" data-act="say" data-t="${esc(w.eu)}" aria-label="Escuchar">🔊</button><b>${esc(w.em?w.em+' ':'')}${esc(w.eu)}</b><span class="es">${esc(w.es)}</span></div>`).join(''):'<p class="es">Sin resultados.</p>';
 });
-$('#gear').addEventListener('click',()=>{goTo(route()==='ezarpenak'?'home':'ezarpenak')});
 if(S.level==='a2'&&!a2Open())S.level='a1';
 refreshHeader();
 render();
