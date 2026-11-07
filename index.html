@@ -2436,11 +2436,13 @@ buildQs=function(n){
 <script>
 /* ===== v29: contenido ya visto (verbos y vocabulario) + sala de juegos «Jolak» ===== */
 const LSETS={"l3": ["etxea"], "l5": ["zenbakiak"], "l6": ["familia"], "l8": ["aditzak"], "l9": ["janaria"], "l12": ["adjetiboak", "hilabeteak", "urtaroak"], "b1": ["kokapena"], "b2": ["aditzak"], "b4": ["aditzak"], "b5": ["adjetiboak"], "b6": ["sentitu"], "b7": ["lekuak"], "b8": ["errutina"], "b14": ["garraioak"], "b17": ["eguraldia"], "b18": ["erosketak"], "b19": ["osasuna"], "c1": ["zenbakiak"], "c3": ["norabidea"], "e2": ["denborak"], "e4": ["iritziak"], "e7": ["itxura"], "e9": ["denborak"], "e10": ["jatetxea"]};
+const AK=()=>S.a2key===1;
 const dn=id=>!!(S.lessons&&S.lessons[id]!=null);
 const KVL={izan:'l2',egon:'l4',joan:'l4',etorri:'l4',eduki:'l6',ukan:'l7',eman:'b2',gustatu:'b3',ibili:'b9','joan (iragana)':'b9','etorri (iragana)':'b9','ibili (iragana)':'b9',jakin:'b15','ahal (dezaket)':'b13','ahal (naiteke)':'b13','eman (hark… niri, zuri…)':'e1',ekarri:'e12',eraman:'e12'};
 function knownVerbs(){
   const ks=Object.keys(CONJ);let out;
-  if(S.level==='a2')out=ks.filter(k=>lvOf(CONJ[k])==='a1'||dn(KVL[k]));
+  if(AK())out=ks.filter(k=>S.level==='a2'||lvOf(CONJ[k])==='a1');
+  else if(S.level==='a2')out=ks.filter(k=>lvOf(CONJ[k])==='a1'||dn(KVL[k]));
   else out=ks.filter(k=>lvOf(CONJ[k])==='a1'&&(KVL[k]==null||dn(KVL[k])));
   return out.length?out:['izan'];
 }
@@ -2460,11 +2462,11 @@ function gxp(n,key,score){
   S.gplays=(S.gplays||0)+1;const b=S.gbest||(S.gbest={});const nb=score>0&&(b[key]==null||score>b[key]);if(nb)b[key]=score;
   S.xp+=n;S.today+=n;touch();save();refreshHeader();checkBadges();return nb;
 }
-const aSeen=()=>{const a=S.level==='a2'||S.a1test===1;return a?[0,1,2,3]:[dn('l2')?0:-1,dn('l7')?1:-1,dn('l9')?2:-1,dn('b2')?3:-1].filter(x=>x>=0)};
+const aSeen=()=>{const a=S.level==='a2'||S.a1test===1||AK();return a?[0,1,2,3]:[dn('l2')?0:-1,dn('l7')?1:-1,dn('l9')?2:-1,dn('b2')?3:-1].filter(x=>x>=0)};
 const TYN=['NOR','NOR-NORK','NOR-NORI','NOR-NORI-NORK'],TYX=['Ni Iruñera joaten naiz.','Nik ogia jaten dut.','Niri kafea gustatzen zait.','Nik amari liburua ematen diot.'];
-const kOpen=()=>dn('r1')||S.level==='a2'||S.a1test===1;
+const kOpen=()=>AK()||dn('r1')||S.level==='a2'||S.a1test===1;
 const setsOf=()=>VOCAB.filter(v=>lvOf(v)===S.level&&v.w.length>=6);
-const pOpen=v=>setPct(v)>=60;
+const pOpen=v=>AK()||setPct(v)>=60;
 function jolakView(){
   const j=UI.jg||(UI.jg={v:'menu'});
   return ({menu:jgMenu,pcat:jgPcat,pmode:jgPmode,amenu:jgAmenu})[j.v]();
@@ -2552,7 +2554,7 @@ function aItem(type,full){
   const r=G.T[one(names)]();const s=r.t.join(' ');return{txt:s.charAt(0).toUpperCase()+s.slice(1)+'.',ty:type};
 }
 function jgEhiza(sel){
-  JG.stop();const full=S.level==='a2'||S.a1test===1;
+  JG.stop();const full=S.level==='a2'||S.a1test===1||AK();
   let lives=3,sc=0,tgt=one(sel),items=[],last=0,spawn=0,sp=44,ok=0,pauseT=0;
   $('#view').innerHTML=jgHead('Aditz-ehiza','','amenu')+`<div class="jg-target">${jx('Toca solo las frases','Ukitu esaldi hauek bakarrik')} <b id="jtg"></b></div><div class="jg-arena" id="jar"></div><p class="sub" style="text-align:center;margin-top:10px">${jx('Tipos en juego','Jokoan dauden motak')}: ${sel.map(i=>TYN[i]).join(' · ')}<br>${jx('Cada 20 aciertos recuperas una vida ❤️','20 asmatzeko bizi bat berreskuratzen duzu ❤️')}</p>`;
   const setT=()=>{$('#jtg').textContent=TYN[tgt]};setT();

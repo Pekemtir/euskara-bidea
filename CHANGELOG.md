@@ -11,6 +11,10 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v30 · 2026-11-07
+- Con el código de profesor (`irakasle2026`) se desbloquean todos los juegos desde el inicio, sin progreso: Kontra-erlojua, todas las categorías de Parekatu (y el general) y Aditz-ehiza con los 4 tipos y modo general.
+
+---
 ## v29 · 2026-11-07
 - **Jolak (juegos)**, nueva sección en el inicio: Kontra-erlojua (60 s de conjugaciones), Parekatu (memoria por categoría de Hitzak + modo general; contrarreloj o sin tiempo) y Aditz-ehiza (frases que caen; eliges los tipos de verbo o modo general). Aviso al cambiar de objetivo, se vacía lo que cae, +1 vida cada 20 aciertos y aceleración muy suave por cambio. XP y récords guardados; logro nuevo «Jokalaria».
 - Desbloqueos reales: Kontra-erlojua con el repaso 1 (o A2), Parekatu al dominar el 60 % de una categoría (el general con al menos una completada), Aditz-ehiza al ver 2 tipos de verbo (el general con los 4).
