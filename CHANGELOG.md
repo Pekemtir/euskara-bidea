@@ -11,6 +11,10 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v27 · 2026-11-07
+- Corregido: con el código de profesor (A2 abierto) las preguntas de conjugación de A1 seguían mezclando pasado antes de la lección del pasado. Ahora el pasado solo aparece al estar en nivel A2, tras completar la lección «Atzo · izan eta egon» o pasar el test de nivel.
+
+---
 ## v26 · 2026-11-07
 - **Móvil**: la versión publicada (GitHub Pages) no declaraba el viewport y el móvil la dibujaba a 980 px de ancho, por eso se veía diminuta. Corregido (`width=device-width`).
 - Además, en pantallas de hasta 600 px el texto, los botones, las tablas y los ejemplos son algo mayores. Escritorio sin cambios (comprobado: mismo tamaño de letra).

@@ -720,7 +720,7 @@ function flashQs(pool,n){
 
 /* ===== CONJUGACIÓN ===== */
 const segHTML=a=>a.map(([s,r])=>`<span class="m-${r}">${esc(s)}</span>`).join('');
-const pastOk=()=>!!(window.FORCEPAST||S.level==='a2'||S.a1test===1||S.a2key===1||(S.lessons&&S.lessons.l10!=null)||(typeof SES!=='undefined'&&SES&&SES.cfg&&SES.cfg.test));
+const pastOk=()=>!!(window.FORCEPAST||S.level==='a2'||S.a1test===1||(S.lessons&&S.lessons.l10!=null)||(typeof SES!=='undefined'&&SES&&SES.cfg&&SES.cfg.test));
 function genConj(vk){
   const c=CONJ[vk];let tks=Object.keys(c.T);if(!pastOk()&&!c.lv){const pr=tks.filter(k=>!/^iragana/.test(k));if(pr.length)tks=pr}
   const tk=tks[rnd(tks.length)],i=rnd(6),t=c.T[tk],ans=t.f[i];
