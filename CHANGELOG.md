@@ -11,6 +11,10 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v31 · 2026-11-07
+- Kontra-erlojua ya no repite conjugaciones: recorre todas las combinaciones (verbo · tiempo · persona) antes de repetir ninguna.
+
+---
 ## v30 · 2026-11-07
 - Con el código de profesor (`irakasle2026`) se desbloquean todos los juegos desde el inicio, sin progreso: Kontra-erlojua, todas las categorías de Parekatu (y el general) y Aditz-ehiza con los 4 tipos y modo general.
 

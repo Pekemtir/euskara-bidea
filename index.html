@@ -2512,7 +2512,9 @@ const jgHead=(t,chip,back)=>`<div class="jg-top"><button class="btn sec small" d
 /* 1 · Kontra-erlojua */
 function jgKontra(){
   JG.stop();const keys=knownVerbs();let t=60,sc=0,ok=0,fail=0,st=0,bs=0,q=null,lock=false;
-  const next=()=>{q=genConj(one(keys));lock=false;draw()};
+  const seen=new Set();
+  const nq=()=>{for(let n=0;n<60;n++){const x=genConj(one(keys));if(!seen.has(x.key)){seen.add(x.key);return x}}seen.clear();const x=genConj(one(keys));seen.add(x.key);return x};
+  const next=()=>{q=nq();lock=false;draw()};
   const draw=()=>{$('#jq').textContent=q.p;$('#jh').textContent=q.hint;$('#jst').textContent=st>=3?'🔥 '+st:'';
    $('#jo').innerHTML=q.opts.map(o=>`<button class="jg-opt" data-o="${esc(o)}">${esc(o)}</button>`).join('');
    $('#jo').querySelectorAll('.jg-opt').forEach(b=>b.onclick=()=>{if(lock)return;lock=true;const good=b.dataset.o===q.ans;
