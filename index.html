@@ -472,9 +472,9 @@ const VOCAB=[
 ['menua','el menú',''],['otordua','la comida (el plato)',''],['gosaria','el desayuno','🥐'],['bazkaria','la comida (mediodía)','🍝'],['afaria','la cena','🍲'],['zopa','la sopa','🥣'],['entsalada','la ensalada','🥗'],['postrea','el postre','🍮']]}
 ];
 
-const PRON=['ni','zu','hura','gu','zuek','haiek'];
+const PRON=['ni','zu','bera','gu','zuek','haiek'];
 const PRON_ES=['yo','tú','él / ella','nosotros/as','vosotros/as','ellos / ellas'];
-const NORK=['nik','zuk','hark','guk','zuek','haiek'];
+const NORK=['nik','zuk','berak','guk','zuek','haiek'];
 
 /* conjugaciones sueltas */
 const CONJ={
@@ -509,7 +509,7 @@ ibili:{lv:'a2',es:'andar, moverse · forma sintética (sin auxiliar)',ty:'nor',T
  iragana:{n:'Iragana',e:'pasado',f:['nenbilen','zenbiltzan','zebilen','genbiltzan','zenbiltzaten','zebiltzan']}}},
 jakin:{lv:'a2',es:'saber · forma sintética con objeto (nork): dakit = lo sé',ty:'nork',T:{
  oraina:{n:'Orainaldia',e:'presente',f:['dakit','dakizu','daki','dakigu','dakizue','dakite']}}},
-'eman (hark… niri, zuri…)':{lv:'a2',es:'«él/ella me/te… da» · NOR-NORI-NORK con «a quién» variable (dit, dizu, dio…)',ty:'nori',T:{
+'eman (berak… niri, zuri…)':{lv:'a2',es:'«él/ella me/te… da» · NOR-NORI-NORK con «a quién» variable (dit, dizu, dio…)',ty:'nori',T:{
  oraina1:{n:'Orainaldia · 1 gauza',e:'presente, una cosa',f:['dit','dizu','dio','digu','dizue','die']},
  oraina2:{n:'Orainaldia · gauza asko',e:'presente, varias cosas',f:['dizkit','dizkizu','dizkio','dizkigu','dizkizue','dizkie']},
  iragana1:{n:'Iragana · 1 gauza',e:'pasado, una cosa',f:['zidan','zizun','zion','zigun','zizuen','zien']},
@@ -646,7 +646,7 @@ const SENT2=[
 {t:['haurrei','txokolatea','gustatzen','zaie'],es:'A los niños les gusta el chocolate.',tip:'haurrei + zaie.'}
 ];
 
-const NORI=['niri','zuri','hari','guri','zuei','haiei'];
+const NORI=['niri','zuri','berari','guri','zuei','haiei'];
 const NORI_ES=['a mí','a ti','a él / ella','a nosotros/as','a vosotros/as','a ellos / ellas'];
 const pronOf=c=>c.ty==='nork'?NORK:c.ty==='nori'?NORI:PRON;
 const pronEs=c=>c.ty==='nori'?NORI_ES:PRON_ES;
@@ -1147,8 +1147,8 @@ const LESSONS=[
  goals:['Decir quién eres, de dónde eres y dónde vives','Conjugar izan (ser) en presente','Hacer preguntas con nor, non y nongoa'],
  steps:[
  {t:'Los pronombres y «izan»',h:'<p><b>izan</b> significa <b>ser</b>. Cada persona tiene su forma. El pronombre se puede omitir, porque el verbo ya indica quién es.</p>',
-  tb:'<table class="mini"><tr><th></th><th>izan</th><th></th></tr><tr><td>ni</td><td><b>naiz</b></td><td>yo soy</td></tr><tr><td>zu</td><td><b>zara</b></td><td>tú eres</td></tr><tr><td>hura</td><td><b>da</b></td><td>él / ella es</td></tr><tr><td>gu</td><td><b>gara</b></td><td>somos</td></tr><tr><td>zuek</td><td><b>zarete</b></td><td>sois</td></tr><tr><td>haiek</td><td><b>dira</b></td><td>son</td></tr></table>',
-  tip:'<b>hura</b> no distingue género: vale para «él» y «ella». <b>zu</b> es tú (uno solo) y <b>zuek</b> es vosotros.'},
+  tb:'<table class="mini"><tr><th></th><th>izan</th><th></th></tr><tr><td>ni</td><td><b>naiz</b></td><td>yo soy</td></tr><tr><td>zu</td><td><b>zara</b></td><td>tú eres</td></tr><tr><td>bera</td><td><b>da</b></td><td>él / ella es</td></tr><tr><td>gu</td><td><b>gara</b></td><td>somos</td></tr><tr><td>zuek</td><td><b>zarete</b></td><td>sois</td></tr><tr><td>haiek</td><td><b>dira</b></td><td>son</td></tr></table>',
+  tip:'<b>bera</b> no distingue género: vale para «él» y «ella». En Baztan y buena parte de Navarra se dice <b>bera</b>; el euskera batua (el de los libros y el euskaltegi) usa <b>hura</b> con las mismas formas (hura da, hark du, hari…). Las dos son válidas. <b>zu</b> es tú (uno solo) y <b>zuek</b> es vosotros.'},
  {t:'El orden: el verbo va al final',h:'<p>La frase vasca termina con el verbo. Primero dices quién, luego el dato, y cierras con <b>izan</b>.</p>',
   pc:[['Ni','p-sub','quién'],['Dabid','p-obj','el dato'],['naiz','p-aux','soy']],
   ex:[['Ni Dabid naiz.','Yo soy David.'],['Zu euskalduna zara.','Tú eres euskaldun (hablante de euskera).'],['Gu lagunak gara.','Nosotros somos amigos.']]},
@@ -1194,10 +1194,10 @@ const LESSONS=[
   tb:'<table class="mini"><tr><th>Pregunta</th><th>Final</th><th>etxea</th><th>Elizondo</th></tr><tr><td>Non? <small>(dónde)</small></td><td>-n</td><td>etxe<b>an</b></td><td>Elizondo<b>n</b></td></tr><tr><td>Nora? <small>(adónde)</small></td><td>-ra</td><td>etxe<b>ra</b></td><td>Elizondo<b>ra</b></td></tr><tr><td>Nondik? <small>(desde)</small></td><td>-tik</td><td>etxe<b>tik</b></td><td>Elizondo<b>tik</b></td></tr><tr><td>Nongo? <small>(de)</small></td><td>-ko</td><td>etxe<b>ko</b></td><td>Elizondo<b>ko</b></td></tr></table>',
   tip:'Si el lugar acaba en <b>consonante</b>, cambia un poco: Baztan → <b>Baztanen</b> (en), <b>Baztanera</b> (a), <b>Baztanetik</b> (desde), <b>Baztango</b> (de).'},
  {t:'Egon: estar en un sitio',h:'<p>Para decir <b>dónde está</b> algo o alguien se usa <b>egon</b>, no izan.</p>',
-  tb:'<table class="mini"><tr><th></th><th>egon</th></tr><tr><td>ni</td><td><b>nago</b></td></tr><tr><td>zu</td><td><b>zaude</b></td></tr><tr><td>hura</td><td><b>dago</b></td></tr><tr><td>gu</td><td><b>gaude</b></td></tr><tr><td>zuek</td><td><b>zaudete</b></td></tr><tr><td>haiek</td><td><b>daude</b></td></tr></table>',
+  tb:'<table class="mini"><tr><th></th><th>egon</th></tr><tr><td>ni</td><td><b>nago</b></td></tr><tr><td>zu</td><td><b>zaude</b></td></tr><tr><td>bera</td><td><b>dago</b></td></tr><tr><td>gu</td><td><b>gaude</b></td></tr><tr><td>zuek</td><td><b>zaudete</b></td></tr><tr><td>haiek</td><td><b>daude</b></td></tr></table>',
   ex:[['Ni etxean nago.','Estoy en casa.'],['Behiak mendian daude.','Las vacas están en el monte.'],['Ama sukaldean dago.','Mamá está en la cocina.']]},
  {t:'Ir y venir',h:'<p><b>joan</b> (ir) y <b>etorri</b> (venir) tienen formas propias, sin auxiliar. Se usan con <b>-ra</b> y <b>-tik</b>.</p>',
-  tb:'<table class="mini"><tr><th></th><th>joan (ir)</th><th>etorri (venir)</th></tr><tr><td>ni</td><td><b>noa</b></td><td><b>nator</b></td></tr><tr><td>zu</td><td><b>zoaz</b></td><td><b>zatoz</b></td></tr><tr><td>hura</td><td><b>doa</b></td><td><b>dator</b></td></tr><tr><td>gu</td><td><b>goaz</b></td><td><b>gatoz</b></td></tr><tr><td>zuek</td><td><b>zoazte</b></td><td><b>zatozte</b></td></tr><tr><td>haiek</td><td><b>doaz</b></td><td><b>datoz</b></td></tr></table>',
+  tb:'<table class="mini"><tr><th></th><th>joan (ir)</th><th>etorri (venir)</th></tr><tr><td>ni</td><td><b>noa</b></td><td><b>nator</b></td></tr><tr><td>zu</td><td><b>zoaz</b></td><td><b>zatoz</b></td></tr><tr><td>bera</td><td><b>doa</b></td><td><b>dator</b></td></tr><tr><td>gu</td><td><b>goaz</b></td><td><b>gatoz</b></td></tr><tr><td>zuek</td><td><b>zoazte</b></td><td><b>zatozte</b></td></tr><tr><td>haiek</td><td><b>doaz</b></td><td><b>datoz</b></td></tr></table>',
   pc:[['Ni','p-sub','quién'],['Iruñera','p-obj','adónde (-ra)'],['noa','p-aux','voy']],
   ex:[['Gu Baztanera goaz.','Vamos a Baztan.'],['Zu Elizondotik zatoz.','Vienes de Elizondo.'],['Ni etxera noa.','Voy a casa.']],
   tip:'Ser o estar: <b>Baztangoa naiz</b> (soy de allí, izan). <b>Baztanen nago</b> (ahora estoy allí, egon).'}
@@ -1241,18 +1241,18 @@ const LESSONS=[
 /* ===== LECCIONES (6-11) ===== */
 LESSONS.push(
 {id:'l6',n:6,eu:'Familia',es:'De quién es, cómo es, qué tengo',ic:'👨‍👩‍👧',min:8,
- goals:['Decir de quién es algo con -ren / -en','Usar nire, zure, haren…','Describir con «nolakoa» y tener con «eduki»'],
+ goals:['Decir de quién es algo con -ren / -en','Usar nire, zure, beraren…','Describir con «nolakoa» y tener con «eduki»'],
  steps:[
  {t:'De quién: -ren',h:'<p>«La casa del padre» se dice al revés: <b>del padre la casa</b>. Al dueño se le añade <b>-ren</b> (tras vocal) o <b>-en</b> (tras consonante).</p>',
   ex:[['aitaren etxea','la casa del padre'],['amaren liburua','el libro de la madre'],['Dabiden txakurra','el perro de David'],['Baztanen bizi gara','vivimos en Baztan (aquí -en = en)']],
   tip:'Ojo: en <b>Dabiden</b> el «-en» es genitivo (de David). En <b>Baztanen</b> es «en Baztan». Mismas letras, distinto papel.'},
  {t:'Mi, tu, su…',h:'<p>Los posesivos van <b>antes</b> del nombre.</p>',
-  tb:'<table class="mini"><tr><th></th><th>de</th><th>ejemplo</th></tr><tr><td>ni</td><td><b>nire</b></td><td>nire ama = mi madre</td></tr><tr><td>zu</td><td><b>zure</b></td><td>zure etxea = tu casa</td></tr><tr><td>hura</td><td><b>haren</b></td><td>haren anaia = su hermano</td></tr><tr><td>gu</td><td><b>gure</b></td><td>gure familia</td></tr><tr><td>zuek</td><td><b>zuen</b></td><td>zuen lagunak</td></tr><tr><td>haiek</td><td><b>haien</b></td><td>haien seme</td></tr></table>'},
+  tb:'<table class="mini"><tr><th></th><th>de</th><th>ejemplo</th></tr><tr><td>ni</td><td><b>nire</b></td><td>nire ama = mi madre</td></tr><tr><td>zu</td><td><b>zure</b></td><td>zure etxea = tu casa</td></tr><tr><td>bera</td><td><b>beraren</b></td><td>beraren anaia = su hermano</td></tr><tr><td>gu</td><td><b>gure</b></td><td>gure familia</td></tr><tr><td>zuek</td><td><b>zuen</b></td><td>zuen lagunak</td></tr><tr><td>haiek</td><td><b>haien</b></td><td>haien seme</td></tr></table>'},
  {t:'¿Cómo es? Nolakoa',h:'<p>Para describir: <b>Nolakoa da...?</b> y respondes con nombre + adjetivo (con artículo) + <b>da</b>.</p>',
   pc:[['Ama','p-sub','quién'],['polita','p-part','adjetivo'],['da','p-aux','es']],
   ex:[['Nolakoa da zure aita?','¿Cómo es tu padre?'],['Nire aita altua da.','Mi padre es alto.'],['Amona zaharra da.','La abuela es mayor.']]},
  {t:'Tener: eduki',h:'<p><b>eduki</b> = tener. Va con sujeto en <b>-k</b> (nik, zuk…). Una cosa: <b>daukat</b>. Varias: <b>dauzkat</b>.</p>',
-  tb:'<table class="mini"><tr><th></th><th>1 cosa</th><th>varias</th></tr><tr><td>nik</td><td>daukat</td><td>dauzkat</td></tr><tr><td>zuk</td><td>daukazu</td><td>dauzkazu</td></tr><tr><td>hark</td><td>dauka</td><td>dauzka</td></tr><tr><td>guk</td><td>daukagu</td><td>dauzkagu</td></tr></table>',
+  tb:'<table class="mini"><tr><th></th><th>1 cosa</th><th>varias</th></tr><tr><td>nik</td><td>daukat</td><td>dauzkat</td></tr><tr><td>zuk</td><td>daukazu</td><td>dauzkazu</td></tr><tr><td>berak</td><td>dauka</td><td>dauzka</td></tr><tr><td>guk</td><td>daukagu</td><td>dauzkagu</td></tr></table>',
   ex:[['Nik arreba bat daukat.','Tengo una hermana.'],['Nik bi anai dauzkat.','Tengo dos hermanos.']]}
  ],
  make:()=>[].concat(vq('familia',3),conjQs(['eduki'],3),lsq('fam','gen'),[
@@ -1269,10 +1269,10 @@ LESSONS.push(
   tb:'<table class="mini"><tr><th>Sin objeto → <b>izan</b></th><th>Con objeto → <b>ukan</b></th></tr><tr><td>joan (ir), etorri (venir), bizi (vivir), egon</td><td>jan (comer), edan (beber), ikusi, irakurri, ikasi</td></tr><tr><td>Ni etxera joaten <b>naiz</b>.</td><td>Nik ogia jaten <b>dut</b>.</td></tr></table>',
   tip:'Truco: si puedes preguntar «¿qué?» después del verbo («como… ¿qué? pan»), es <b>ukan</b>.'},
  {t:'El sujeto lleva -k',h:'<p>Cuando el verbo lleva objeto, quien lo hace se marca con <b>-k</b>. Es el rasgo más raro del euskera para un hispanohablante, y el más importante.</p>',
-  tb:'<table class="mini"><tr><th>sin objeto</th><th>con objeto (-k)</th></tr><tr><td>ni</td><td><b>nik</b></td></tr><tr><td>zu</td><td><b>zuk</b></td></tr><tr><td>hura</td><td><b>hark</b></td></tr><tr><td>gu</td><td><b>guk</b></td></tr><tr><td>zuek</td><td>zuek</td></tr><tr><td>haiek</td><td>haiek</td></tr></table>',
+  tb:'<table class="mini"><tr><th>sin objeto</th><th>con objeto (-k)</th></tr><tr><td>ni</td><td><b>nik</b></td></tr><tr><td>zu</td><td><b>zuk</b></td></tr><tr><td>bera</td><td><b>berak</b></td></tr><tr><td>gu</td><td><b>guk</b></td></tr><tr><td>zuek</td><td>zuek</td></tr><tr><td>haiek</td><td>haiek</td></tr></table>',
   ex:[['Aita etxera doa.','El padre va a casa. (sin objeto)'],['Aitak ogia jaten du.','El padre come pan. (con objeto: aitak)'],['Amak liburua irakurtzen du.','La madre lee el libro.']]},
  {t:'Las formas: dut, duzu, du…',h:'<p>Cada forma se arma con piezas: <b>d-</b> (lo) + <b>u</b> (raíz) + el final que dice quién lo hace. Si hay <b>varios</b> objetos, la raíz cambia a <b>itu</b>.</p>',
-  tb:'<table class="mini"><tr><th></th><th>1 objeto</th><th>varios</th></tr><tr><td>nik</td><td>dut</td><td>ditut</td></tr><tr><td>zuk</td><td>duzu</td><td>dituzu</td></tr><tr><td>hark</td><td>du</td><td>ditu</td></tr><tr><td>guk</td><td>dugu</td><td>ditugu</td></tr><tr><td>zuek</td><td>duzue</td><td>dituzue</td></tr><tr><td>haiek</td><td>dute</td><td>dituzte</td></tr></table>',
+  tb:'<table class="mini"><tr><th></th><th>1 objeto</th><th>varios</th></tr><tr><td>nik</td><td>dut</td><td>ditut</td></tr><tr><td>zuk</td><td>duzu</td><td>dituzu</td></tr><tr><td>berak</td><td>du</td><td>ditu</td></tr><tr><td>guk</td><td>dugu</td><td>ditugu</td></tr><tr><td>zuek</td><td>duzue</td><td>dituzue</td></tr><tr><td>haiek</td><td>dute</td><td>dituzte</td></tr></table>',
   ex:[['Nik liburua irakurtzen dut.','Leo el libro.'],['Nik liburuak irakurtzen ditut.','Leo los libros.']],
   tip:'El auxiliar concuerda con el <b>objeto</b>, no con el sujeto: un libro → dut; varios → ditut.'},
  {t:'Aplícalo: de la frase al auxiliar',h:'<p>Paso a paso con una frase real:</p><p>1. ¿Hay un «qué»? Sí (ogia) → <b>ukan</b>.<br>2. Sujeto con <b>-k</b>: ni → <b>nik</b>.<br>3. Un solo objeto → <b>dut</b>.</p>',
@@ -1306,7 +1306,7 @@ LESSONS.push(
  goals:['Decir qué te gusta con «gustatzen zait»','Distinguir zait (una cosa) de zaizkit (varias)','Usar nahi dut y behar dut + verbo'],
  steps:[
  {t:'Gustar funciona «al revés»',h:'<p>En euskera no «gustas» algo: <b>algo te gusta a ti</b>. Lo que gusta es el sujeto; a quien le gusta lleva <b>-ri</b>.</p>',
-  tb:'<table class="mini"><tr><th>A quién</th><th>le gusta</th></tr><tr><td>niri <small>(a mí)</small></td><td>gustatzen <b>zait</b></td></tr><tr><td>zuri</td><td>gustatzen <b>zaizu</b></td></tr><tr><td>hari</td><td>gustatzen <b>zaio</b></td></tr><tr><td>guri</td><td>gustatzen <b>zaigu</b></td></tr><tr><td>zuei</td><td>gustatzen <b>zaizue</b></td></tr><tr><td>haiei</td><td>gustatzen <b>zaie</b></td></tr></table>',
+  tb:'<table class="mini"><tr><th>A quién</th><th>le gusta</th></tr><tr><td>niri <small>(a mí)</small></td><td>gustatzen <b>zait</b></td></tr><tr><td>zuri</td><td>gustatzen <b>zaizu</b></td></tr><tr><td>berari</td><td>gustatzen <b>zaio</b></td></tr><tr><td>guri</td><td>gustatzen <b>zaigu</b></td></tr><tr><td>zuei</td><td>gustatzen <b>zaizue</b></td></tr><tr><td>haiei</td><td>gustatzen <b>zaie</b></td></tr></table>',
   pc:[['Niri','p-sub','a quién (-ri)'],['kafea','p-obj','qué gusta'],['gustatzen','p-part','verbo'],['zait','p-aux','me']],
   ex:[['Niri kafea gustatzen zait.','Me gusta el café.'],['Zuri zer gustatzen zaizu?','¿Qué te gusta a ti?']]},
  {t:'Una cosa o varias',h:'<p>El auxiliar concuerda con <b>lo que gusta</b>. Si es plural, pasa de <b>zait</b> a <b>zaizkit</b> (y así con todas las personas: zaizu → zaizkizu).</p>',
@@ -1383,21 +1383,21 @@ const LSUM={
 l1:{sum:['Cada letra suena siempre igual: se lee como se escribe.','<b>h</b> es muda, <b>x</b> = «sh», <b>tx</b> = «ch», <b>ts / tz</b> = «ts».','En <b>gu / gi</b> la u sí suena, y la <b>g</b> siempre es dura.','tx, ts, tz, ll y rr son un solo sonido: no los separes.'],
  kw:[['etxea','la casa'],['txakurra','el perro'],['hamar','diez'],['xake','ajedrez'],['gizon','hombre'],['gutxi','poco'],['hitz','palabra'],['zuri','blanco'],['gero','después'],['eskerrik asko','muchas gracias'],['ongi etorri','bienvenido/a'],['jan','comer']]},
 l2:{sum:['<b>izan</b> = ser: naiz, zara, da, gara, zarete, dira.','Orden: sujeto + dato + <b>verbo al final</b>. El pronombre se puede omitir.','Negar: <b>ez</b> justo antes del auxiliar (ez naiz).','De dónde: lugar + <b>-ko / -go</b> + a (Baztangoa naiz). Dónde vives: <b>bizi izan</b> con izan.'],
- kw:[['ni','yo'],['zu','tú'],['hura','él / ella'],['gu','nosotros/as'],['zuek','vosotros/as'],['haiek','ellos / ellas'],['naiz','soy'],['zara','eres'],['da','es'],['nor','quién'],['non','dónde'],['nongoa','de dónde'],['bizi','vivir'],['ez','no'],['bai','sí']]},
+ kw:[['ni','yo'],['zu','tú'],['bera','él / ella'],['gu','nosotros/as'],['zuek','vosotros/as'],['haiek','ellos / ellas'],['naiz','soy'],['zara','eres'],['da','es'],['nor','quién'],['non','dónde'],['nongoa','de dónde'],['bizi','vivir'],['ez','no'],['bai','sí']]},
 l3:{sum:['El artículo se pega al final: <b>-a</b> (etxea). Plural: <b>-ak</b> (etxeak).','<b>bat</b> = un/una y va detrás: etxe bat.','Tras un número, el nombre queda sin plural: <b>bi liburu</b>.','<b>hau / hori / hura</b> señalan según la distancia.','El adjetivo va detrás del nombre y lleva el artículo: etxe handia.'],
  kw:[['etxea','la casa'],['liburua','el libro'],['behia','la vaca'],['bat','un / una'],['hau','este / esto'],['hori','ese / eso'],['hura','aquel / aquello'],['handia','grande'],['txikia','pequeño'],['berria','nuevo'],['zaharra','viejo / mayor'],['polita','bonito']]},
 l4:{sum:['<b>-n</b> en · <b>-ra</b> a · <b>-tik</b> desde · <b>-ko</b> de (lugar).','Si el lugar acaba en consonante: Baztan → <b>Baztanen, Baztanera, Baztanetik, Baztango</b>.','Dónde está algo: <b>egon</b> (nago, dago, daude…), no izan.','<b>joan</b> (noa, doa, goaz) y <b>etorri</b> (nator, dator) no llevan auxiliar.'],
  kw:[['non','dónde'],['nora','adónde'],['nondik','desde dónde'],['egon','estar'],['nago','estoy'],['dago','está'],['daude','están'],['joan','ir'],['etorri','venir'],['noa','voy'],['dator','viene'],['etxera','a casa'],['mendian','en el monte'],['sukaldea','la cocina']]},
 l5:{sum:['1-10: bat, bi, hiru, lau, bost, sei, zazpi, zortzi, bederatzi, hamar.','11-17 se forman con <b>hama-</b> + número (hamabi = 12).','Cuenta de veinte en veinte: hogei, berrogei, hirurogei, laurogei.','Entre decena y unidad va <b>-ta</b>: hogeita bost = 25.','La edad se <b>tiene</b>: urte <b>ditut</b>.'],
  kw:[['hamar','10'],['hamaika','11'],['hogei','20'],['hogeita hamar','30'],['berrogei','40'],['hirurogei','60'],['laurogei','80'],['ehun','100'],['zenbat','cuánto / cuántos'],['euro','euro'],['urte','año'],['ditut','tengo (varios)'],['ordu','hora']]},
-l6:{sum:['El dueño va primero con <b>-ren / -en</b>: aitaren etxea.','Posesivos delante: <b>nire, zure, haren, gure, zuen, haien</b>.','Describir: <b>Nolakoa da…?</b> y nombre + adjetivo + da.','<b>eduki</b>: daukat (una cosa) / dauzkat (varias), con sujeto en -k.'],
- kw:[['aita','padre'],['ama','madre'],['anaia','hermano (de un chico)'],['arreba','hermana (de un chico)'],['aitona','abuelo'],['amona','abuela'],['lagun','amigo/a'],['nire','mi'],['zure','tu'],['haren','su'],['gure','nuestro'],['altua','alto'],['gaztea','joven'],['daukat','tengo'],['nolakoa','cómo es']]},
-l7:{sum:['Pregunta clave: ¿hay un «qué»? Sí → <b>ukan</b> (dut…). No → <b>izan</b> (naiz…).','Con ukan el sujeto lleva <b>-k</b>: ni → nik, zu → zuk, hura → hark, gu → guk.','El auxiliar concuerda con el objeto: <b>dut</b> (uno) / <b>ditut</b> (varios).','Formas: dut, duzu, du, dugu, duzue, dute.'],
- kw:[['nik','yo (sujeto con objeto)'],['zuk','tú (sujeto con objeto)'],['hark','él / ella (sujeto con objeto)'],['guk','nosotros (sujeto con objeto)'],['dut','auxiliar: yo, 1 objeto'],['ditut','auxiliar: yo, varios objetos'],['jan','comer'],['edan','beber'],['ikusi','ver'],['irakurri','leer'],['ikasi','aprender / estudiar'],['ogia','el pan'],['ura','el agua']]},
+l6:{sum:['El dueño va primero con <b>-ren / -en</b>: aitaren etxea.','Posesivos delante: <b>nire, zure, beraren, gure, zuen, haien</b>.','Describir: <b>Nolakoa da…?</b> y nombre + adjetivo + da.','<b>eduki</b>: daukat (una cosa) / dauzkat (varias), con sujeto en -k.'],
+ kw:[['aita','padre'],['ama','madre'],['anaia','hermano (de un chico)'],['arreba','hermana (de un chico)'],['aitona','abuelo'],['amona','abuela'],['lagun','amigo/a'],['nire','mi'],['zure','tu'],['beraren','su'],['gure','nuestro'],['altua','alto'],['gaztea','joven'],['daukat','tengo'],['nolakoa','cómo es']]},
+l7:{sum:['Pregunta clave: ¿hay un «qué»? Sí → <b>ukan</b> (dut…). No → <b>izan</b> (naiz…).','Con ukan el sujeto lleva <b>-k</b>: ni → nik, zu → zuk, bera → berak, gu → guk.','El auxiliar concuerda con el objeto: <b>dut</b> (uno) / <b>ditut</b> (varios).','Formas: dut, duzu, du, dugu, duzue, dute.'],
+ kw:[['nik','yo (sujeto con objeto)'],['zuk','tú (sujeto con objeto)'],['berak','él / ella (sujeto con objeto)'],['guk','nosotros (sujeto con objeto)'],['dut','auxiliar: yo, 1 objeto'],['ditut','auxiliar: yo, varios objetos'],['jan','comer'],['edan','beber'],['ikusi','ver'],['irakurri','leer'],['ikasi','aprender / estudiar'],['ogia','el pan'],['ura','el agua']]},
 l8:{sum:['Hábito: participio → <b>-ten / -tzen</b> (jan → jaten) + auxiliar.','Ahora mismo: habitual + <b>ari</b> + <b>izan</b> (jaten ari naiz).','Frecuencia: <b>beti, sarri, batzuetan, inoiz ez</b>.','Negación: <b>ez</b> antes del auxiliar; el verbo queda detrás.'],
  kw:[['jaten','come (hábito)'],['edaten','bebe (hábito)'],['ikasten','estudia (hábito)'],['irakurtzen','lee (hábito)'],['ari izan','estar haciendo'],['egunero','cada día'],['beti','siempre'],['sarri','a menudo'],['batzuetan','a veces'],['inoiz ez','nunca'],['orain','ahora'],['ez','no']]},
 l9:{sum:['Gustar va al revés: <b>niri</b> kafea gustatzen <b>zait</b> (a mí me gusta el café).','Una cosa: <b>zait</b>. Varias: <b>zaizkit</b>.','Querer: <b>participio + nahi dut</b>. Tener que: <b>participio + behar dut</b>.','En negativo: <b>ez</b> antes del auxiliar.'],
- kw:[['gustatu','gustar'],['niri','a mí'],['zuri','a ti'],['hari','a él / ella'],['guri','a nosotros'],['zait','me (gusta)'],['zaizkit','me (gustan)'],['nahi dut','quiero'],['behar dut','tengo que / necesito'],['kafea','el café'],['sagarra','la manzana'],['sagardoa','la sidra'],['mesedez','por favor']]},
+ kw:[['gustatu','gustar'],['niri','a mí'],['zuri','a ti'],['berari','a él / ella'],['guri','a nosotros'],['zait','me (gusta)'],['zaizkit','me (gustan)'],['nahi dut','quiero'],['behar dut','tengo que / necesito'],['kafea','el café'],['sagarra','la manzana'],['sagardoa','la sidra'],['mesedez','por favor']]},
 l10:{sum:['Pasado: participio + auxiliar en pasado (<b>nintzen</b> / <b>nuen</b>).','Perfecto («he hecho»): participio + auxiliar en <b>presente</b>.','Futuro: participio + <b>-ko</b> (o <b>-go</b> tras -n) + auxiliar en presente.','Marcas de tiempo: <b>atzo</b> (pasado), <b>gaur</b> (perfecto), <b>bihar</b> (futuro).'],
  kw:[['atzo','ayer'],['gaur','hoy'],['bihar','mañana'],['orain','ahora'],['nintzen','fui / era'],['nuen','tuve / hice'],['jango','comerá / comeré'],['joango','irá / iré'],['ikusiko','verá / veré'],['egingo','hará / haré'],['iragana','pasado'],['geroa','futuro']]},
 l11:{sum:['Pedir: <b>X bat nahi dut, mesedez</b>. Preguntar el precio: <b>Zenbat da?</b>','Preguntar dónde está algo: <b>Non dago…?</b>','Presentarte: izan (Dabid naiz), lugar (Baztangoa naiz), ari izan, gustatu y futuro.','Con las 10 lecciones anteriores ya formas frases completas.'],
@@ -1432,12 +1432,12 @@ LESSONS.push(
  goals:['Decir a quién se hace algo con -ri','Decir para quién con -(r)entzat','Usar diot, diozu, dio… (eman)'],
  steps:[
  {t:'-ri: «a quién»',h:'<p>Para decir <b>a quién</b> (el destinatario) se añade <b>-ri</b> al nombre: <b>ama → amari</b>. Con pronombres cambia:</p>',
-  tb:'<table class="mini"><tr><th>Pronombre</th><th>A…</th></tr><tr><td>ni</td><td><b>niri</b> a mí</td></tr><tr><td>zu</td><td><b>zuri</b> a ti</td></tr><tr><td>hura</td><td><b>hari</b> a él / ella</td></tr><tr><td>gu</td><td><b>guri</b> a nosotros</td></tr><tr><td>zuek</td><td><b>zuei</b> a vosotros</td></tr><tr><td>haiek</td><td><b>haiei</b> a ellos</td></tr></table>',
+  tb:'<table class="mini"><tr><th>Pronombre</th><th>A…</th></tr><tr><td>ni</td><td><b>niri</b> a mí</td></tr><tr><td>zu</td><td><b>zuri</b> a ti</td></tr><tr><td>bera</td><td><b>berari</b> a él / ella</td></tr><tr><td>gu</td><td><b>guri</b> a nosotros</td></tr><tr><td>zuek</td><td><b>zuei</b> a vosotros</td></tr><tr><td>haiek</td><td><b>haiei</b> a ellos</td></tr></table>',
   tip:'Con nombres propios: Dabid → <b>Dabiri</b>. En plural: amak → <b>amei</b>.'},
- {t:'-rentzat: «para quién»',h:'<p><b>-(r)entzat</b> = <b>para</b>. Si el nombre acaba en -a: <b>-rentzat</b> (amarentzat); si no, <b>-entzat</b>. Con pronombres: <b>niretzat</b>, <b>zuretzat</b>, <b>harentzat</b>…</p>',
+ {t:'-rentzat: «para quién»',h:'<p><b>-(r)entzat</b> = <b>para</b>. Si el nombre acaba en -a: <b>-rentzat</b> (amarentzat); si no, <b>-entzat</b>. Con pronombres: <b>niretzat</b>, <b>zuretzat</b>, <b>berarentzat</b>…</p>',
   ex:[['Hau zuretzat da.','Esto es para ti.'],['Kafea amarentzat da.','El café es para mamá.'],['Opari bat niretzat?','¿Un regalo para mí?']]},
  {t:'eman: dar',h:'<p><b>eman</b> (dar) lleva tres cosas: quien da (nik), lo que se da (liburua) y a quién (amari). En el verbo aparece todo junto: <b>diot</b> = yo se lo doy (a él/ella).</p>',
-  tb:'<table class="mini"><tr><th></th><th>(a él/ella)</th></tr><tr><td>nik</td><td><b>diot</b></td></tr><tr><td>zuk</td><td><b>diozu</b></td></tr><tr><td>hark</td><td><b>dio</b></td></tr><tr><td>guk</td><td><b>diogu</b></td></tr><tr><td>zuek</td><td><b>diozue</b></td></tr><tr><td>haiek</td><td><b>diote</b></td></tr></table>',
+  tb:'<table class="mini"><tr><th></th><th>(a él/ella)</th></tr><tr><td>nik</td><td><b>diot</b></td></tr><tr><td>zuk</td><td><b>diozu</b></td></tr><tr><td>berak</td><td><b>dio</b></td></tr><tr><td>guk</td><td><b>diogu</b></td></tr><tr><td>zuek</td><td><b>diozue</b></td></tr><tr><td>haiek</td><td><b>diote</b></td></tr></table>',
   ex:[['Nik amari liburua ematen diot.','Yo le doy el libro a mamá.'],['Nori eman diozu kafea?','¿A quién le has dado el café?'],['Zuk Dabiri ura ematen diozu.','Tú le das agua a David.']],
   tip:'Con varias cosas: <b>dizkiot, dizkiozu, dio→dizkio…</b> (liburuak ematen dizkiot).'}
  ],
@@ -1450,10 +1450,10 @@ LESSONS.push(
  ])},
 
 {id:'b3',lv:'a2',n:1,eu:'Gustatzen zait / zaio',es:'Gustar con todas las personas',ic:'💚',min:8,
- goals:['Decir a quién le gusta algo: niri, zuri, hari, guri…','Distinguir zait / zaio… (una cosa) de zaizkit / zaizkio… (varias)','Hacer y contestar «¿Zer gustatzen zaizu?»'],
+ goals:['Decir a quién le gusta algo: niri, zuri, berari, guri…','Distinguir zait / zaio… (una cosa) de zaizkit / zaizkio… (varias)','Hacer y contestar «¿Zer gustatzen zaizu?»'],
  steps:[
  {t:'A quién le gusta',h:'<p>En <b>gustatu</b> lo que gusta es el «sujeto» y a quién le gusta va en <b>-ri</b>. El verbo concuerda con <b>a quién</b>:</p>',
-  tb:'<table class="mini"><tr><th>A quién</th><th>1 cosa</th><th>Varias</th></tr><tr><td>niri (a mí)</td><td><b>zait</b></td><td><b>zaizkit</b></td></tr><tr><td>zuri (a ti)</td><td><b>zaizu</b></td><td><b>zaizkizu</b></td></tr><tr><td>hari (a él/ella)</td><td><b>zaio</b></td><td><b>zaizkio</b></td></tr><tr><td>guri (a nosotros)</td><td><b>zaigu</b></td><td><b>zaizkigu</b></td></tr><tr><td>zuei (a vosotros)</td><td><b>zaizue</b></td><td><b>zaizkizue</b></td></tr><tr><td>haiei (a ellos)</td><td><b>zaie</b></td><td><b>zaizkie</b></td></tr></table>',
+  tb:'<table class="mini"><tr><th>A quién</th><th>1 cosa</th><th>Varias</th></tr><tr><td>niri (a mí)</td><td><b>zait</b></td><td><b>zaizkit</b></td></tr><tr><td>zuri (a ti)</td><td><b>zaizu</b></td><td><b>zaizkizu</b></td></tr><tr><td>berari (a él/ella)</td><td><b>zaio</b></td><td><b>zaizkio</b></td></tr><tr><td>guri (a nosotros)</td><td><b>zaigu</b></td><td><b>zaizkigu</b></td></tr><tr><td>zuei (a vosotros)</td><td><b>zaizue</b></td><td><b>zaizkizue</b></td></tr><tr><td>haiei (a ellos)</td><td><b>zaie</b></td><td><b>zaizkie</b></td></tr></table>',
   tip:'Si gustan <b>varias</b> cosas aparece <b>-zki-</b>: zait → zaizkit.'},
  {t:'Frases',h:'<p>Orden: <b>a quién + lo que gusta + gustatzen + verbo</b>.</p>',
   ex:[['Amari kafea gustatzen zaio.','A mamá le gusta el café.'],['Guri mendia gustatzen zaigu.','A nosotros nos gusta el monte.'],['Niri sagarrak gustatzen zaizkit.','A mí me gustan las manzanas.'],['Zer gustatzen zaizu?','¿Qué te gusta?']]},
@@ -1484,7 +1484,7 @@ LESSONS.push(
   mc('Nahi','«Quiero un café»','¿Cuál es?','Kafe bat nahi dut',['Kafe bat naiz nahi','Nahi kafe bat zait','Kafe bat behar zait'],'<b>nahi dut</b>.'),
   mc('Behar','«Tengo que trabajar»','¿Cuál es?','Lan egin behar dut',['Lan egin ezin dut','Lan egin nahi zait','Behar lan egin naiz'],'<b>behar dut</b> = tengo que.'),
   mc('Ezin','«No puedo estudiar»','¿Cuál es?','Ezin dut ikasi',['Ikasi ezin naiz','Ez dut ikasi behar','Ikasi nahi ez dut'],'<b>ezin</b> va delante: ezin dut ikasi.'),
-  mc('Behar','«Mamá tiene que trabajar»','Elige el auxiliar','du',['dut','duzu','dute'],'Hark (ella) → <b>du</b>.'),
+  mc('Behar','«Mamá tiene que trabajar»','Elige el auxiliar','du',['dut','duzu','dute'],'Berak (ella) → <b>du</b>.'),
   mc('Nahi','«¿Quieres un café?»','¿Cuál es?','Kafe bat nahi al duzu?',['Kafe bat al nahi duzu?','Nahi al kafe bat duzu?','Kafe bat nahi duzu al?'],'<b>al</b> justo antes del auxiliar.')
  ],vq('aditzak',3))},
 
@@ -1571,9 +1571,9 @@ function SQ0(t,es,tip){return [sq({t,es,tip})]}
 Object.assign(LSUM,{
 b1:{sum:['La posición va detrás del nombre, que lleva el genitivo <b>-ren / -en</b>: mahaiaren gainean.','Posiciones: gainean, azpian, barruan, kanpoan, ondoan, aurrean, atzean, artean.','Preguntas: <b>Non dago…?</b> / <b>Non daude…?</b> (siempre egon).'],
  kw:[['gainean','sobre'],['azpian','debajo de'],['barruan','dentro de'],['kanpoan','fuera de'],['ondoan','al lado de'],['aurrean','delante de'],['atzean','detrás de'],['artean','entre'],['non dago?','¿dónde está?']]},
-b2:{sum:['<b>-ri</b> = a quién: amari, niri, zuri, hari, guri, zuei, haiei.','<b>-(r)entzat</b> = para quién: amarentzat, niretzat, zuretzat.','<b>eman</b>: diot, diozu, dio, diogu, diozue, diote (a él/ella); varias cosas: dizkiot…'],
- kw:[['eman','dar'],['amari','a mamá'],['niri','a mí'],['zuri','a ti'],['hari','a él / ella'],['niretzat','para mí'],['zuretzat','para ti'],['diot','yo se lo doy'],['nori?','¿a quién?'],['opari','regalo']]},
-b3:{sum:['A quién le gusta va en <b>-ri</b>: niri, zuri, hari, guri, zuei, haiei.','1 cosa: zait, zaizu, zaio, zaigu, zaizue, zaie; varias: zaizkit, zaizkizu, zaizkio…','Negar: <b>ez zait gustatzen</b>. Preguntar: <b>Gustatzen al zaizu?</b>'],
+b2:{sum:['<b>-ri</b> = a quién: amari, niri, zuri, berari, guri, zuei, haiei.','<b>-(r)entzat</b> = para quién: amarentzat, niretzat, zuretzat.','<b>eman</b>: diot, diozu, dio, diogu, diozue, diote (a él/ella); varias cosas: dizkiot…'],
+ kw:[['eman','dar'],['amari','a mamá'],['niri','a mí'],['zuri','a ti'],['berari','a él / ella'],['niretzat','para mí'],['zuretzat','para ti'],['diot','yo se lo doy'],['nori?','¿a quién?'],['opari','regalo']]},
+b3:{sum:['A quién le gusta va en <b>-ri</b>: niri, zuri, berari, guri, zuei, haiei.','1 cosa: zait, zaizu, zaio, zaigu, zaizue, zaie; varias: zaizkit, zaizkizu, zaizkio…','Negar: <b>ez zait gustatzen</b>. Preguntar: <b>Gustatzen al zaizu?</b>'],
  kw:[['gustatu','gustar'],['zait','me gusta'],['zaizu','te gusta'],['zaio','le gusta'],['zaigu','nos gusta'],['zaizkit','me gustan'],['asko','mucho'],['gutxi','poco']]},
 b4:{sum:['<b>nahi dut</b> = quiero, <b>behar dut</b> = tengo que, <b>ezin dut</b> = no puedo.','Los tres van con otro verbo en participio y el auxiliar ukan.','<b>ezin</b> va delante del auxiliar; <b>nahi / behar</b> detrás del verbo.'],
  kw:[['nahi','querer'],['behar','necesitar / tener que'],['ezin','no poder'],['gaur ezin dut','hoy no puedo'],['barkatu','perdón'],['laguntza','ayuda']]},
@@ -1594,7 +1594,7 @@ LESSONS.push(
  goals:['Conjugar el pasado de joan, etorri, egon e ibili','Decir dónde estabas y adónde ibas','Reconocer estas formas sin auxiliar'],
  steps:[
  {t:'Pasado sin auxiliar',h:'<p>Estos cuatro verbos forman el pasado <b>por sí solos</b>, sin auxiliar, igual que en presente. Son muy frecuentes.</p>',
-  tb:'<table class="mini"><tr><th></th><th>joan</th><th>etorri</th><th>egon</th><th>ibili</th></tr><tr><td>ni</td><td><b>nindoan</b></td><td><b>nentorren</b></td><td><b>nengoen</b></td><td><b>nenbilen</b></td></tr><tr><td>zu</td><td><b>zindoazen</b></td><td><b>zentozen</b></td><td><b>zeunden</b></td><td><b>zenbiltzan</b></td></tr><tr><td>hura</td><td><b>zihoan</b></td><td><b>zetorren</b></td><td><b>zegoen</b></td><td><b>zebilen</b></td></tr><tr><td>gu</td><td><b>gindoazen</b></td><td><b>gentozen</b></td><td><b>geunden</b></td><td><b>genbiltzan</b></td></tr><tr><td>zuek</td><td><b>zindoazten</b></td><td><b>zentozten</b></td><td><b>zeundeten</b></td><td><b>zenbiltzaten</b></td></tr><tr><td>haiek</td><td><b>zihoazen</b></td><td><b>zetozen</b></td><td><b>zeuden</b></td><td><b>zebiltzan</b></td></tr></table>',
+  tb:'<table class="mini"><tr><th></th><th>joan</th><th>etorri</th><th>egon</th><th>ibili</th></tr><tr><td>ni</td><td><b>nindoan</b></td><td><b>nentorren</b></td><td><b>nengoen</b></td><td><b>nenbilen</b></td></tr><tr><td>zu</td><td><b>zindoazen</b></td><td><b>zentozen</b></td><td><b>zeunden</b></td><td><b>zenbiltzan</b></td></tr><tr><td>bera</td><td><b>zihoan</b></td><td><b>zetorren</b></td><td><b>zegoen</b></td><td><b>zebilen</b></td></tr><tr><td>gu</td><td><b>gindoazen</b></td><td><b>gentozen</b></td><td><b>geunden</b></td><td><b>genbiltzan</b></td></tr><tr><td>zuek</td><td><b>zindoazten</b></td><td><b>zentozten</b></td><td><b>zeundeten</b></td><td><b>zenbiltzaten</b></td></tr><tr><td>haiek</td><td><b>zihoazen</b></td><td><b>zetozen</b></td><td><b>zeuden</b></td><td><b>zebiltzan</b></td></tr></table>',
   tip:'Significado: <b>nindoan</b> = iba, <b>nentorren</b> = venía, <b>nengoen</b> = estaba, <b>nenbilen</b> = andaba.'},
  {t:'En frases',h:'<p>Describen una situación del pasado: dónde estabas, adónde ibas, de dónde venías.</p>',
   ex:[['Atzo etxean nengoen.','Ayer estaba en casa.'],['Iruñera nindoan.','Iba a Pamplona.'],['Nire anaia gu ikustera zetorren.','Mi hermano venía a vernos.'],['Non zeunden atzo?','¿Dónde estabas ayer?']]},
@@ -1602,7 +1602,7 @@ LESSONS.push(
  ],
  make:()=>[].concat(conjQs(['joan (iragana)','etorri (iragana)','egon','ibili (iragana)'],6),SQ0(['atzo','etxean','nengoen'],'Ayer estaba en casa.','egon en pasado: nengoen.'),[
   mc('Iragana','«Yo iba» (joan)','¿Cuál es?','nindoan',['noa','nentorren','nengoen'],'<b>nindoan</b> = joan, pasado, ni.'),
-  mc('Iragana','«Ella venía» (etorri)','¿Cuál es?','zetorren',['dator','zihoan','zegoen'],'<b>zetorren</b> = etorri, pasado, hura.'),
+  mc('Iragana','«Ella venía» (etorri)','¿Cuál es?','zetorren',['dator','zihoan','zegoen'],'<b>zetorren</b> = etorri, pasado, bera.'),
   mc('Iragana','«Estábamos» (egon)','¿Cuál es?','geunden',['gaude','gindoazen','gentozen'],'<b>geunden</b> = egon, pasado, gu.'),
   mc('Iragana','«¿Dónde estabas ayer?»','¿Cuál es?','Non zeunden atzo?',['Non zaude atzo?','Non nengoen atzo?','Non zen atzo?'],'<b>zeunden</b> = tú estabas.')
  ])},
@@ -1611,7 +1611,7 @@ LESSONS.push(
  goals:['Formar el pasado habitual: joaten nintzen, jaten nuen','Decir qué estabas haciendo con ari nintzen','Usar txikitan, gaztetan, atzo'],
  steps:[
  {t:'El pasado habitual',h:'<p>Para lo que hacías <b>habitualmente</b> en el pasado, forma habitual del verbo (-ten / -tzen) + auxiliar en pasado: <b>nintzen</b> (con izan) o <b>nuen</b> (con ukan).</p>',
-  tb:'<table class="mini"><tr><th></th><th>izan (nor)</th><th>ukan (nork)</th></tr><tr><td>ni</td><td><b>nintzen</b></td><td><b>nuen</b></td></tr><tr><td>zu</td><td><b>zinen</b></td><td><b>zenuen</b></td></tr><tr><td>hura</td><td><b>zen</b></td><td><b>zuen</b></td></tr><tr><td>gu</td><td><b>ginen</b></td><td><b>genuen</b></td></tr><tr><td>zuek</td><td><b>zineten</b></td><td><b>zenuten</b></td></tr><tr><td>haiek</td><td><b>ziren</b></td><td><b>zuten</b></td></tr></table>',
+  tb:'<table class="mini"><tr><th></th><th>izan (nor)</th><th>ukan (nork)</th></tr><tr><td>ni</td><td><b>nintzen</b></td><td><b>nuen</b></td></tr><tr><td>zu</td><td><b>zinen</b></td><td><b>zenuen</b></td></tr><tr><td>bera</td><td><b>zen</b></td><td><b>zuen</b></td></tr><tr><td>gu</td><td><b>ginen</b></td><td><b>genuen</b></td></tr><tr><td>zuek</td><td><b>zineten</b></td><td><b>zenuten</b></td></tr><tr><td>haiek</td><td><b>ziren</b></td><td><b>zuten</b></td></tr></table>',
   ex:[['Txikitan mendira joaten nintzen.','De pequeño iba al monte.'],['Amak ogia egiten zuen.','Mamá hacía pan (solía).'],['Gaztetan futbolean jolasten nuen.','De joven jugaba al fútbol.']]},
  {t:'«Estaba haciendo»: ari nintzen',h:'<p>Para una acción <b>en curso</b> en el pasado: verbo habitual + <b>ari</b> + auxiliar en pasado.</p>',
   ex:[['Ikasten ari nintzen.','Estaba estudiando.'],['Ama sukaldean lanean ari zen.','Mamá estaba trabajando en la cocina.'],['Telebista ikusten ari ginen.','Estábamos viendo la tele.']],
@@ -1631,7 +1631,7 @@ LESSONS.push(
  goals:['Decir «te» y «me» con el auxiliar: zaitut, nauzu','Usar maite zaitut, ikusten zaitut','Reconocer gaitu / gaituzu (nos)'],
  steps:[
  {t:'Cuando el objeto soy yo, tú o nosotros',h:'<p>Hasta ahora el objeto era una cosa (dut, ditut). Cuando el objeto es una <b>persona</b> (me, te, nos) el auxiliar cambia entero. Estas son las formas más útiles:</p>',
-  tb:'<table class="mini"><tr><th>Quién → a quién</th><th>Auxiliar</th></tr><tr><td>nik → zu</td><td><b>zaitut</b> (te)</td></tr><tr><td>hark → zu</td><td><b>zaitu</b></td></tr><tr><td>guk → zu</td><td><b>zaitugu</b></td></tr><tr><td>zuk → ni</td><td><b>nauzu</b> (me)</td></tr><tr><td>hark → ni</td><td><b>nau</b></td></tr><tr><td>haiek → ni</td><td><b>naute</b></td></tr><tr><td>hark → gu</td><td><b>gaitu</b> (nos)</td></tr><tr><td>zuk → gu</td><td><b>gaituzu</b></td></tr><tr><td>haiek → gu</td><td><b>gaituzte</b></td></tr></table>',
+  tb:'<table class="mini"><tr><th>Quién → a quién</th><th>Auxiliar</th></tr><tr><td>nik → zu</td><td><b>zaitut</b> (te)</td></tr><tr><td>berak → zu</td><td><b>zaitu</b></td></tr><tr><td>guk → zu</td><td><b>zaitugu</b></td></tr><tr><td>zuk → ni</td><td><b>nauzu</b> (me)</td></tr><tr><td>berak → ni</td><td><b>nau</b></td></tr><tr><td>haiek → ni</td><td><b>naute</b></td></tr><tr><td>berak → gu</td><td><b>gaitu</b> (nos)</td></tr><tr><td>zuk → gu</td><td><b>gaituzu</b></td></tr><tr><td>haiek → gu</td><td><b>gaituzte</b></td></tr></table>',
   tip:'No hace falta memorizar la tabla entera: empieza por <b>zaitut</b> (te … yo), <b>nauzu</b> (me … tú) y <b>nau</b> (me … él/ella).'},
  {t:'En frases',h:'<p>Se usan con verbos como <b>ikusi, maite izan, entzun, ezagutu</b>.</p>',
   ex:[['Maite zaitut.','Te quiero.'],['Ikusten zaitut.','Te veo.'],['Zuk ni ikusten nauzu.','Tú me ves.'],['Amak maite gaitu.','Mamá nos quiere.'],['Entzuten nauzu?','¿Me oyes?']]},
@@ -1640,9 +1640,9 @@ LESSONS.push(
  make:()=>[].concat(SQ0(['maite','zaitut'],'Te quiero.','zaitut = yo a ti.'),SQ0(['zuk','ni','ikusten','nauzu'],'Tú me ves.','nauzu = tú a mí.'),[
   mc('Zaitut','«Te quiero»','¿Cuál es?','Maite zaitut',['Maite nauzu','Maite dut','Maite zait'],'Yo → ti: <b>zaitut</b>.'),
   mc('Nauzu','«Tú me ves»','¿Cuál es?','Ikusten nauzu',['Ikusten zaitut','Ikusten du','Ikusten gaitu'],'Tú → mí: <b>nauzu</b>.'),
-  mc('Gaitu','«Mamá nos quiere»','Elige el auxiliar','gaitu',['gaitut','zaitu','nau'],'Hark → gu: <b>gaitu</b>.'),
-  mc('Nau','«Él/ella me ve»','Elige el auxiliar','nau',['nauzu','zaitu','naute'],'Hark → ni: <b>nau</b>.'),
-  mc('Zaitu','«Él/ella te ve»','Elige el auxiliar','zaitu',['zaitut','nauzu','gaitu'],'Hark → zu: <b>zaitu</b>.')
+  mc('Gaitu','«Mamá nos quiere»','Elige el auxiliar','gaitu',['gaitut','zaitu','nau'],'Berak → gu: <b>gaitu</b>.'),
+  mc('Nau','«Él/ella me ve»','Elige el auxiliar','nau',['nauzu','zaitu','naute'],'Berak → ni: <b>nau</b>.'),
+  mc('Zaitu','«Él/ella te ve»','Elige el auxiliar','zaitu',['zaitut','nauzu','gaitu'],'Berak → zu: <b>zaitu</b>.')
  ])},
 
 {id:'b12',lv:'a1',n:24,eu:'Aginduak',es:'Órdenes, peticiones y prohibiciones',ic:'📣',min:7,
@@ -1668,7 +1668,7 @@ LESSONS.push(
  goals:['Formar el potencial: dezaket (con objeto), naiteke (sin objeto)','Pedir permiso: Sar naiteke?','Distinguir ezin dut de dezaket'],
  steps:[
  {t:'Dos tablas de «poder»',h:'<p>Para <b>poder</b> hay formas propias. Se usa el participio y la forma que corresponde al tipo de verbo:</p>',
-  tb:'<table class="mini"><tr><th></th><th>con objeto<br>(ukan)</th><th>sin objeto<br>(izan)</th></tr><tr><td>ni</td><td><b>dezaket</b></td><td><b>naiteke</b></td></tr><tr><td>zu</td><td><b>dezakezu</b></td><td><b>zaitezke</b></td></tr><tr><td>hura</td><td><b>dezake</b></td><td><b>daiteke</b></td></tr><tr><td>gu</td><td><b>dezakegu</b></td><td><b>gaitezke</b></td></tr><tr><td>zuek</td><td><b>dezakezue</b></td><td><b>zaitezkete</b></td></tr><tr><td>haiek</td><td><b>dezakete</b></td><td><b>daitezke</b></td></tr></table>',
+  tb:'<table class="mini"><tr><th></th><th>con objeto<br>(ukan)</th><th>sin objeto<br>(izan)</th></tr><tr><td>ni</td><td><b>dezaket</b></td><td><b>naiteke</b></td></tr><tr><td>zu</td><td><b>dezakezu</b></td><td><b>zaitezke</b></td></tr><tr><td>bera</td><td><b>dezake</b></td><td><b>daiteke</b></td></tr><tr><td>gu</td><td><b>dezakegu</b></td><td><b>gaitezke</b></td></tr><tr><td>zuek</td><td><b>dezakezue</b></td><td><b>zaitezkete</b></td></tr><tr><td>haiek</td><td><b>dezakete</b></td><td><b>daitezke</b></td></tr></table>',
   tip:'<b>Euskaraz hitz egin dezaket</b> (hablar lleva objeto) · <b>Etor naiteke</b> (venir no lo lleva).'},
  {t:'Preguntar si puedes',h:'<p>Mismas formas en pregunta, con <b>al</b> si quieres: <b>Sar naiteke?</b> (¿puedo pasar?), <b>Hitz egin dezaket?</b></p>',
   ex:[['Sar naiteke?','¿Puedo pasar?'],['Euskaraz hitz egin dezaket.','Puedo hablar en euskera.'],['Bihar etor naiteke.','Mañana puedo venir.'],['Telefonoa erabil dezaket?','¿Puedo usar el teléfono?']]},
@@ -1684,7 +1684,7 @@ LESSONS.push(
  goals:['Decir «con» con -rekin: amarekin, nirekin','Decir el medio con -z: autobusez, oinez','Usar -raino (hasta) y -rantz (hacia)'],
  steps:[
  {t:'-rekin: «con»',h:'<p>Para <b>con alguien</b> se añade <b>-rekin</b> (o <b>-ekin</b> si acaba en consonante). Con pronombres:</p>',
-  tb:'<table class="mini"><tr><th>Pronombre</th><th>Con…</th></tr><tr><td>ni</td><td><b>nirekin</b></td></tr><tr><td>zu</td><td><b>zurekin</b></td></tr><tr><td>hura</td><td><b>harekin</b></td></tr><tr><td>gu</td><td><b>gurekin</b></td></tr><tr><td>zuek</td><td><b>zuekin</b></td></tr><tr><td>haiek</td><td><b>haiekin</b></td></tr></table>',
+  tb:'<table class="mini"><tr><th>Pronombre</th><th>Con…</th></tr><tr><td>ni</td><td><b>nirekin</b></td></tr><tr><td>zu</td><td><b>zurekin</b></td></tr><tr><td>bera</td><td><b>berarekin</b></td></tr><tr><td>gu</td><td><b>gurekin</b></td></tr><tr><td>zuek</td><td><b>zuekin</b></td></tr><tr><td>haiek</td><td><b>haiekin</b></td></tr></table>',
   ex:[['Amarekin mendira joaten naiz.','Voy al monte con mamá.'],['Norekin bizi zara?','¿Con quién vives?'],['Nirekin zatoz?','¿Vienes conmigo?']]},
  {t:'-z: el medio',h:'<p><b>-z</b> dice <b>cómo</b> o <b>en qué</b>: autobusez (en autobús), trenez, autoz, oinez (a pie), euskaraz (en euskera).</p>',
   ex:[['Autobusez etorri naiz.','He venido en autobús.'],['Oinez joaten naiz lanera.','Voy al trabajo a pie.'],['Trenez joaten naiz.','Voy en tren.']]},
@@ -1796,8 +1796,8 @@ b12:{sum:['Orden simple: el participio solo (Itxi atea!).','<b>zatoz / zoaz / za
  kw:[['itxi','cerrar'],['ireki','abrir'],['zatoz','ven'],['zoaz','ve'],['zaude','espera, quédate'],['ezazu','(petición educada)'],['hona','aquí (hacia)']]},
 b13:{sum:['Potencial: <b>dezaket…</b> (verbos con objeto) y <b>naiteke…</b> (sin objeto).','Pedir permiso: <b>Sar naiteke?</b>','Negar: <b>ezin dut</b> + verbo.'],
  kw:[['dezaket','puedo (hacer algo)'],['naiteke','puedo (ir, venir…)'],['sar','entrar'],['ahal','poder'],['ezin','no poder'],['erabili','usar']]},
-b14:{sum:['<b>-rekin</b> = con: amarekin, nirekin, zurekin, harekin, gurekin, zuekin, haiekin.','<b>-z</b> = medio: autobusez, trenez, oinez, euskaraz.','<b>-raino</b> = hasta; <b>-rantz</b> = hacia.'],
- kw:[['nirekin','conmigo'],['zurekin','contigo'],['harekin','con él/ella'],['autobusez','en autobús'],['trenez','en tren'],['oinez','a pie'],['Iruñeraino','hasta Pamplona'],['etxerantz','hacia casa']]},
+b14:{sum:['<b>-rekin</b> = con: amarekin, nirekin, zurekin, berarekin, gurekin, zuekin, haiekin.','<b>-z</b> = medio: autobusez, trenez, oinez, euskaraz.','<b>-raino</b> = hasta; <b>-rantz</b> = hacia.'],
+ kw:[['nirekin','conmigo'],['zurekin','contigo'],['berarekin','con él/ella'],['autobusez','en autobús'],['trenez','en tren'],['oinez','a pie'],['Iruñeraino','hasta Pamplona'],['etxerantz','hacia casa']]},
 b15:{sum:['<b>-(e)la</b> = que: dela, duela, dudala, naizela, dagoela (tras esan, pentsatu, uste izan).','Preguntas indirectas con <b>-n</b>: non dagoen, zer den.','<b>baietz</b> / <b>ezetz</b> = que sí / que no.'],
  kw:[['esan','decir'],['uste dut','creo'],['pentsatu','pensar'],['galdetu','preguntar'],['baietz','que sí'],['ezetz','que no'],['badakizu…?','¿sabes…?'],['ez dakit','no sé']]},
 b16:{sum:['<b>ba-</b> + auxiliar = si: baduzu, bazara, badago.','<b>-(e)nean</b> = cuando: naizenean, zarenean, denean.','<b>baino lehen</b> = antes de; <b>eta gero</b> = después de.'],
@@ -1957,11 +1957,11 @@ LESSONS.push(
  goals:['Formar zidan, zizun, zion, zigun, zizuen, zien','Usar dit, dizu, dio, digu en presente con sujeto de 3.ª persona','Contar quién te dio o te dijo algo'],
  steps:[
  {t:'Pasado: «me dio, te dio…»',h:'<p>Cuando <b>otra persona</b> (él, ella, mamá…) hace algo <b>a alguien</b>, el auxiliar cambia según el «a quién». Pasado, una cosa:</p>',
-  tb:mt(['A quién','Una cosa','Varias cosas'],[['niri (a mí)','<b>zidan</b>','<b>zizkidan</b>'],['zuri (a ti)','<b>zizun</b>','<b>zizkizun</b>'],['hari (a él/ella)','<b>zion</b>','<b>zizkion</b>'],['guri (a nosotros)','<b>zigun</b>','<b>zizkigun</b>'],['zuei (a vosotros)','<b>zizuen</b>','<b>zizkizuen</b>'],['haiei (a ellos)','<b>zien</b>','<b>zizkien</b>']]),
+  tb:mt(['A quién','Una cosa','Varias cosas'],[['niri (a mí)','<b>zidan</b>','<b>zizkidan</b>'],['zuri (a ti)','<b>zizun</b>','<b>zizkizun</b>'],['berari (a él/ella)','<b>zion</b>','<b>zizkion</b>'],['guri (a nosotros)','<b>zigun</b>','<b>zizkigun</b>'],['zuei (a vosotros)','<b>zizuen</b>','<b>zizkizuen</b>'],['haiei (a ellos)','<b>zien</b>','<b>zizkien</b>']]),
   ex:[['Amak liburu bat eman zidan.','Mamá me dio un libro.'],['Irakasleak azalpen bat eman zigun.','El profesor nos dio una explicación.'],['Zer esan zizun?','¿Qué te dijo?'],['Ez zidan ezer esan.','No me dijo nada.']],
   tip:'Si lo dado es <b>varias cosas</b>, aparece <b>-zki-</b>: eman zizkidan liburuak.'},
  {t:'Presente: «me da, te da…»',h:'<p>En presente el auxiliar es el mismo patrón, sin la <b>z-</b> del pasado:</p>',
-  tb:mt(['A quién','Una cosa','Varias cosas'],[['niri','<b>dit</b>','<b>dizkit</b>'],['zuri','<b>dizu</b>','<b>dizkizu</b>'],['hari','<b>dio</b>','<b>dizkio</b>'],['guri','<b>digu</b>','<b>dizkigu</b>'],['zuei','<b>dizue</b>','<b>dizkizue</b>'],['haiei','<b>die</b>','<b>dizkie</b>']]),
+  tb:mt(['A quién','Una cosa','Varias cosas'],[['niri','<b>dit</b>','<b>dizkit</b>'],['zuri','<b>dizu</b>','<b>dizkizu</b>'],['berari','<b>dio</b>','<b>dizkio</b>'],['guri','<b>digu</b>','<b>dizkigu</b>'],['zuei','<b>dizue</b>','<b>dizkizue</b>'],['haiei','<b>die</b>','<b>dizkie</b>']]),
   ex:[['Aitak dirua ematen dit.','Papá me da dinero.'],['Irakasleak euskara irakasten digu.','El profesor nos enseña euskera.'],['Mikelek mezu bat bidaltzen dit.','Mikel me envía un mensaje.']]}
  ],
  make:()=>[].concat([
@@ -1970,7 +1970,7 @@ LESSONS.push(
   mc('Pasado','«Nos dio»','¿Cuál es?','zigun',['zidan','zien','zion'],'<b>zigun</b> = nos (lo) dio.'),
   mc('Presente','«Me da» (una cosa)','¿Cuál es?','dit',['zidan','dizkit','dio'],'<b>dit</b> = me (lo) da.'),
   mc('Varias cosas','«Me dio unos libros»','¿Qué auxiliar?','zizkidan',['zidan','dizkit','zizkion'],'Varias cosas → <b>-zki-</b>: zizkidan.')
- ],SQ0(['amak','liburu','bat','eman','zidan'],'Mamá me dio un libro.','zidan = me lo dio (una cosa).'),SQ0(['zer','esan','zizun'],'¿Qué te dijo?','zizun = te dijo.'),SQ0(['irakasleak','euskara','irakasten','digu'],'El profesor nos enseña euskera.','digu = nos lo enseña.'),conjQs(['eman (hark… niri, zuri…)'],3))},
+ ],SQ0(['amak','liburu','bat','eman','zidan'],'Mamá me dio un libro.','zidan = me lo dio (una cosa).'),SQ0(['zer','esan','zizun'],'¿Qué te dijo?','zizun = te dijo.'),SQ0(['irakasleak','euskara','irakasten','digu'],'El profesor nos enseña euskera.','digu = nos lo enseña.'),conjQs(['eman (berak… niri, zuri…)'],3))},
 
 {id:'e2',lv:'a2',n:11,eu:'Geroa eta asmoak',es:'Planes: iré, pienso, voy a…',ic:'🗓️',min:8,
  goals:['Formar el futuro con -ko/-go y hablar de planes','Decir «tengo la intención de…» con -tzeko asmoa dut','Usar expresiones de tiempo futuro'],
@@ -2124,9 +2124,9 @@ LESSONS.push(
  goals:['Distinguir ekarri (traer) de eraman (llevar)','Conjugar dakart/dakartzat y daramat/daramatzat','Pedir y ofrecer cosas'],
  steps:[
  {t:'Traer y llevar',h:'<p><b>ekarri</b> = traer (hacia aquí). <b>eraman</b> = llevar (hacia allá). Sus formas no usan auxiliar:</p>',
-  tb:mt(['','ekarri (1 cosa)','eraman (1 cosa)'],[['ni','<b>dakart</b>','<b>daramat</b>'],['zu','<b>dakarzu</b>','<b>daramazu</b>'],['hura','<b>dakar</b>','<b>darama</b>'],['gu','<b>dakargu</b>','<b>daramagu</b>'],['zuek','<b>dakarzue</b>','<b>daramazue</b>'],['haiek','<b>dakarte</b>','<b>daramate</b>']]),
+  tb:mt(['','ekarri (1 cosa)','eraman (1 cosa)'],[['ni','<b>dakart</b>','<b>daramat</b>'],['zu','<b>dakarzu</b>','<b>daramazu</b>'],['bera','<b>dakar</b>','<b>darama</b>'],['gu','<b>dakargu</b>','<b>daramagu</b>'],['zuek','<b>dakarzue</b>','<b>daramazue</b>'],['haiek','<b>dakarte</b>','<b>daramate</b>']]),
   ex:[['Ogia dakart.','Traigo el pan.'],['Zer daramazu?','¿Qué llevas?'],['Mutilak kafea dakar.','El chico trae el café.'],['Poltsa daramagu.','Llevamos la bolsa.']],
-  tip:'Con varias cosas: <b>dakartzat</b>, <b>daramatzat</b> (ni); <b>dakartza</b>, <b>daramatza</b> (hura).'}
+  tip:'Con varias cosas: <b>dakartzat</b>, <b>daramatzat</b> (ni); <b>dakartza</b>, <b>daramatza</b> (bera).'}
  ],
  make:()=>[].concat([
   mc('Aditza','«Traigo el pan» (hacia aquí)','¿Cuál es?','Ogia dakart',['Ogia daramat','Ogia nator','Ogia noa'],'<b>ekarri</b> → dakart.'),
@@ -2187,7 +2187,7 @@ lessonAfter('l9',{id:'r1',eu:'Errepasoa · NOR eta NORK',es:'Repaso: ¿izan o uk
  steps:[
  {t:'La pregunta clave',h:'<p>Antes de elegir auxiliar, pregúntate: <b>¿hay un «qué» (objeto directo)?</b></p><p><b>No</b> → <b>NOR</b> (izan): <i>Ni etxean nago</i>, <i>Ni Iruñera joaten naiz</i>.<br><b>Sí</b> → <b>NOR-NORK</b> (ukan): <i>Nik kafea edaten dut</i>.</p>',
   tb:mt(['','NOR (izan)','NOR-NORK (ukan)'],[['yo','naiz','dut'],['tú','zara','duzu'],['él/ella','da','du'],['nosotros','gara','dugu'],['vosotros','zarete','duzue'],['ellos','dira','dute']]),
-  tip:'Con NOR el sujeto no lleva -k (ni, zu, hura). Con NORK sí (nik, zuk, hark).'},
+  tip:'Con NOR el sujeto no lleva -k (ni, zu, bera). Con NORK sí (nik, zuk, berak).'},
  {t:'Verbos típicos',h:'<p><b>NOR</b> (algo que «eres» o «haces» sin objeto): joan, etorri, bizi, egon, jaio, erori.<br><b>NORK</b> (haces algo a algo): jan, edan, ikusi, irakurri, idatzi, ikasi, nahi izan, behar izan.</p>',
   ex:[['Ni Elizondon bizi naiz.','Vivo en Elizondo.'],['Nik euskara ikasten dut.','Aprendo euskera.'],['Etxean nago.','Estoy en casa.'],['Zuk ogia jaten duzu.','Comes pan.']]}
  ],
@@ -2213,34 +2213,34 @@ lessonAfter('e1',{id:'r3',lv:'a2',eu:'Errepasoa · aditz motak',es:'Repaso A2: t
  {t:'¿Quién hace qué a quién?',h:'<p>Con NOR-NORI-NORK hay <b>dos</b> personas en el verbo: quien da (-k) y quien recibe (-ri). <b>dit</b> = (él) me lo da · <b>diot</b> = (yo) se lo doy.</p>',
   ex:[['Amak liburu bat eman zidan.','Mamá me dio un libro.'],['Nik amari liburua eman nion.','Le di el libro a mamá.'],['Niri musika gustatzen zitzaidan.','Me gustaba la música.']]}
  ],
- make:()=>[].concat(typeQsT(6,[0,1,2,3]),conjQs(['izan','ukan','gustatu','eman','eman (hark… niri, zuri…)'],5),SQ0(['amak','niri','liburu','bat','eman','zidan'],'Mamá me dio un libro.','zidan = me lo dio.'))});
+ make:()=>[].concat(typeQsT(6,[0,1,2,3]),conjQs(['izan','ukan','gustatu','eman','eman (berak… niri, zuri…)'],5),SQ0(['amak','niri','liburu','bat','eman','zidan'],'Mamá me dio un libro.','zidan = me lo dio.'))});
 
 const pastQs=(keys,n)=>{const o=[],seen=new Set();let t=0;window.FORCEPAST=true;try{while(o.length<n&&t++<200){const q=genConj(keys[rnd(keys.length)]);if(q.meta&&/^iragana/.test(q.meta.tk)&&!seen.has(q.key)){seen.add(q.key);o.push(q)}}}finally{window.FORCEPAST=false}return o};
 const withPast=f=>()=>{window.FORCEPAST=true;try{return f()}finally{window.FORCEPAST=false}};
-const PRO=[['ni','nintzen','nengoen','nuen'],['zu','zinen','zeunden','zenuen'],['hura','zen','zegoen','zuen'],['gu','ginen','geunden','genuen'],['zuek','zineten','zeundeten','zenuten'],['haiek','ziren','zeuden','zuten']];
+const PRO=[['ni','nintzen','nengoen','nuen'],['zu','zinen','zeunden','zenuen'],['bera','zen','zegoen','zuen'],['gu','ginen','geunden','genuen'],['zuek','zineten','zeundeten','zenuten'],['haiek','ziren','zeuden','zuten']];
 lessonAfter('b12',{id:'l10',eu:'Atzo · izan eta egon',es:'El pasado de «ser» y «estar»',ic:'⏪',min:8,
- goals:['Formar el pasado de izan: nintzen, zinen, zen…','Formar el pasado de egon: nengoen, zeunden, zegoen…','Seguir distinguiendo ni / zu / hura / gu / zuek / haiek'],
+ goals:['Formar el pasado de izan: nintzen, zinen, zen…','Formar el pasado de egon: nengoen, zeunden, zegoen…','Seguir distinguiendo ni / zu / bera / gu / zuek / haiek'],
  steps:[
- {t:'Hasta ahora, solo presente',h:'<p>Todo lo que has visto está en <b>presente</b>. El pasado usa <b>las mismas personas</b> (ni, zu, hura, gu, zuek, haiek); solo cambia la forma del auxiliar. Marcador típico: <b>atzo</b> (ayer).</p>',
-  tb:mt(['','Presente','Pasado'],[['ni','naiz','nintzen'],['zu','zara','zinen'],['hura','da','zen'],['gu','gara','ginen'],['zuek','zarete','zineten'],['haiek','dira','ziren']]),
-  tip:'Primero decide la persona (¿ni, zu, hura…?). Después elige la forma. Las personas no cambian.'},
+ {t:'Hasta ahora, solo presente',h:'<p>Todo lo que has visto está en <b>presente</b>. El pasado usa <b>las mismas personas</b> (ni, zu, bera, gu, zuek, haiek); solo cambia la forma del auxiliar. Marcador típico: <b>atzo</b> (ayer).</p>',
+  tb:mt(['','Presente','Pasado'],[['ni','naiz','nintzen'],['zu','zara','zinen'],['bera','da','zen'],['gu','gara','ginen'],['zuek','zarete','zineten'],['haiek','dira','ziren']]),
+  tip:'Primero decide la persona (¿ni, zu, bera…?). Después elige la forma. Las personas no cambian.'},
  {t:'Izan en pasado',h:'<p>Para ser/estar con identidad, origen, profesión… en un momento ya cerrado.</p>',
-  ex:[['Atzo ni etxean nintzen.','Ayer yo estaba (me quedé) en casa.'],['Zu atzo Iruñean zinen.','Ayer estuviste en Pamplona.'],['Hura atzo nekatuta zen.','Ayer estaba cansado.'],['Gu atzo mendian ginen.','Ayer estuvimos en el monte.']]},
+  ex:[['Atzo ni etxean nintzen.','Ayer yo estaba (me quedé) en casa.'],['Zu atzo Iruñean zinen.','Ayer estuviste en Pamplona.'],['Bera atzo nekatuta zen.','Ayer estaba cansado.'],['Gu atzo mendian ginen.','Ayer estuvimos en el monte.']]},
  {t:'Egon en pasado',h:'<p><b>egon</b> (estar en un lugar) también tiene su pasado, con forma propia.</p>',
-  tb:mt(['','Presente','Pasado'],[['ni','nago','nengoen'],['zu','zaude','zeunden'],['hura','dago','zegoen'],['gu','gaude','geunden'],['zuek','zaudete','zeundeten'],['haiek','daude','zeuden']]),
+  tb:mt(['','Presente','Pasado'],[['ni','nago','nengoen'],['zu','zaude','zeunden'],['bera','dago','zegoen'],['gu','gaude','geunden'],['zuek','zaudete','zeundeten'],['haiek','daude','zeuden']]),
   ex:[['Atzo etxean nengoen.','Ayer estaba en casa.'],['Non zeunden atzo?','¿Dónde estabas ayer?']]}
  ],
  make:withPast(()=>[].concat(pastQs(['izan','egon'],6),SQ0(['atzo','ni','etxean','nengoen'],'Ayer estaba en casa.','egon, persona «ni» → nengoen.'),SQ0(['atzo','gu','mendian','ginen'],'Ayer estuvimos en el monte.','izan, persona «gu» → ginen.'),[
-  mc('Iragana','«Ayer ella estaba cansada»','¿Cuál es?','Atzo nekatuta zen',['Atzo nekatuta da','Atzo nekatuta nintzen','Atzo nekatuta zinen'],'Persona «hura» en pasado de izan → <b>zen</b>.'),
+  mc('Iragana','«Ayer ella estaba cansada»','¿Cuál es?','Atzo nekatuta zen',['Atzo nekatuta da','Atzo nekatuta nintzen','Atzo nekatuta zinen'],'Persona «bera» en pasado de izan → <b>zen</b>.'),
   mc('Iragana','«¿Dónde estabas ayer?»','¿Cuál es?','Non zeunden atzo?',['Non zaude atzo?','Non nengoen atzo?','Non zegoen atzo?'],'«zu» con egon en pasado → <b>zeunden</b>.')
  ]))});
 lessonAfter('l10',{id:'t2',eu:'Atzo egin nuen',es:'El pasado con objeto (ukan) y «he hecho»',ic:'📖',min:9,
  goals:['Formar nuen, zenuen, zuen, genuen, zenuten, zuten','Mantener el participio y cambiar solo el auxiliar','Distinguir pasado (atzo) de perfecto (gaur)'],
  steps:[
  {t:'Ukan en pasado',h:'<p>Con verbos que llevan «qué» (jan, edan, ikusi, irakurri…), el auxiliar pasa de <b>dut</b> a <b>nuen</b>. El participio <b>no cambia</b>.</p>',
-  tb:mt(['','Presente','Pasado'],[['nik','dut','nuen'],['zuk','duzu','zenuen'],['hark','du','zuen'],['guk','dugu','genuen'],['zuek','duzue','zenuten'],['haiek','dute','zuten']]),
+  tb:mt(['','Presente','Pasado'],[['nik','dut','nuen'],['zuk','duzu','zenuen'],['berak','du','zuen'],['guk','dugu','genuen'],['zuek','duzue','zenuten'],['haiek','dute','zuten']]),
   ex:[['Atzo nik ogia jan nuen.','Ayer comí pan.'],['Atzo zuk liburu bat irakurri zenuen.','Ayer leíste un libro.'],['Amak atzo kafea edan zuen.','Mamá bebió café ayer.']],
-  tip:'El sujeto sigue llevando -k: nik, zuk, hark…'},
+  tip:'El sujeto sigue llevando -k: nik, zuk, berak…'},
  {t:'Pasado o «he hecho»',h:'<p>Usa el <b>pasado</b> para algo terminado en un tiempo cerrado (<b>atzo</b>, joan den astean). Usa el <b>perfecto</b> (auxiliar en presente) si conecta con hoy (<b>gaur</b>).</p>',
   ex:[['Atzo ogia jan nuen.','Ayer comí pan. (pasado)'],['Gaur ogia jan dut.','Hoy he comido pan. (perfecto)'],['Atzo Iruñera joan nintzen.','Ayer fui a Pamplona.'],['Gaur Iruñera joan naiz.','Hoy he ido a Pamplona.']]},
  {t:'Cómo se construye',h:'<p>Molde fijo: <b>tiempo + sujeto + participio + auxiliar</b>. Cambias el auxiliar según la persona y el tipo de verbo (izan o ukan).</p>',
@@ -2299,7 +2299,7 @@ r3:{sum:['Presente → pasado: naiz→nintzen · dut→nuen · zait→zitzaidan 
 const G={};
 (function(){
 const rn=a=>a[rnd(a.length)];
-const ERG=['nik','zuk','hark','guk','zuek','haiek'],PRO=['ni','zu','hura','gu','zuek','haiek'],DAT=['niri','zuri','hari','guri','zuei','haiei'];
+const ERG=['nik','zuk','berak','guk','zuek','haiek'],PRO=['ni','zu','bera','gu','zuek','haiek'],DAT=['niri','zuri','berari','guri','zuei','haiei'];
 const IZ=['naiz','zara','da','gara','zarete','dira'],IZP=['nintzen','zinen','zen','ginen','zineten','ziren'];
 const UK=['dut','duzu','du','dugu','duzue','dute'],UKP=['nuen','zenuen','zuen','genuen','zenuten','zuten'];
 const EG=['nago','zaude','dago','gaude','zaudete','daude'],EGP=['nengoen','zeunden','zegoen','geunden','zeundeten','zeuden'];
@@ -2470,7 +2470,7 @@ buildQs=function(n){
 const LSETS={"l3": ["etxea"], "l5": ["zenbakiak"], "l6": ["familia"], "l8": ["aditzak"], "l9": ["janaria"], "l12": ["adjetiboak", "hilabeteak", "urtaroak"], "b1": ["kokapena"], "b2": ["aditzak"], "b4": ["aditzak"], "b5": ["adjetiboak"], "b6": ["sentitu"], "b7": ["lekuak"], "b8": ["errutina"], "b14": ["garraioak"], "b17": ["eguraldia"], "b18": ["erosketak"], "b19": ["osasuna"], "c1": ["zenbakiak"], "c3": ["norabidea"], "e2": ["denborak"], "e4": ["iritziak"], "e7": ["itxura"], "e9": ["denborak"], "e10": ["jatetxea"]};
 const AK=()=>S.a2key===1;
 const dn=id=>!!(S.lessons&&S.lessons[id]!=null);
-const KVL={izan:'l2',egon:'l4',joan:'l4',etorri:'l4',eduki:'l6',ukan:'l7',eman:'b2',gustatu:'b3',ibili:'b9','joan (iragana)':'b9','etorri (iragana)':'b9','ibili (iragana)':'b9',jakin:'b15','ahal (dezaket)':'b13','ahal (naiteke)':'b13','eman (hark… niri, zuri…)':'e1',ekarri:'e12',eraman:'e12'};
+const KVL={izan:'l2',egon:'l4',joan:'l4',etorri:'l4',eduki:'l6',ukan:'l7',eman:'b2',gustatu:'b3',ibili:'b9','joan (iragana)':'b9','etorri (iragana)':'b9','ibili (iragana)':'b9',jakin:'b15','ahal (dezaket)':'b13','ahal (naiteke)':'b13','eman (berak… niri, zuri…)':'e1',ekarri:'e12',eraman:'e12'};
 function knownVerbs(){
   const ks=Object.keys(CONJ);let out;
   if(AK())out=ks.filter(k=>S.level==='a2'||lvOf(CONJ[k])==='a1');
@@ -2899,7 +2899,7 @@ const DICT_RAW=[
 ['🏛️ Gizartea, administrazioa eta tokiak',`gizartea=sociedad;gobernua=gobierno;udala=ayuntamiento;aldundia=diputación;legea=ley;eskubidea=derecho;betebeharra=deber;hauteskundeak=elecciones;boza=voto;alderdia=partido;kontseilua=consejo;parlamentua=parlamento;estatua=estado;herrialdea=país, territorio;nazioa=nación;hizkuntza=lengua;kultura=cultura;tradizioa=tradición;historia=historia;politika=política;ekonomia=economía;herritartasuna=ciudadanía;dokumentua=documento;inprimakia=formulario;sinadura=firma;zigilua=sello;agiria=documento;bulegoa=oficina;txanda=turno;ordua eskatu=pedir cita;baimena=permiso;diru-laguntza=ayuda económica;zerga=impuesto;seguru=seguro;aseguru=seguro;pentsioa=pensión;jabetza=propiedad;alokairua=alquiler;hipoteka=hipoteca;auzokide=vecino;komunitatea=comunidad;elkartea=asociación;boluntarioa=voluntario/a;herri=pueblo;Euskal Herria=País Vasco (territorio);Euskadi=País Vasco (comunidad);Nafarroa=Navarra;Iparralde=País Vasco norte;Araba=Álava;Bizkaia=Bizkaia;Gipuzkoa=Gipuzkoa;Bilbo=Bilbao;Donostia=San Sebastián;Gasteiz=Vitoria;Iruñea=Pamplona;Baiona=Bayona;Madril=Madrid;Espainia=España;Frantzia=Francia;Europa=Europa;Ameriketa=América;Asia=Asia;Afrika=África;atzerria=extranjero;atzerritarra=extranjero/a;immigrantea=inmigrante;etorkina=inmigrante;erregistroa=registro;nortasuna=identidad;izen-abizenak=nombre y apellidos;helbide=dirección;jaioterria=lugar de nacimiento;egoitza=sede, domicilio;egoera=situación;arazoa=problema;irtenbidea=solución;laguntza=ayuda;galdera=pregunta;erantzukizuna=responsabilidad;arauak=normas;debekua=prohibición;baimendua=permitido;debekatuta=prohibido`],
 ['🔁 Aditz arruntak (hitz-formak)',`egin=hacer;izan=ser, haber;egon=estar;ukan=tener, haber;eduki=tener;joan=ir;etorri=venir;ikusi=ver;entzun=oír, escuchar;esan=decir;eman=dar;hartu=tomar, coger;jarri=poner, sentarse;gorde=guardar;ireki=abrir;itxi=cerrar;sartu=entrar, meter;irten=salir;igo=subir;jaitsi=bajar;ibili=andar;korrika egin=correr;saltatu=saltar;eseri=sentarse;zutitu=ponerse de pie;etzan=tumbarse;lo egin=dormir;esnatu=despertar;jaiki=levantarse;jan=comer;edan=beber;afaldu=cenar;gosaldu=desayunar;bazkaldu=comer (mediodía);sukaldatu=cocinar;erosi=comprar;saldu=vender;ordaindu=pagar;kostatu=costar;eskatu=pedir;eskaini=ofrecer;lagundu=ayudar;behar izan=necesitar;nahi izan=querer;ahal izan=poder;jakin=saber;ezagutu=conocer;ulertu=entender;pentsatu=pensar;uste izan=creer;ahaztu=olvidar;gogoratu=recordar;ikasi=aprender;irakatsi=enseñar;irakurri=leer;idatzi=escribir;hitz egin=hablar;galdetu=preguntar;erantzun=responder;deitu=llamar;bidali=enviar;jaso=recibir;ekarri=traer;eraman=llevar;utzi=dejar;bilatu=buscar;aurkitu=encontrar;galdu=perder;irabazi=ganar;hasi=empezar;amaitu=terminar;bukatu=acabar;jarraitu=seguir, continuar;gelditu=quedarse, parar;itzuli=volver, devolver;aldatu=cambiar;mugitu=mover;garbitu=limpiar;zikindu=ensuciar;konpondu=arreglar;apurtu=romper;eraiki=construir;margotu=pintar;marraztu=dibujar;jolastu=jugar;dantzatu=bailar;kantatu=cantar;barre egin=reír;negar egin=llorar;maitatu=querer;gustatu=gustar;gorroto izan=odiar;bizi=vivir;hil=morir, matar;jaio=nacer;hazi=crecer;ezkondu=casarse;bidaiatu=viajar;ibili=pasear;txangoa egin=hacer una excursión;igeri egin=nadar;erori=caer;hartu=coger;bota=tirar;tira egin=tirar;sakatu=pulsar;ukitu=tocar;begiratu=mirar;ikusi=ver;aipatu=mencionar;azaldu=explicar;erakutsi=mostrar;gonbidatu=invitar;ospatu=celebrar;poztu=alegrarse;kezkatu=preocuparse;sentitu=sentir;hunkitu=emocionar;biltzen=reunirse;elkartu=reunir, juntarse;banatu=separar, repartir;partekatu=compartir;erabili=usar;probatu=probar;aukeratu=elegir;erabaki=decidir;saiatu=intentar;lortu=conseguir;egokitu=tocar, adaptarse;gertatu=ocurrir;iruditu=parecer;ematen du=parece;itxaron=esperar;prestatu=preparar;antolatu=organizar;planifikatu=planificar;zuzendu=dirigir, corregir;lan egin=trabajar;atseden hartu=descansar;hobetu=mejorar;txarretu=empeorar;handitu=aumentar;txikitu=reducir;gehitu=añadir;kendu=quitar;osatu=completar;zenbatu=contar;neurtu=medir;pisatu=pesar;konparatu=comparar;bereizi=distinguir;hautatu=seleccionar;sinatu=firmar;eskertu=agradecer;barkatu=perdonar;agurtu=saludar;aurkeztu=presentar;agindu=mandar;debekatu=prohibir;baimendu=permitir;onartu=aceptar;ukatu=negar;sinetsi=creer;fidatu=fiarse`],
 ['🔤 Adjektiboak eta adberbioak',`ona=bueno;txarra=malo;handia=grande;txikia=pequeño;berria=nuevo;zaharra=viejo;gaztea=joven;polita=bonito;ederra=hermoso;itsusia=feo;garbia=limpio;zikina=sucio;beroa=caliente;hotza=frío;epela=tibio;lehorra=seco;hezea=húmedo;bustia=mojado;betea=lleno;hutsik=vacío;zabalik=abierto;itxia=cerrado;libre=libre;okupatuta=ocupado;errazak=fáciles;zaila=difícil;erraza=fácil;azkarra=rápido;motela=lento;indartsua=fuerte;ahula=débil;aberatsa=rico;pobrea=pobre;osasuntsua=sano;eroria=enfermo;gose=hambriento;aspergarria=aburrido;interesgarria=interesante;politak=bonitos;berdina=igual;desberdina=diferente;ezberdina=distinto;antzekoa=parecido;zuzena=correcto, recto;okerra=incorrecto, torcido;egia=verdadero;gezurra=falso;ziurra=seguro;posible=posible;beharrezkoa=necesario;erosoa=cómodo;deserosoa=incómodo;lasaia=tranquilo;zaratatsua=ruidoso;isila=silencioso;alaia=alegre;tristea=triste;alferra=perezoso;langilea=trabajador;argia=listo, claro;ergela=tonto;harroa=orgulloso;zintzoa=sincero;ederki=bellamente;ondo=bien;gaizki=mal;ongi=bien;hobeto=mejor;okerrago=peor;azkar=rápido;poliki=despacio;oso=muy;nahiko=bastante;gehiegi=demasiado;apur bat=un poco;asko=mucho;gutxi=poco;ia=casi;ere=también;ere ez=tampoco;oraindik=todavía;jada=ya;berriz=de nuevo;beti=siempre;inoiz ez=nunca;noizbait=alguna vez;gehienetan=casi siempre;normalean=normalmente;batzuetan=a veces;hemen=aquí;hor=ahí;han=allí;nonbait=en algún sitio;inon ez=en ningún sitio;edonon=en cualquier sitio;ondoan=al lado;aurrean=delante;atzean=detrás;barruan=dentro;kanpoan=fuera;gainean=encima;azpian=debajo;artean=entre;ezkerrean=a la izquierda;eskuinean=a la derecha;erdian=en medio;aurrera=adelante;atzera=atrás;gora=arriba;behera=abajo;hurbil=cerca;urrun=lejos;barrura=hacia dentro;kanpora=hacia fuera;batera=juntos;bakarrik=solo;bakarra=único;osoa=entero;partea=parte;zatia=trozo`],
-['🔗 Lokailuak eta hitz txikiak',`eta=y;edo=o;baina=pero;hala ere=sin embargo;beraz=por tanto;orduan=entonces;gero=luego;gainera=además;ere=también;ezta=ni;ez bakarrik=no solo;bai=sí;ez=no;agian=quizá;noski=claro;benetan=de verdad;hain=tan;hainbeste=tanto;baino=que, pero;bezala=como;adibidez=por ejemplo;batez ere=sobre todo;hau=este/esto;hori=ese/eso;hura=aquel/aquello;hauek=estos;horiek=esos;haiek=aquellos;nor=quién;zer=qué;non=dónde;noiz=cuándo;nola=cómo;zergatik=por qué;zenbat=cuánto;zein=cuál;nora=adónde;nondik=de dónde;noraino=hasta dónde;norentzat=para quién;norekin=con quién;ni=yo;zu=tú;hura=él/ella;gu=nosotros;zuek=vosotros;haiek=ellos;neure=mi (propio);zure=tu;haren=su;gure=nuestro;zuen=vuestro;haien=su (de ellos);nik=yo (ergativo);zuk=tú (ergativo);hark=él (ergativo);guk=nosotros (ergativo);zuek=vosotros;haiek=ellos;niri=a mí;zuri=a ti;hari=a él;guri=a nosotros;zuei=a vosotros;haiei=a ellos;nirekin=conmigo;zurekin=contigo;harekin=con él;gurekin=con nosotros;beraz=por lo tanto;hala=así;horrela=así;bestela=de otra forma;berriz=de nuevo;ordea=en cambio;berriro=otra vez;azkenik=por último;lehenik=primero;bigarrenik=en segundo lugar;ondoren=después;aurretik=antes;bitartean=mientras;noiz arte=hasta cuándo;-gabe=sin;-rekin=con;-tik=desde, por;-ra=a, hacia;-ko=de;-tan=en;-an=en;-ean=en;-rako=para;-rantz=hacia;-raino=hasta;arte=hasta;bezain=tan…como;zerbait=algo;ezer=nada;inor=nadie;norbait=alguien;guztiak=todos;batzuk=algunos;zenbait=algunos;beste=otro;bestea=el otro;berdin=igual;ezer ez=nada;inor ez=nadie;inon ez=en ningún sitio;nahi=querer;behar=deber, necesitar;ahal=poder;egin=hacer`],
+['🔗 Lokailuak eta hitz txikiak',`eta=y;edo=o;baina=pero;hala ere=sin embargo;beraz=por tanto;orduan=entonces;gero=luego;gainera=además;ere=también;ezta=ni;ez bakarrik=no solo;bai=sí;ez=no;agian=quizá;noski=claro;benetan=de verdad;hain=tan;hainbeste=tanto;baino=que, pero;bezala=como;adibidez=por ejemplo;batez ere=sobre todo;hau=este/esto;hori=ese/eso;hura=aquel/aquello (en batua, también «él/ella»);hauek=estos;horiek=esos;haiek=aquellos;nor=quién;zer=qué;non=dónde;noiz=cuándo;nola=cómo;zergatik=por qué;zenbat=cuánto;zein=cuál;nora=adónde;nondik=de dónde;noraino=hasta dónde;norentzat=para quién;norekin=con quién;ni=yo;zu=tú;bera=él/ella;gu=nosotros;zuek=vosotros;haiek=ellos;neure=mi (propio);zure=tu;beraren=su;gure=nuestro;zuen=vuestro;haien=su (de ellos);nik=yo (ergativo);zuk=tú (ergativo);berak=él (ergativo);guk=nosotros (ergativo);zuek=vosotros;haiek=ellos;niri=a mí;zuri=a ti;berari=a él;guri=a nosotros;zuei=a vosotros;haiei=a ellos;nirekin=conmigo;zurekin=contigo;berarekin=con él;gurekin=con nosotros;beraz=por lo tanto;hala=así;horrela=así;bestela=de otra forma;berriz=de nuevo;ordea=en cambio;berriro=otra vez;azkenik=por último;lehenik=primero;bigarrenik=en segundo lugar;ondoren=después;aurretik=antes;bitartean=mientras;noiz arte=hasta cuándo;-gabe=sin;-rekin=con;-tik=desde, por;-ra=a, hacia;-ko=de;-tan=en;-an=en;-ean=en;-rako=para;-rantz=hacia;-raino=hasta;arte=hasta;bezain=tan…como;zerbait=algo;ezer=nada;inor=nadie;norbait=alguien;guztiak=todos;batzuk=algunos;zenbait=algunos;beste=otro;bestea=el otro;berdin=igual;ezer ez=nada;inor ez=nadie;inon ez=en ningún sitio;nahi=querer;behar=deber, necesitar;ahal=poder;egin=hacer`],
 ['👋 Gizarte-adierazpenak',`kaixo=hola;egun on=buenos días;arratsalde on=buenas tardes;gabon=buenas noches;agur=adiós;gero arte=hasta luego;bihar arte=hasta mañana;laster arte=hasta pronto;ongi etorri=bienvenido;eskerrik asko=muchas gracias;mila esker=mil gracias;ez horregatik=de nada;mesedez=por favor;barkatu=perdón;barkamena=perdón;barkatu, zer?=perdón, ¿qué?;ez dut ulertzen=no entiendo;ulertzen dut=entiendo;berriro esan, mesedez=repita, por favor;poliki hitz egin, mesedez=hable despacio, por favor;zer moduz?=¿qué tal?;nola zaude?=¿cómo estás?;ondo nago=estoy bien;ez dago gaizki=no está mal;hala moduzkoa=regular;zorionak=felicidades;urte askotarako=feliz cumpleaños;Gabon zoriontsuak=feliz Navidad;urte berri on=feliz año nuevo;ondo pasa=que lo pases bien;ongi izan=que vaya bien;osasuna=salud (brindis);topa=¡salud! (brindis);besterik ez=nada más;ados=de acuerdo;ez nago ados=no estoy de acuerdo;nola esaten da…?=¿cómo se dice…?;zer esan nahi du?=¿qué significa?;nola idazten da?=¿cómo se escribe?;non dago…?=¿dónde está…?;zenbat balio du?=¿cuánto cuesta?;zer ordu da?=¿qué hora es?;zein da zure izena?=¿cómo te llamas?;nire izena … da=me llamo…;nongoa zara?=¿de dónde eres?;… naiz=soy de…;zenbat urte dituzu?=¿cuántos años tienes?;… urte ditut=tengo… años;euskaraz dakizu?=¿sabes euskera?;apur bat=un poco;ez dakit=no sé;badakit=lo sé;lagunduko didazu?=¿me ayudas?;noski=claro;hala da=así es;zer berri?=¿qué hay de nuevo?;pozten naiz zu ezagutzeaz=encantado de conocerte;baimena eman=dar permiso;itxaron pixka bat=espera un poco;adi=atento;kontuz=cuidado;laguntza=socorro, ayuda;lasai=tranquilo;egon lasai=tranquilo;ongi da=está bien;ondo da=vale`]
 ];
 const DICT=[];(function(){const seen={};DICT_RAW.forEach(c=>{const ws=[];c[1].split(';').forEach(p=>{const i=p.indexOf('=');if(i<1)return;const eu=p.slice(0,i).trim(),es=p.slice(i+1).trim();if(!eu||!es||es.indexOf('?')===0||es==='?'||es.endsWith('?')&&es.length<4)return;const k=eu+'|'+es;if(seen[k])return;seen[k]=1;ws.push([eu,es])});DICT.push({cat:c[0],w:ws})})})();
@@ -3165,7 +3165,7 @@ const VNOTE={
   ibili:'<b>ibili</b> = andar, moverse: <i>nabil</i> (ando), <i>dabil</i> (anda). Es una forma sintética (sin auxiliar).',
   'ibili (iragana)':'<b>nenbilen</b> = andaba, pasado de <b>ibili</b>: zebilen, genbiltzan…',
   jakin:'<b>jakin</b> = saber (algo): <i>Euskaraz badakit</i>. <b>dakit, dakizu, daki…</b> Con -t(z)en: <i>Euskaraz hitz egiten badakit</i> (sé hablar euskera).',
-  'eman (hark… niri, zuri…)':'<b>zidan</b> = me (lo) dio; <b>dit</b> = me (lo) da. La persona de la tabla es el «a quién» (niri, zuri, hari…). Varias cosas: zizkidan, dizkit.',
+  'eman (berak… niri, zuri…)':'<b>zidan</b> = me (lo) dio; <b>dit</b> = me (lo) da. La persona de la tabla es el «a quién» (niri, zuri, berari…). Varias cosas: zizkidan, dizkit.',
   ekarri:'<b>ekarri</b> = traer (hacia aquí): <i>dakart</i>, <i>dakarzu</i>… Varias cosas: <i>dakartzat</i>.',
   eraman:'<b>eraman</b> = llevar (hacia allá): <i>daramat</i>, <i>daramazu</i>… Varias cosas: <i>daramatzat</i>.',
   'ahal (dezaket)':'<b>dezaket</b> = puedo (con verbos que llevan objeto): <i>Euskaraz hitz egin dezaket</i>.',
