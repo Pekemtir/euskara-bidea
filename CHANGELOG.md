@@ -11,6 +11,10 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v34 · 2026-11-07
+- Lección 4 (Non? Nora? Nondik?): el paso «Ir y venir» usaba noa, goaz y zatoz solo en ejemplos. Ahora lleva la tabla completa de joan y etorri en presente (noa/nator, zoaz/zatoz, doa/dator, goaz/gatoz, zoazte/zatozte, doaz/datoz) y la práctica incluye preguntas de esos dos verbos.
+
+---
 ## v33 · 2026-11-07
 - **Pantalla principal y navegación al estilo Camí Català**: 5 pestañas fijas (Hasiera · Ikasgela · Praktika · Hiztegia · Ni).
 - Hasiera: saludo, meta diaria, tarjeta «Jarraitu» con la siguiente lección, palabra del día, accesos a Saio azkarra y Errepasoa, progreso A1/A2 y logros (el formulario «Niri buruz» baja al final).

@@ -1171,11 +1171,12 @@ const LESSONS=[
   tb:'<table class="mini"><tr><th></th><th>egon</th></tr><tr><td>ni</td><td><b>nago</b></td></tr><tr><td>zu</td><td><b>zaude</b></td></tr><tr><td>hura</td><td><b>dago</b></td></tr><tr><td>gu</td><td><b>gaude</b></td></tr><tr><td>zuek</td><td><b>zaudete</b></td></tr><tr><td>haiek</td><td><b>daude</b></td></tr></table>',
   ex:[['Ni etxean nago.','Estoy en casa.'],['Behiak mendian daude.','Las vacas están en el monte.'],['Ama sukaldean dago.','Mamá está en la cocina.']]},
  {t:'Ir y venir',h:'<p><b>joan</b> (ir) y <b>etorri</b> (venir) tienen formas propias, sin auxiliar. Se usan con <b>-ra</b> y <b>-tik</b>.</p>',
+  tb:'<table class="mini"><tr><th></th><th>joan (ir)</th><th>etorri (venir)</th></tr><tr><td>ni</td><td><b>noa</b></td><td><b>nator</b></td></tr><tr><td>zu</td><td><b>zoaz</b></td><td><b>zatoz</b></td></tr><tr><td>hura</td><td><b>doa</b></td><td><b>dator</b></td></tr><tr><td>gu</td><td><b>goaz</b></td><td><b>gatoz</b></td></tr><tr><td>zuek</td><td><b>zoazte</b></td><td><b>zatozte</b></td></tr><tr><td>haiek</td><td><b>doaz</b></td><td><b>datoz</b></td></tr></table>',
   pc:[['Ni','p-sub','quién'],['Iruñera','p-obj','adónde (-ra)'],['noa','p-aux','voy']],
   ex:[['Gu Baztanera goaz.','Vamos a Baztan.'],['Zu Elizondotik zatoz.','Vienes de Elizondo.'],['Ni etxera noa.','Voy a casa.']],
   tip:'Ser o estar: <b>Baztangoa naiz</b> (soy de allí, izan). <b>Baztanen nago</b> (ahora estoy allí, egon).'}
  ],
- make:()=>[].concat(conjQs(['egon'],3),lsq('noa'),SQ(4,5,8,16),[
+ make:()=>[].concat(conjQs(['egon','joan','etorri'],5),lsq('noa'),SQ(4,5,8,16),[
   mc('Non?','etxea → «en casa»','Añade la terminación','etxean',['etxera','etxetik','etxeko'],'<b>-n</b> responde a «non»: etxean.'),
   mc('Nora?','etxea → «a casa»','Añade la terminación','etxera',['etxean','etxetik','etxeko'],'<b>-ra</b> = «a, hacia»: etxera.'),
   mc('Nondik?','Elizondo → «desde Elizondo»','Añade la terminación','Elizondotik',['Elizondon','Elizondora','Elizondoko'],'<b>-tik</b> = «desde».'),
