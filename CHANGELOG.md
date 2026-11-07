@@ -14,6 +14,7 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 ## v36 · 2026-11-07
 - Motor: preguntas con audio (`say`, botón 🐢 lento, reproducción automática), respuestas alternativas (`alts`) y modo escucha (la palabra no se muestra).
 - Juegos nuevos en Praktika: **Entzun** (escucha y elige), **Diktatua** (escribe lo que oyes), **Zenbakiak** (números dictados hasta 2999, sistema vigesimal), **Alfabetoa** (deletreo con los nombres oficiales de las letras) y **Eguneko erronka** (reto diario, +30 XP una vez al día).
+- Lección 1: nuevo paso con el alfabeto y el nombre de cada letra, con audio 🔊.
 - Selector de tema en Ni → ajustes: Pizarra (oscuro), Argia (claro) y Automatikoa (sigue el sistema).
 - El código de acceso de profesorado ya no aparece legible en el HTML (se compara su hash).
 - Auditoría de lecciones: falso aviso de la lección 6 corregido («zuen» posesivo no es pasado de ukan).

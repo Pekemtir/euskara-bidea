@@ -1124,6 +1124,8 @@ const LESSONS=[
  steps:[
  {t:'Se lee como se escribe',h:'<p>La buena noticia: el euskera <b>no tiene excepciones de lectura</b>. Cada letra suena siempre igual, y las vocales (a e i o u) suenan casi como en español.</p><p>Solo hay que aprender unas pocas letras que no son iguales que en español:</p>',
   tb:'<table class="mini"><tr><th>Letra</th><th>Suena como</th><th>Ejemplo</th></tr><tr><td><b>h</b></td><td>no suena (muda)</td><td>hamar → a-mar</td></tr><tr><td><b>x</b></td><td>«sh»</td><td>xake → shake</td></tr><tr><td><b>tx</b></td><td>«ch» de chico</td><td>etxea → e-che-a</td></tr><tr><td><b>ts, tz</b></td><td>«ts» de pizza</td><td>hitz → hits</td></tr><tr><td><b>z</b></td><td>una «s» fuerte</td><td>zuri → suri</td></tr><tr><td><b>j</b></td><td>«y» o «j», según la zona</td><td>jan → yan</td></tr></table>'},
+ {t:'El alfabeto y cómo se llaman las letras',sa:1,h:'<p>El alfabeto básico tiene 22 letras. Pulsa 🔊 para oír el <b>nombre</b> de cada una (así se deletrea). C, Ç, Q, V, W e Y solo aparecen en palabras de fuera (c = ze, q = ku, v = uve, w = uve bikoitza, y = i grekoa).</p>',
+  ex:[['A','A a → a','a'],['B','B b → be','be'],['D','D d → de','de'],['E','E e → e','e'],['F','F f → efe','efe'],['G','G g → ge','ge'],['H','H h → hatxe','hatxe'],['I','I i → i','i'],['J','J j → jota','jota'],['K','K k → ka','ka'],['L','L l → ele','ele'],['M','M m → eme','eme'],['N','N n → ene','ene'],['Ñ','Ñ ñ → eñe','eñe'],['O','O o → o','o'],['P','P p → pe','pe'],['R','R r → erre','erre'],['S','S s → ese','ese'],['T','T t → te','te'],['U','U u → u','u'],['X','X x → ixa','ixa'],['Z','Z z → zeta','zeta']]},
  {t:'La g y la u',h:'<p>La <b>g</b> es siempre dura (como en «gato»), también delante de e e i. Y la <b>u</b> de gu/gi/ge <b>sí suena</b>: no es muda como en español.</p>',
   ex:[['gizon','gui-zon (hombre)'],['gutxi','gu-chi (poco)'],['gero','gue-ro (después)'],['ongi etorri','on-gui e-to-rri (bienvenido)']]},
  {t:'Sonidos de una pieza',h:'<p>Algunas combinaciones suenan como <b>un solo sonido</b>: <b>tx, ts, tz, dz, ll, rr</b>. No las separes al leer.</p><p>Consejo: lee despacio, sílaba a sílaba. Si la sabes deletrear, la sabes leer.</p>',
@@ -2966,7 +2968,7 @@ function lessonRender(){
     h+=`<p class="qkind">${L.n}. ikasgaia · ${st+1}/${n}</p><h1 class="big" style="font-size:clamp(24px,6vw,32px)">${esc(s.t)}</h1><div class="lbody">${s.h||''}`;
     if(s.pc)h+=`<div class="pieces">${s.pc.map(p=>`<div class="piece ${p[1]}"><span class="f">${esc(p[0])}</span><span class="l">${esc(p[2])}</span></div>`).join('')}</div>`;
     if(s.tb)h+=`<div class="tscroll">${s.tb}</div>`;
-    if(s.ex)h+=s.ex.map(e=>`<div class="ex${hideTr(L)?' tr':''}">${esc(e[0])}<small>${esc(e[1])}</small></div>`).join('');
+    if(s.ex)h+=s.ex.map(e=>`<div class="ex${hideTr(L)?' tr':''}">${s.sa?`<button class="speak" data-act="say" data-t="${esc(e[2]||e[0])}" aria-label="Entzun">🔊</button> `:''}${esc(e[0])}<small>${esc(e[1])}</small></div>`).join('');
     if(s.tip)h+=`<div class="explain"><p>💡 ${s.tip}</p></div>`;
     if(s.cards)h+=`<button class="btn sec block" style="margin-top:14px" data-lact="cards">🃏 Txartelekin errepasatu · repasar con tarjetas</button>`;
     h+=`</div><div class="fbtns" style="margin-top:22px"><button class="btn sec" data-lact="prev">Atzera</button><button class="btn${last?' ok':''}" data-lact="${last?'practice':'next'}">${last?'Praktikatu':'Hurrengoa'}</button></div>`;
