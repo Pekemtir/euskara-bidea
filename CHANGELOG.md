@@ -1,7 +1,7 @@
 # Euskara Bidea · registro de versiones
 
 Organización de esta carpeta:
-- `euskara-bidea.html` → **siempre la última versión**. Desde la v6 es un único archivo autónomo (fuentes e icono incluidos, sin conexión a nada): funciona en Safari, Chrome móvil y escritorio. Para usarlo en el móvil hay que servirlo desde una dirección web (ver la v6).
+- `euskara-bidea.html` → **siempre la última versión**. Es un único archivo autónomo (fuentes e icono incluidos, sin conexión a nada; desde la v35 también en la carpeta: las copias de la carpeta de la v14 a la v34 cargaban Google Fonts): funciona en Safari, Chrome móvil y escritorio. Para usarlo en el móvil hay que servirlo desde una dirección web (ver la v6).
 - `versiones/` → copia de cada versión anterior, con el número y la fecha en el nombre. Si algo se rompe, copia una de ahí encima de `euskara-bidea.html`.
 - `CHANGELOG.md` → este registro. Cada versión nueva añade una entrada arriba.
 
@@ -10,6 +10,20 @@ Versión publicada en línea: https://claude.ai/artifact/DjeuCZHTFS6aot5aezrqZy
 Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde abras la app, no en este archivo.
 
 ---
+
+## v36 · 2026-11-07
+- Motor: preguntas con audio (`say`, botón 🐢 lento, reproducción automática), respuestas alternativas (`alts`) y modo escucha (la palabra no se muestra).
+- Juegos nuevos en Praktika: **Entzun** (escucha y elige), **Diktatua** (escribe lo que oyes), **Zenbakiak** (números dictados hasta 2999, sistema vigesimal), **Alfabetoa** (deletreo con los nombres oficiales de las letras) y **Eguneko erronka** (reto diario, +30 XP una vez al día).
+- Selector de tema en Ni → ajustes: Pizarra (oscuro), Argia (claro) y Automatikoa (sigue el sistema).
+- El código de acceso de profesorado ya no aparece legible en el HTML (se compara su hash).
+- Auditoría de lecciones: falso aviso de la lección 6 corregido («zuen» posesivo no es pasado de ukan).
+- Probado: suite del kit en verde, números (21, 31, 101, 1500, 2024…), 5 sesiones nuevas completas, 0 errores, 0 peticiones externas.
+
+## v35 · 2026-11-07
+- Nueva pantalla **Kredituak eta legala** (Ni → baldosa ⚖️): contenido original, licencias (código MIT, contenidos CC BY-NC 4.0, tipografías OFL 1.1), fuentes de referencia, sin afiliación, privacidad y aviso.
+- Añadidos a esta carpeta `LICENSE` (MIT), `README.md` y `fonts-licencias/` (Patrick Hand, Nunito, JetBrains Mono).
+- `euskara-bidea.html` pasa a ser un archivo **autónomo de verdad**: las tipografías van incrustadas (de la v14 a la v34 la copia de la carpeta cargaba Google Fonts desde internet, lo que contradecía «sin rastreadores» y fallaba sin conexión). Pesa ~560 KB.
+- Probado: suite del kit (26 pruebas) en verde, 0 errores de consola, 0 peticiones externas, pantalla legal revisada en iPhone 14 y escritorio.
 
 ## v34 · 2026-11-07
 - Lección 4 (Non? Nora? Nondik?): el paso «Ir y venir» usaba noa, goaz y zatoz solo en ejemplos. Ahora lleva la tabla completa de joan y etorri en presente (noa/nator, zoaz/zatoz, doa/dator, goaz/gatoz, zoazte/zatozte, doaz/datoz) y la práctica incluye preguntas de esos dos verbos.
