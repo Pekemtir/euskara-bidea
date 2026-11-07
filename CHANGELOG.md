@@ -11,6 +11,10 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v32 · 2026-11-07
+- Corregido: en la lista de categorías de Parekatu las barras de progreso se veían como manchas verdes y descolocaban los títulos.
+
+---
 ## v31 · 2026-11-07
 - Kontra-erlojua ya no repite conjugaciones: recorre todas las combinaciones (verbo · tiempo · persona) antes de repetir ninguna.
 
