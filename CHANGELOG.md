@@ -11,6 +11,26 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v43 · 2026-11-08
+- **Selector de voz y velocidad** (Ni → ajustes): elegir cualquier voz de euskera/castellano del dispositivo + velocidad lenta/normal/rápida. Con voz no euskera el texto se reescribe como antes (v38); la 🐢 sigue siendo más lenta que la velocidad elegida.
+- **Audio normalizado** (`speakable`): cifras en euskera (`euNum`, hasta 2999; más largas, cifra a cifra), %, €, símbolos y emojis fuera antes de hablar.
+- **Ayuda 💡 progresiva**: cada toque da más pista (primera letra y nº de letras → máscara → máscara más abierta; en frases, las primeras palabras). Respuestas de elegir: hasta 2 niveles.
+- **Práctica de lección variada** (`buildLessonQsEU`): 17 preguntas = 7 de las propias de la lección (primero las menos vistas y las falladas) + hasta 5 tiradas nuevas de sus generadores + vocabulario ya enseñado hasta esa lección (`LSETS` y palabras clave); memoria por lección en `S.lh` para no repetir entre intentos. Medido en node (55 lecciones × 8 intentos): 17 siempre salvo L1 (6-15), 0 duplicados, 0-7 repetidas entre intentos seguidos.
+- **Repaso de fallos con explicación** al acabar la lección (hasta 10: pregunta → respuesta correcta + motivo) o «Hutsik gabe».
+- **Kasuak** (nuevo juego en Jolasak): constructor guiado de casos en 2 pasos (elegir raíz + final) con la palabra formada y la regla; 10 rondas. Casos por lección: -n/-ra/-tik (L4), -(r)en (L6), -(r)i (L9), -(r)ekin/-(r)entzat (L12), todo con A2/test/código. Solo formas ya usadas por la app.
+- **Repetición espaciada** (1, 3, 7, 21, 45 días) sobre las palabras de vocabulario: tarjeta en Hasiera «Repaso espaciado» y baldosa «Errepaso adimentsua» en Praktika. Falla = vuelve mañana.
+- Probado: carga de los 18 scripts sin errores, sesiones de lección completas simuladas (ayuda, fallos, recap), Kasuak 10 rondas con L4 y con todo desbloqueado, SRS. NO probado en navegador real ni con voz real de móvil.
+
+## v42 · 2026-11-08
+- **Aprobado de lección al 80 %** (antes 85 % en la versión anterior, 60 % al principio). La migración pasa a borrar solo las aprobadas con menos de 80 %. Quien ya abrió la versión anterior (marca `mig85`) ya perdió las de 80-84 %: no se recuperan solas, hay que repetirlas o restaurar una copia de seguridad.
+
+## v41 · 2026-11-08
+- **Migración al 85 %:** al abrir la app (una sola vez, marca `mig85`), las lecciones ya aprobadas con menos de 85 % vuelven a pendientes y hay que repetirlas. El A2 se vuelve a bloquear si el A1 ya no está completo y no hay test de nivel aprobado. Probado en node con progreso simulado; NO en navegador real.
+
+## v40 · 2026-11-08
+- **Aprobado de lección al 85 %** (antes 60 %): por debajo hay que repetir la lección (y no se desbloquea la siguiente). Textos «Con un 85 %…» actualizados. Sin cambios: reto diario, juegos por dominio, autoevaluación.
+- **+5 preguntas por práctica de lección:** `lessonExtraQs()` añade a cada práctica 2 preguntas nuevas de la propia lección (de sus generadores, sin repetir las de base) + vocabulario que enseña esa lección (`LSUM[id].kw`), sin duplicar lo ya preguntado. Medido en node: 55 lecciones × 15 intentos = +5 siempre, sin duplicados. NO probado en navegador real.
+
 ## v39 · 2026-11-08
 - La sección de juegos pasa a llamarse **Jolasak** (antes «Jolak») en el título, el acceso de Praktika y el botón de volver al menú.
 
