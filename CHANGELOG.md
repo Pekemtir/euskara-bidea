@@ -11,6 +11,13 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v38 · 2026-11-08
+- **Audios en móviles sin voz de euskera (iPhone)**: el texto se reescribe con ortografía de castellano solo para la voz (el alumno no lo ve): z/s → s, tx → ch, tz → ts, x → ch, h muda, ge/gi → gue/gui, acento de palabra marcado donde difiere del castellano.
+- La **n suena ñ tras i y antes de vocal** (mina → «miña», ariña), salvo tras diptongo (baina, sin cambio).
+- Si el móvil sí tiene voz de euskera, se usa el texto original con esa voz. El silencio y la velocidad lenta siguen funcionando.
+- Ajustes → «Ahoskera proba»: lista de palabras para escuchar y ver cómo se reescriben. Para volver atrás: restaurar la v37.
+
+---
 ## v37 · 2026-11-07
 - Pronombre de 3.ª persona singular a la variedad de Baztan: **bera** en lugar de hura (bera da, berak du, berari, beraren, berarekin, berarentzat) en tablas, ejercicios, generador de frases, diccionario y juegos. El demostrativo «aquel» (hau / hori / hura) y el plural (haiek…) no cambian. La lección 1 explica que el batua usa hura (ambas formas son válidas según Euskaltzaindia).
 

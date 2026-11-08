@@ -725,13 +725,39 @@ function burst(){
     if(++f<110)requestAnimationFrame(tick);else x.clearRect(0,0,c.width,c.height);
   })();
 }
+/* Pronunciación: sin voz de euskera (iPhone) el texto se reescribe con ortografía de castellano, solo para la voz */
+const PH_EXC={'kaixo':'káicho','euskara':'euskára','euskal':'euskal'};
+const PH_V='aeiou';
+function phStress(w){
+  if(/[áéíóú]/.test(w))return w;
+  const nu=[...w.matchAll(/[aeo][iu]|[iu][aeo]|[aeiou]/g)];
+  if(nu.length<2)return w;
+  if(/[aeiouns]$/.test(w))return w;
+  const m=nu[nu.length-2],i=m.index,t=m[0];
+  const k=/^[iu][aeo]$/.test(t)?1:0;
+  return w.slice(0,i+k)+'áéíóú'[PH_V.indexOf(t[k])]+w.slice(i+k+1);
+}
+function phon(t){
+  return String(t).toLowerCase().replace(/[a-zñ]+/g,w=>{
+    if(PH_EXC[w])return PH_EXC[w];
+    w=w.replace(/h/g,'').replace(/tx/g,'ch').replace(/tz/g,'ts').replace(/x/g,'ch')
+       .replace(/z/g,'s').replace(/g([ei])/g,'gu$1')
+       .replace(/(^|[^aeiou])in(?=[aeou])/g,'$1iñ')   /* n palatal tras i: mina→miña, pero baina sin cambio */;
+    return phStress(w);
+  });
+}
 function say(t,slow){
   if(S.mute)return;
   try{
     const s=window.speechSynthesis;if(!s)return;
-    const u=new SpeechSynthesisUtterance(t);
-    const v=s.getVoices().find(v=>/^eu/i.test(v.lang));
-    if(v){u.voice=v;u.lang=v.lang}else u.lang='eu-ES';
+    const vs=s.getVoices();
+    let u,v=vs.find(v=>/^eu/i.test(v.lang));
+    if(v){u=new SpeechSynthesisUtterance(t);u.voice=v;u.lang=v.lang}
+    else{
+      u=new SpeechSynthesisUtterance(phon(t));
+      v=vs.find(v=>/^es[-_]ES/i.test(v.lang))||vs.find(v=>/^es/i.test(v.lang));
+      if(v){u.voice=v;u.lang=v.lang}else u.lang='es-ES';
+    }
     u.rate=slow?.55:.85;s.cancel();s.speak(u);
   }catch(e){}
 }
@@ -3073,6 +3099,9 @@ function settingsCard(){
   <div class="card"><b>Itxura · tema</b><div class="sel" style="margin-top:8px">${[['dark','🌙 Pizarra'],['light','☀️ Argia'],['auto','🌓 Automatikoa']].map(t=>`<button class="pill${(S.theme||'dark')===t[0]?' on':''}" data-act="theme" data-t="${t[0]}">${t[1]}</button>`).join('')}</div></div>
   <div class="card"><b>Eguneko helburua · meta diaria</b><div class="sel" style="margin-top:8px">${[30,50,100,150].map(g=>`<button class="pill${S.goal===g?' on':''}" data-act="goal" data-g="${g}">${g} XP</button>`).join('')}</div></div>
   <div class="card" style="margin-top:12px"><b>Nire datuak · mis datos</b><p class="es" style="margin:6px 0 10px">Nombre, pueblo y cumpleaños para las preguntas personales.</p><button class="btn sec small" data-act="medit">Editatu · editar</button></div>
+  <div class="card" style="margin-top:12px"><b>Ahoskera proba · prueba de pronunciación</b>
+  <p class="es" style="margin:6px 0 10px">${(speechSynthesis.getVoices&&speechSynthesis.getVoices().some(v=>/^eu/i.test(v.lang)))?'Tu móvil tiene voz de euskera: se usa tal cual.':'Tu móvil no tiene voz de euskera: el audio usa una voz de castellano con el texto reescrito (el alumno no lo ve). Toca cada palabra y dime las que suenan mal.'}</p>
+  <div class="sel">${['kaixo','eskerrik asko','zer moduz','etxea','txakurra','gizona','jatetxea','ikaslea','egin','zortzi','bihar','hamar','ehun','herria','gazteak','baserria','eguzkia','ikusi','nire izena','mina','baina','janaria'].map(w=>`<button class="pill" data-act="say" data-t="${w}">🔊 ${w}<small style="opacity:.6"> · ${esc(phon(w))}</small></button>`).join('')}</div></div>
   <div class="card" style="margin-top:12px"><b>Sarbide-kodea · código de acceso</b>
   <p class="es" style="margin:6px 0 10px">Para profesores o para probar la app: desbloquea el A2 sin completar el A1.</p>
   ${S.a2key===1?'<p class="okmsg" style="margin:0 0 10px">Acceso especial activo: A2 desbloqueado.</p><button class="btn sec small" data-act="codeoff">Desaktibatu · desactivar</button>':'<div class="row"><input class="fld grow" id="acc" type="text" placeholder="Código" autocomplete="off" autocapitalize="off" spellcheck="false" style="min-width:0"><button class="btn sec small" data-act="code">Sartu</button></div><div id="accm"></div>'}</div>
