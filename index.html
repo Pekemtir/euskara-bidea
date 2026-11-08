@@ -3002,6 +3002,8 @@ const LL=()=>LESSONS.filter(l=>lvOf(l)===S.level).sort((a,b)=>a.n-b.n);
 const a1Total=()=>LESSONS.filter(l=>lvOf(l)==='a1').length;
 const a1Done=()=>LESSONS.filter(l=>lvOf(l)==='a1'&&lessonDone(l.id)).length;
 const a1Complete=()=>a1Done()>=a1Total();
+/* v41: aprobado al 85 % -> lecciones aprobadas con menos de 85 % vuelven a pendientes (una sola vez); si A1 ya no está completo y no hay test aprobado, A2 se vuelve a bloquear */
+if(!S.mig85){S.mig85=1;Object.keys(S.lessons||{}).forEach(k=>{if(typeof S.lessons[k]==='number'&&S.lessons[k]<85)delete S.lessons[k]});if(!S.a1test&&!a1Complete())S.a2unl=0;save()}
 const a2Open=()=>S.a2key===1||S.a1test===1||a1Complete();
 const nextLesson=()=>LL().find(l=>!lessonDone(l.id))||null;
 /* A2: el castellano se reduce poco a poco: desde la lección 8 las traducciones se ocultan (tocar para verlas) */
