@@ -1098,20 +1098,20 @@ function finish(){
   let lessonMsg='';
   if(SES.cfg.lesson){
     const id=SES.cfg.lesson,prev=S.lessons[id];
-    if(acc>=60){
+    if(acc>=85){
       if(prev==null){S.xp+=20;S.today+=20;SES.xp+=20;lessonMsg='🎓 Ikasgaia osatu duzu · lección completada · +20 XP'}
       else lessonMsg='🎓 Lección superada de nuevo';
       S.lessons[id]=Math.max(prev||0,acc);
       if(a1Complete()&&!S.a2unl){S.a2unl=1;lessonMsg+=' · 🔓 ¡A2 desbloqueado! Cámbialo en el selector de nivel'}
-    }else lessonMsg='Con un 60 % la lección queda hecha. Repasa los errores y vuelve a intentarlo.';
+    }else lessonMsg='Con un 85 % la lección queda hecha. Repasa los errores y vuelve a intentarlo.';
   }
   if(SES.cfg.daily&&!dailyDone()){S.dailyDay=todayKey();S.dailyN=(S.dailyN||0)+1;S.xp+=30;S.today+=30;SES.xp+=30;lessonMsg='📅 Eguneko erronka osatu duzu · reto diario · +30 XP'}
-  const t=acc>=90?['Bikain!','¡Sesión perfecta!']:acc>=60?['Oso ondo!','¡Muy bien!']:['Aurrera!','¡Sigue, vas bien!'];
+  const t=acc>=90?['Bikain!','¡Sesión perfecta!']:acc>=85?['Oso ondo!','¡Muy bien!']:['Aurrera!','¡Sigue, vas bien!'];
   const cl=SES.cfg.lesson?LESSONS.find(l=>l.id===SES.cfg.lesson):null;
   const lst=cl?LESSONS.filter(l=>lvOf(l)===lvOf(cl)).sort((a,b)=>a.n-b.n):[];
-  const nxt=(cl&&acc>=60)?lst[lst.indexOf(cl)+1]:null;
+  const nxt=(cl&&acc>=85)?lst[lst.indexOf(cl)+1]:null;
   const miss=Array.from(new Set(SES.miss.map(q=>q.rev))).slice(0,6);
-  $('#view').innerHTML=`<div class="result"><div style="font-size:54px">${acc>=90?'🏆':acc>=60?'🎉':'💪'}</div><h1 class="big">${t[0]}</h1><p class="sub">${t[1]}</p><div class="num">+${SES.xp} XP</div>
+  $('#view').innerHTML=`<div class="result"><div style="font-size:54px">${acc>=90?'🏆':acc>=85?'🎉':'💪'}</div><h1 class="big">${t[0]}</h1><p class="sub">${t[1]}</p><div class="num">+${SES.xp} XP</div>
   <div class="stats3"><div><b>${acc}%</b><span>a la primera</span></div><div><b>⚡ ${SES.best}</b><span>mejor racha</span></div><div><b>🔥 ${S.streak}</b><span>días seguidos</span></div></div>
   ${lessonMsg?`<div class="explain"><p><b>${lessonMsg}</b></p></div>`:''}
   ${SES.cfg.lesson&&typeof lessonRecap==='function'?lessonRecap(SES.cfg.lesson):''}
@@ -1124,7 +1124,7 @@ function finish(){
   if(nxt)$('#nextl').onclick=()=>{endSession(true);openLesson(nxt.id)};
   if(cfg.lesson)$('#rev').onclick=()=>{endSession(true);openLesson(cfg.lesson)};
   save();checkBadges();refreshHeader();
-  if(acc>=60)burst();
+  if(acc>=85)burst();
 }
 </script>
 <script>
@@ -1158,6 +1158,22 @@ const LS={
  dial1:{t:['kafe','bat','nahi','dut'],es:'Quiero un café.',tip:'Para pedir: «X bat nahi dut» o «X bat, mesedez».'}
 };
 const lsq=(...k)=>k.map(x=>sq(LS[x]));
+/* v18 · +5 preguntas por práctica de lección: 2 nuevas de la propia lección (sin repetir las de base) + vocabulario que enseña esa lección */
+const LESSON_EXTRA=5;
+function lessonExtraQs(L,base,n){
+  const SM=LSUM[L.id];if(!SM||!SM.kw)return[];
+  const strs=q=>[q.p,q.ans,q.say,q.es].filter(x=>typeof x==='string'&&x).map(x=>x.toLowerCase());
+  const used=new Set(),out=[];base.filter(Boolean).forEach(q=>strs(q).forEach(x=>used.add(x)));
+  const take=q=>{const t=strs(q);if(!t.length||t.some(x=>used.has(x)))return false;t.forEach(x=>used.add(x));out.push(q);return true};
+  try{for(let t=0;t<6&&out.length<2;t++){for(const q of shuffle(L.make().filter(Boolean))){if(take(q)&&out.length>=2)break}}}catch(e){}
+  const pool=SM.kw.map(k=>({id:'kw:'+L.id+':'+k[0],eu:k[0],es:k[1],em:''}));
+  let fresh=pool.filter(w=>!used.has(w.eu.toLowerCase())&&!used.has(w.es.toLowerCase()));
+  pickWords(fresh,n-out.length).forEach(w=>out.push(vocabQ(w,pool)));
+  if(out.length<n){const kk=q=>(q.p||q.es||'')+'|'+(q.ans||''),seen=new Set(base.concat(out).filter(Boolean).map(kk));
+    const rest=pool.filter(w=>!out.some(q=>q.wid===w.id));
+    pickWords(rest,rest.length).forEach(w=>{if(out.length>=n)return;for(let t=0;t<12;t++){const q=vocabQ(w,pool);if(!seen.has(kk(q))){seen.add(kk(q));out.push(q);break}}})}
+  return out.slice(0,n);
+}
 
 const LESSONS=[
 {id:'l1',n:1,eu:'Soinuak',es:'Cómo suena el euskera',ic:'🔤',min:6,
@@ -3016,7 +3032,7 @@ function lessonRender(){
     const sc=S.lessons[L.id];
     h+=`<p class="qkind">${L.n}. ikasgaia · ~${L.min} min</p><h1 class="big">${L.ic} ${esc(L.eu)}</h1><p class="sub">${lvOf(L)==='a2'&&L.n>=16?'':esc(L.es)}</p>
     <div class="card"><b style="font:700 18px var(--f-display)">Zer ikasiko dugu · qué vas a aprender</b><ul class="goals">${L.goals.map(g=>`<li>${esc(g)}</li>`).join('')}</ul></div>
-    <p class="note">Primero ${n} pasos cortos de explicación con ejemplos y luego una práctica. Con un 60 % la lección queda hecha.${sc!=null?` Tu mejor resultado hasta ahora: ${sc} %.`:''}</p>
+    <p class="note">Primero ${n} pasos cortos de explicación con ejemplos y luego una práctica. Con un 85 % la lección queda hecha.${sc!=null?` Tu mejor resultado hasta ahora: ${sc} %.`:''}</p>
     <div class="stack" style="margin-top:18px"><button class="btn block" data-lact="next">Hasi · empezar</button></div>`;
   }else{
     const s=steps[st].sum?{t:'Laburpena · resumen',h:'<p>Lo esencial de la lección:</p><ul class="goals">'+SM.sum.map(x=>'<li>'+x+'</li>').join('')+'</ul><p style="margin-top:16px"><b>Hitz gakoak · palabras clave</b></p>',tb:'<table class="mini"><tr><th>Euskera</th><th>Español</th></tr>'+SM.kw.map(k=>'<tr><td><b>'+esc(k[0])+'</b></td><td>'+esc(k[1])+'</td></tr>').join('')+'</table>',cards:1}:steps[st],last=st===n-1;
@@ -3044,7 +3060,7 @@ $('#view').addEventListener('click',e=>{
   }
   else if(a==='practice'){
     const id=L.id;LES=null;
-    runSession({tag:'lesson',lesson:id,make:()=>L.make().map(q=>{if(q.k==='choice'&&!q.help&&!q.wid&&!q.vk)q.help='Repasa la idea de la lección: '+LSUM[id].sum[0];return q})});
+    runSession({tag:'lesson',lesson:id,make:()=>{const base=L.make();return base.concat(lessonExtraQs(L,base,LESSON_EXTRA)).map(q=>{if(q.k==='choice'&&!q.help&&!q.wid&&!q.vk)q.help='Repasa la idea de la lección: '+LSUM[id].sum[0];return q})}});
   }
 });
 function ikasgelaView(){
