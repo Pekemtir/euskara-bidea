@@ -11,6 +11,10 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 
 ---
 
+## v39 · 2026-11-08
+- La sección de juegos pasa a llamarse **Jolasak** (antes «Jolak») en el título, el acceso de Praktika y el botón de volver al menú.
+
+---
 ## v38 · 2026-11-08
 - **Audios en móviles sin voz de euskera (iPhone)**: el texto se reescribe con ortografía de castellano solo para la voz (el alumno no lo ve): z/s → s, tx → ch, tz → ts, x → ch, h muda, ge/gi → gue/gui, acento de palabra marcado donde difiere del castellano.
 - La **n suena ñ tras i y antes de vocal** (mina → «miña», ariña), salvo tras diptongo (baina, sin cambio).

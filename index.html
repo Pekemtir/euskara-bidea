@@ -2562,7 +2562,7 @@ const jBack=to=>`<button class="btn sec small" data-jg="${to}">← ${jx('Atzera'
 function jgMenu(){
   const b=S.gbest||{},seen=aSeen(),po=setsOf().filter(pOpen).length;
   const card=(id,ic,n,d,open,need,best)=>`<button class="card jg-game${open?'':' jg-lock'}" data-jg="${open?'go-'+id:'locked'}" data-need="${esc(need||'')}"><span class="ic">${open?ic:'🔒'}</span><span><b>${n}</b><small>${d}</small>${open?(best!=null?`<small>🏆 ${jx('Mejor','Onena')}: ${best}</small>`:''):`<span class="jg-need">🔑 ${need}</span>`}</span></button>`;
-  return `<h1 class="big">Jolak</h1><p class="sub">${jx('Practica jugando. Cada juego se abre al avanzar en las lecciones.','Jolastu ikasteko. Aurrera egin ahala jolasak irekitzen dira.')}</p>
+  return `<h1 class="big">Jolasak</h1><p class="sub">${jx('Practica jugando. Cada juego se abre al avanzar en las lecciones.','Jolastu ikasteko. Aurrera egin ahala jolasak irekitzen dira.')}</p>
   ${card('k','⏱️','Kontra-erlojua',jx('60 segundos: ¿cuántas conjugaciones aciertas?','60 segundu: zenbat aditz asmatzen dituzu?'),kOpen(),jx('Supera el repaso «NOR eta NORK» (lección 10 de A1)','Gainditu «NOR eta NORK» errepasoa'),b.k)}
   ${card('p','🃏','Parekatu',jx('Memoria por categorías de Hitzak. Contrarreloj o sin tiempo.','Memoria-jolasa Hitzak kategorien arabera.'),po>0,jx('Domina el 60 % de una categoría de Hitzak','Menderatu kategoria baten %60'),null)}
   ${card('a','🪂','Aditz-ehiza',jx('Frases que caen: toca solo las del tipo de verbo pedido.','Erortzen diren esaldiak: ukitu eskatutako aditz mota bakarrik.'),seen.length>=2,jx('Aprende dos tipos de verbo (hasta la lección 7)','Ikasi bi aditz mota (7. ikasgaira arte)'),null)}
@@ -2592,7 +2592,7 @@ function jgAmenu(){
 function jgResult(title,score,unit,key,xp,again,extra){
   JG.stop();const nb=gxp(xp,key,score);
   $('#view').innerHTML=`<div class="result"><div style="font-size:54px">${nb?'🏆':'🎉'}</div><h1 class="big">${esc(title)}</h1><div class="num">${score}</div><p class="sub">${unit}</p><p style="color:var(--urre)">${nb?jx('¡Nuevo récord!','Errekor berria!'):jx('Mejor','Onena')+': '+S.gbest[key]} · +${xp} XP</p>${extra||''}
-  <div class="stack" style="margin-top:18px"><button class="btn block" data-jg="${again}">Beste bat</button><button class="btn sec block" data-jg="menu">Jolak</button></div></div>`;
+  <div class="stack" style="margin-top:18px"><button class="btn block" data-jg="${again}">Beste bat</button><button class="btn sec block" data-jg="menu">Jolasak</button></div></div>`;
   window.scrollTo(0,0);burst&&burst();
 }
 const jgHead=(t,chip,back)=>`<div class="jg-top"><button class="btn sec small" data-jg="${back}">←</button><span class="jg-title">${t}</span><span class="jg-chip" id="jchip">${chip||''}</span></div>`;
@@ -3172,7 +3172,7 @@ function praktikaView(){
     ['dict','','✍️','Diktatua',X('Escribe lo que oyes','Idatzi entzuten duzuna')],
     ['numq','','🔢','Zenbakiak',X('Números dictados','Zenbakiak entzunda')],
     ['abcq','','🔠','Alfabetoa',X('Deletreo con audio','Letrak entzunda')],
-    ['go','jolak','🎮','Jolak',X('3 juegos','3 jolas')],
+    ['go','jolak','🎮','Jolasak',X('3 juegos','3 jolas')],
     ['nn','','⚖️','Aditz motak','NOR, NORK, NORI…'],
     ['go','gida','💡','Gida',X('Gramática en claro','Gramatika argian')],
     ['go','test','📝','Test',X('Saltar nivel o autoevaluarte','Maila saltatu edo autoebaluazioa')]
