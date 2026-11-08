@@ -21,6 +21,8 @@ Nota: tu progreso (XP, racha, lecciones hechas) se guarda en el navegador donde 
 - **Repetición espaciada** (1, 3, 7, 21, 45 días) sobre las palabras de vocabulario: tarjeta en Hasiera «Repaso espaciado» y baldosa «Errepaso adimentsua» en Praktika. Falla = vuelve mañana.
 - Probado: carga de los 18 scripts sin errores, sesiones de lección completas simuladas (ayuda, fallos, recap), Kasuak 10 rondas con L4 y con todo desbloqueado, SRS. NO probado en navegador real ni con voz real de móvil.
 
+- **Estructura modular:** `src/` (24 partes) + `build.py` + `orden.txt`; `python3 src/build.py ../euskara-bidea.html` reconstruye el `index.html` idéntico byte a byte. Editar siempre en `src/` y reconstruir.
+
 ## v42 · 2026-11-08
 - **Aprobado de lección al 80 %** (antes 85 % en la versión anterior, 60 % al principio). La migración pasa a borrar solo las aprobadas con menos de 80 %. Quien ya abrió la versión anterior (marca `mig85`) ya perdió las de 80-84 %: no se recuperan solas, hay que repetirlas o restaurar una copia de seguridad.
 
