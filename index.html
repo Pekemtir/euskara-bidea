@@ -1098,20 +1098,20 @@ function finish(){
   let lessonMsg='';
   if(SES.cfg.lesson){
     const id=SES.cfg.lesson,prev=S.lessons[id];
-    if(acc>=85){
+    if(acc>=80){
       if(prev==null){S.xp+=20;S.today+=20;SES.xp+=20;lessonMsg='🎓 Ikasgaia osatu duzu · lección completada · +20 XP'}
       else lessonMsg='🎓 Lección superada de nuevo';
       S.lessons[id]=Math.max(prev||0,acc);
       if(a1Complete()&&!S.a2unl){S.a2unl=1;lessonMsg+=' · 🔓 ¡A2 desbloqueado! Cámbialo en el selector de nivel'}
-    }else lessonMsg='Con un 85 % la lección queda hecha. Repasa los errores y vuelve a intentarlo.';
+    }else lessonMsg='Con un 80 % la lección queda hecha. Repasa los errores y vuelve a intentarlo.';
   }
   if(SES.cfg.daily&&!dailyDone()){S.dailyDay=todayKey();S.dailyN=(S.dailyN||0)+1;S.xp+=30;S.today+=30;SES.xp+=30;lessonMsg='📅 Eguneko erronka osatu duzu · reto diario · +30 XP'}
-  const t=acc>=90?['Bikain!','¡Sesión perfecta!']:acc>=85?['Oso ondo!','¡Muy bien!']:['Aurrera!','¡Sigue, vas bien!'];
+  const t=acc>=90?['Bikain!','¡Sesión perfecta!']:acc>=80?['Oso ondo!','¡Muy bien!']:['Aurrera!','¡Sigue, vas bien!'];
   const cl=SES.cfg.lesson?LESSONS.find(l=>l.id===SES.cfg.lesson):null;
   const lst=cl?LESSONS.filter(l=>lvOf(l)===lvOf(cl)).sort((a,b)=>a.n-b.n):[];
-  const nxt=(cl&&acc>=85)?lst[lst.indexOf(cl)+1]:null;
+  const nxt=(cl&&acc>=80)?lst[lst.indexOf(cl)+1]:null;
   const miss=Array.from(new Set(SES.miss.map(q=>q.rev))).slice(0,6);
-  $('#view').innerHTML=`<div class="result"><div style="font-size:54px">${acc>=90?'🏆':acc>=85?'🎉':'💪'}</div><h1 class="big">${t[0]}</h1><p class="sub">${t[1]}</p><div class="num">+${SES.xp} XP</div>
+  $('#view').innerHTML=`<div class="result"><div style="font-size:54px">${acc>=90?'🏆':acc>=80?'🎉':'💪'}</div><h1 class="big">${t[0]}</h1><p class="sub">${t[1]}</p><div class="num">+${SES.xp} XP</div>
   <div class="stats3"><div><b>${acc}%</b><span>a la primera</span></div><div><b>⚡ ${SES.best}</b><span>mejor racha</span></div><div><b>🔥 ${S.streak}</b><span>días seguidos</span></div></div>
   ${lessonMsg?`<div class="explain"><p><b>${lessonMsg}</b></p></div>`:''}
   ${SES.cfg.lesson&&typeof lessonRecap==='function'?lessonRecap(SES.cfg.lesson):''}
@@ -1124,7 +1124,7 @@ function finish(){
   if(nxt)$('#nextl').onclick=()=>{endSession(true);openLesson(nxt.id)};
   if(cfg.lesson)$('#rev').onclick=()=>{endSession(true);openLesson(cfg.lesson)};
   save();checkBadges();refreshHeader();
-  if(acc>=85)burst();
+  if(acc>=80)burst();
 }
 </script>
 <script>
@@ -3002,8 +3002,8 @@ const LL=()=>LESSONS.filter(l=>lvOf(l)===S.level).sort((a,b)=>a.n-b.n);
 const a1Total=()=>LESSONS.filter(l=>lvOf(l)==='a1').length;
 const a1Done=()=>LESSONS.filter(l=>lvOf(l)==='a1'&&lessonDone(l.id)).length;
 const a1Complete=()=>a1Done()>=a1Total();
-/* v41: aprobado al 85 % -> lecciones aprobadas con menos de 85 % vuelven a pendientes (una sola vez); si A1 ya no está completo y no hay test aprobado, A2 se vuelve a bloquear */
-if(!S.mig85){S.mig85=1;Object.keys(S.lessons||{}).forEach(k=>{if(typeof S.lessons[k]==='number'&&S.lessons[k]<85)delete S.lessons[k]});if(!S.a1test&&!a1Complete())S.a2unl=0;save()}
+/* v42: aprobado al 80 % -> lecciones aprobadas con menos de 80 % vuelven a pendientes (una sola vez); si A1 ya no está completo y no hay test aprobado, A2 se vuelve a bloquear */
+if(!S.mig85){S.mig85=1;Object.keys(S.lessons||{}).forEach(k=>{if(typeof S.lessons[k]==='number'&&S.lessons[k]<80)delete S.lessons[k]});if(!S.a1test&&!a1Complete())S.a2unl=0;save()}
 const a2Open=()=>S.a2key===1||S.a1test===1||a1Complete();
 const nextLesson=()=>LL().find(l=>!lessonDone(l.id))||null;
 /* A2: el castellano se reduce poco a poco: desde la lección 8 las traducciones se ocultan (tocar para verlas) */
@@ -3034,7 +3034,7 @@ function lessonRender(){
     const sc=S.lessons[L.id];
     h+=`<p class="qkind">${L.n}. ikasgaia · ~${L.min} min</p><h1 class="big">${L.ic} ${esc(L.eu)}</h1><p class="sub">${lvOf(L)==='a2'&&L.n>=16?'':esc(L.es)}</p>
     <div class="card"><b style="font:700 18px var(--f-display)">Zer ikasiko dugu · qué vas a aprender</b><ul class="goals">${L.goals.map(g=>`<li>${esc(g)}</li>`).join('')}</ul></div>
-    <p class="note">Primero ${n} pasos cortos de explicación con ejemplos y luego una práctica. Con un 85 % la lección queda hecha.${sc!=null?` Tu mejor resultado hasta ahora: ${sc} %.`:''}</p>
+    <p class="note">Primero ${n} pasos cortos de explicación con ejemplos y luego una práctica. Con un 80 % la lección queda hecha.${sc!=null?` Tu mejor resultado hasta ahora: ${sc} %.`:''}</p>
     <div class="stack" style="margin-top:18px"><button class="btn block" data-lact="next">Hasi · empezar</button></div>`;
   }else{
     const s=steps[st].sum?{t:'Laburpena · resumen',h:'<p>Lo esencial de la lección:</p><ul class="goals">'+SM.sum.map(x=>'<li>'+x+'</li>').join('')+'</ul><p style="margin-top:16px"><b>Hitz gakoak · palabras clave</b></p>',tb:'<table class="mini"><tr><th>Euskera</th><th>Español</th></tr>'+SM.kw.map(k=>'<tr><td><b>'+esc(k[0])+'</b></td><td>'+esc(k[1])+'</td></tr>').join('')+'</table>',cards:1}:steps[st],last=st===n-1;
